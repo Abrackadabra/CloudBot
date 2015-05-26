@@ -81,7 +81,8 @@
         "google_dev_key": "",
         "google_cse_id": "",
         "octopart": "",
-        "wordnik": ""
+        "wordnik": "",
+        "cat_api": ""
     },
     "database": "sqlite:///cloudbot.db",
     "plugin_loading": {
