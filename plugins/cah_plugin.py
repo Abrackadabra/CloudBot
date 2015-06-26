@@ -1,9 +1,10 @@
 from pprint import pprint
+import re
 
 from cloudbot import hook
 from .cah import Game, Communicator
 
-CHAN = '#abratest3'
+CHAN = '#yacah'
 
 # @hook.on_start
 # def on_start(conn):
@@ -16,10 +17,10 @@ CHAN = '#abratest3'
 @hook.irc_raw("004")
 def on_ready(conn):
   com = Communicator(conn, CHAN)
-  print('IMPORTANT', conn, type(conn))
+  com.announce('Reloaded.')
 
   global game
-  game = Game(com, 'data/cah')
+  game = Game(com, 'data/cah_sets')
 
 
 @hook.regex('^.+$')
@@ -39,9 +40,13 @@ def command_create(nick, chan, match):
 
   game.process(nick, command, args)
 
+  if re.match(r'\d+[ \d+]*', text):
+    game.process(nick, 'pick', text)
+
 
 @hook.command('testing')
-def command_testing(conn):
-  pprint(dir(conn))
-  return 'whaaa'
+def command_testing(nick, conn, chan, reply, notice):
+  conn.message(chan, '\x030\x03 \x021\x02 \x042\x04')
+  notice(nick, '\x030\x03 \x021\x02 \x042\x04')
+  reply('\x030\x03 \x021\x02 \x042\x04')
 

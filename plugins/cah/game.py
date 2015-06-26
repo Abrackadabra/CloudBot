@@ -1,5 +1,6 @@
 import random
-from .deck import Deck, BlackCard
+
+from .deck import Deck
 from .score import Scores
 
 
@@ -10,18 +11,23 @@ class Game(object):
     """
     self.com = com
 
-    self.deck = Deck.read(card_dir + '/official_deck.json')
+    self.deck = Deck(card_dir)
 
     self.phase = NoGame()
 
+    self.reset()
+
+  def process(self, nick, command, args):
+    self.phase = self.phase.process(self, nick, command.lower(), args) or self.phase
+
+  def reset(self):
     self.players = []
     self.creator = ''
     self.hands = {}
 
-    self.scores = None
-    """:type : score.Scores"""
+    self.scores = Scores()
 
-    self.round = -1
+    self.round = 0
 
     self.black_card = None
     """:type : deck.BlackCard"""
@@ -32,9 +38,9 @@ class Game(object):
     self.player_perm = []
 
     self.joiners = []
+    self.limit = 5
 
-  def process(self, nick, command, args):
-    self.phase = self.phase.process(self, nick, command, args) or self.phase
+    self.deck.reset()
 
 
 class GamePhase(object):
@@ -56,12 +62,18 @@ class GamePhase(object):
 class NoGame(GamePhase):
   @GamePhase.command
   def create(self, g: Game, nick, args):
-    g.com.announce('Game is started!')
+    g.com.announce('Game is created.')
+
+    g.reset()
 
     g.creator = nick
-    g.players.append(nick)
+    g.players = [nick]
 
     return WaitingForPlayers()
+
+  @GamePhase.command
+  def status(self, g: Game, nick, args):
+    g.com.announce('No one is playing.')
 
 
 class WaitingForPlayers(GamePhase):
@@ -71,8 +83,7 @@ class WaitingForPlayers(GamePhase):
       g.com.notice(nick, 'You are already playing.')
     else:
       g.players.append(nick)
-      g.com.announce(
-        '{} has joined the game. {} players total.'.format(nick, len(g.players)))
+      g.com.announce('{} has joined the game. {} players total.'.format(nick, len(g.players)))
 
   @GamePhase.command
   def leave(self, g: Game, nick, args):
@@ -81,6 +92,11 @@ class WaitingForPlayers(GamePhase):
     else:
       g.players.remove(nick)
       g.com.announce('{} has left the game. {} players remaining.'.format(nick, len(g.players)))
+
+      if nick == g.creator:
+        g.com.announce('Creator has left the game. Game aborted.')
+        g.reset()
+        return NoGame()
 
   @GamePhase.command
   def start(self, g: Game, nick, args):
@@ -93,14 +109,98 @@ class WaitingForPlayers(GamePhase):
       new_state.deal(g)
       return new_state.act(g) or new_state
 
+  @GamePhase.command
+  def limit(self, g: Game, nick, args):
+    parts = args.split()
+    if len(parts) == 0:
+      g.com.reply(nick, 'Current point limit is {} points.'.format(g.limit))
+      return
+
+    if not parts[0].isnumeric():
+      g.com.notice(nick, 'Invalid argument.')
+      return
+
+    if nick != g.creator:
+      g.com.notice(nick, 'Only {} can change the point limit.'.format(g.creator))
+      return
+
+    c = int(parts[0])
+    if 0 < c < 100:
+      g.limit = c
+      g.com.notice(nick, 'You changed the point limit to {}.'.format(c))
+    else:
+      g.com.notice(nick, 'Invalid number.')
+
+  @GamePhase.command
+  def status(self, g: Game, nick, args):
+    g.com.announce('Waiting for people to join. Creator: {}. {} players.'
+                   ''.format(g.creator, len(g.players)))
+
+  @GamePhase.command
+  def list_sets(self, g: Game, nick, args):
+    sets = g.deck.list_all_sets()
+    g.com.announce('All card sets: ' + ', '.join(['[{}] {}'.format(i, j) for i, j in enumerate(sets)]))
+
+  @GamePhase.command
+  def list_used_sets(self, g: Game, nick, args):
+    sets = g.deck.list_used_sets()
+    g.com.announce('Used card sets: ' + ', '.join(['[{}] {}'.format(i, j) for i, j in enumerate(sets)]))
+
+  @GamePhase.command
+  def add_set(self, g: Game, nick, args):
+    parts = args.split()
+
+    if len(parts) == 0 or (any(not i.isnumeric() for i in parts) and parts[0] != 'all'):
+      g.com.notice(nick, 'Invalid argument.')
+      return
+
+    if nick != g.creator:
+      g.com.notice(nick, 'Only {} can change used card sets.'.format(g.creator))
+      return
+
+    sets = g.deck.list_all_sets()
+
+    if parts[0] == 'all':
+      c = list(range(len(sets)))
+    else:
+      c = [int(i) for i in parts]
+    for i in c:
+      if i < 0 or i >= len(sets):
+        g.com.notice(nick, 'Invalid index {}.'.format(i))
+        return
+
+      g.deck.add_set(sets[i])
+    self.list_used_sets(g, nick, args)
+
+  @GamePhase.command
+  def remove_set(self, g: Game, nick, args):
+    parts = args.split()
+    if len(parts) == 0 or not parts[0].isnumeric():
+      g.com.notice(nick, 'Invalid argument.')
+      return
+
+    if nick != g.creator:
+      g.com.notice(nick, 'Only {} can change used card sets.'.format(g.creator))
+      return
+
+    sets = g.deck.list_used_sets()
+    c = int(parts[0])
+    if c < 0 or c >= len(sets):
+      g.com.notice(nick, 'Invalid index.')
+      return
+
+    if len(sets) == 0:
+      g.com.notice(nick, 'You cannot remove all sets.')
+      return
+
+    g.deck.remove_set(sets[c])
+    self.list_used_sets(g, nick, args)
+
 
 class PlayingCards(GamePhase):
   def deal(self, g: Game):
-    g.scores = Scores()
     for i in g.players:
       g.scores.register(i)
-
-    g.round = 0
 
     random.shuffle(g.players)
     for player in g.players:
@@ -111,8 +211,9 @@ class PlayingCards(GamePhase):
     g.czar = g.players[g.czar_index]
 
   def act(self, g: Game):
-    if g.round == 10:
-      g.com.announce('The game is over!')
+    if g.scores.highest() >= g.limit:
+      g.com.announce('The game is over! {} won!'.format(', '.join(g.scores.winners())))
+      g.reset()
       return NoGame()
 
     for i in g.joiners:
@@ -127,19 +228,25 @@ class PlayingCards(GamePhase):
     g.joiners.clear()
 
     g.black_card = g.deck.draw_black()
-    g.com.announce(
-      'Round {}. The card czar is {}. This round\'s card is...'.format(g.round, g.czar))
-    g.com.announce(str(g.black_card))
+    g.com.announce('Round {}. The card czar is {}. This round\'s card is...'
+                   ''.format(g.round, g.czar))
+    g.com.announce('{}'.format(g.black_card))
+
+    example_args = ' '.join(map(str, range(g.black_card.gaps)))
+    example = 'pick {}'.format(example_args)
+    waiting = list(g.players)
+    waiting.remove(g.czar)
+    msg = '{}: Play {} card{}, like "{}" or just "{}".' \
+          ''.format(', '.join(waiting),
+                    g.black_card.gaps,
+                    '' if g.black_card.gaps == 1 else 's',
+                    example,
+                    example_args)
+    g.com.announce(msg)
 
     for player, hand in g.hands.items():
       if player == g.czar:
         continue
-
-      example = '.pick {}'.format(' '.join(map(str, range(g.black_card.gaps))))
-      msg = 'You need to play {} card{}, like "{}".'.format(g.black_card.gaps,
-                                                            '' if g.black_card.gaps == 1 else 's',
-                                                            example)
-      g.com.notice(player, msg)
 
       hand_s = ' '.join(['[{}] {}'.format(i, j) for i, j in enumerate(hand)])
       g.com.notice(player, 'Your hand: {}.'.format(hand_s))
@@ -150,9 +257,11 @@ class PlayingCards(GamePhase):
   def join(self, g: Game, nick, args):
     if nick in g.players:
       g.com.notice(nick, 'You are already playing.')
+      return
 
     if nick in g.joiners:
       g.com.notice(nick, 'You are already joining.')
+      return
 
     g.joiners.append(nick)
     g.com.notice(nick, 'You will be dealt into the game when the next round begins.')
@@ -177,6 +286,7 @@ class PlayingCards(GamePhase):
 
     if len(g.players) < 3:
       g.com.announce('There are not enough players to continue. Game stopped.')
+      g.reset()
       return NoGame()
 
     if nick == g.czar:
@@ -234,6 +344,30 @@ class PlayingCards(GamePhase):
 
     return new_state.act(g) or new_state
 
+  @GamePhase.command
+  def status(self, g: Game, nick, args):
+    waiting = []
+    for i in g.players:
+      if i not in g.played and i != g.czar:
+        waiting.append(i)
+
+    g.com.announce('{} players. Black card: "{}". Waiting for {} to play.'
+                   ''.format(len(g.players), g.black_card, ', '.join(waiting)))
+
+  @GamePhase.command
+  def cards(self, g: Game, nick, args):
+    if nick not in g.players:
+      g.com.notice(nick, 'You are not playing.')
+      return
+
+    hand = g.hands[nick]
+    hand_s = ' '.join(['[{}] {}'.format(i, j) for i, j in enumerate(hand)])
+    g.com.notice(nick, 'Your hand: {}.'.format(hand_s))
+
+  @GamePhase.command
+  def limit(self, g: Game, nick, args):
+    g.com.reply(nick, 'The point limit is {} points.'.format(g.limit))
+
 
 class ChoosingWinner(GamePhase):
   def act(self, g: Game):
@@ -285,3 +419,10 @@ class ChoosingWinner(GamePhase):
 
   join = PlayingCards.join
   leave = PlayingCards.leave
+  cards = PlayingCards.cards
+
+  @GamePhase.command
+  def status(self, g: Game, nick, args):
+    g.com.announce(
+      '{} players. Black card: "{}". Waiting for card czar {} to choose the winner.'
+      ''.format(len(g.players), g.black_card, g.czar))

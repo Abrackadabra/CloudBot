@@ -1,4 +1,5 @@
 from os import system
+from pprint import pprint
 
 import pytest
 
@@ -35,7 +36,7 @@ def com():
 
 @pytest.fixture(scope='function')
 def g(com):
-  game = Game(com, 'data/cah')
+  game = Game(com, 'data/cah_sets')
 
   def d(nick, command, args=''):
     print('<{}: {} {}'.format(nick, command, args))
@@ -51,7 +52,7 @@ def test_create(com, g):
   :type g: Game
   """
   g.d('a', 'create')
-  assert com.log[-1] == 'Game is started!'
+  assert com.log[-1] == 'Game is created.'
 
 
 def test_leave(com, g):
@@ -73,11 +74,13 @@ def test_game(com, g):
   :type com: Communicator
   :type g: Game
   """
+
+  g.d('a', 'create')
+
   g.deck.black_pool = []
   for i in range(5):
     g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
 
-  g.d('a', 'create')
   g.d('b', 'join')
   g.d('c', 'join')
   g.d('a', 'start')
@@ -102,11 +105,12 @@ def test_several_games(com, g):
   :type com: Communicator
   :type g: Game
   """
+  g.d('a', 'create')
   g.deck.black_pool = []
   for i in range(20):
     g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
 
-  g.d('a', 'create')
+  g.d('a', 'limit', '10')
   g.d('b', 'join')
   g.d('c', 'join')
   g.d('a', 'start')
@@ -121,12 +125,12 @@ def test_several_games(com, g):
 
     assert 'Everyone has played' in ' '.join(com.log[-3:])
 
-    g.d('a', 'pick', '0')
+    g.d('a', 'pick', str(g.player_perm.index('b')))
 
     l = ' '.join(com.log[-8:])
     assert 'b wins with' in l or 'c wins with' in l
 
-  assert 'game is over' in ' '.join(com.log[-3:])
+  assert 'game is over! b won!' in ' '.join(com.log[-3:])
 
 
 def test_playleave(com, g):
@@ -134,11 +138,11 @@ def test_playleave(com, g):
   :type com: Communicator
   :type g: Game
   """
+  g.d('a', 'create')
   g.deck.black_pool = []
   for i in range(20):
     g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
 
-  g.d('a', 'create')
   g.d('b', 'join')
   g.d('c', 'join')
   g.d('d', 'join')
@@ -162,11 +166,11 @@ def test_playjoin(com, g):
   :type com: Communicator
   :type g: Game
   """
+  g.d('a', 'create')
   g.deck.black_pool = []
   for i in range(20):
     g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
 
-  g.d('a', 'create')
   g.d('b', 'join')
   g.d('c', 'join')
   g.d('a', 'start')
@@ -189,11 +193,11 @@ def test_choosejoinleave(com, g):
   :type com: Communicator
   :type g: Game
   """
+  g.d('a', 'create')
   g.deck.black_pool = []
   for i in range(20):
     g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
 
-  g.d('a', 'create')
   g.d('b', 'join')
   g.d('c', 'join')
   g.d('d', 'join')
@@ -211,3 +215,66 @@ def test_choosejoinleave(com, g):
 
   assert 'Round 0' in ' '.join(com.log[-8:])
   assert 'e' in g.players
+
+
+
+def test_status(com, g):
+  """
+  :type com: Communicator
+  :type g: Game
+  """
+  g.d('a', 'create')
+  g.deck.black_pool = []
+  for i in range(20):
+    g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
+
+  g.d('b', 'join')
+  g.d('c', 'join')
+  g.d('d', 'join')
+  g.d('a', 'start')
+
+  g.czar_index = g.players.index('a')
+  g.czar = 'a'
+
+  g.d('a', 'status')
+  assert '4 players' in com.log[-1]
+  assert 'Black card:' in com.log[-1]
+  assert 'Waiting for' in com.log[-1]
+
+  g.d('a', 'cards')
+  assert 'Your hand:' in com.log[-1]
+
+  g.d('b', 'pick', '0')
+  g.d('c', 'pick', '0')
+  g.d('d', 'pick', '0')
+
+  g.d('a', 'status')
+  assert 'Waiting for card czar' in com.log[-1]
+
+
+def test_sets(com, g):
+  """
+  :type com: Communicator
+  :type g: Game
+  """
+  g.d('a', 'create')
+
+  g.d('a', 'list_sets')
+  assert 'Base Set' in com.log[-1]
+
+  g.d('a', 'list_used_sets')
+  assert 'Base Set' in com.log[-1]
+
+  g.d('a', 'add_set', '1 2')
+
+  assert len(g.deck.used_sets) == 3
+
+  g.d('a', 'remove_set', '0')
+  assert len(g.deck.used_sets) == 2
+
+  g.d('a', 'leave')
+  g.d('a', 'create')
+  assert len(g.deck.used_sets) == 1
+
+  g.d('a', 'add_set', 'all')
+  assert len(g.deck.used_sets) > 10

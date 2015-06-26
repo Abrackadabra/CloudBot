@@ -1,5 +1,20 @@
 class Communicator(object):
   def __init__(self, conn, chan):
-    self.reply = lambda nick, msg: conn.message(chan, '({}) {}'.format(nick, msg))
-    self.announce = lambda msg: conn.message(chan, msg)
-    self.notice = lambda nick, msg: conn.notice(nick, msg)
+    self.conn = conn
+    self.chan = chan
+
+  def announce(self, msg):
+    print('A', msg)
+    while len(msg) > 0:
+      self.conn.message(self.chan, msg[:400])
+      msg = msg[400:]
+
+  def reply(self, nick, msg):
+    print('R', nick, msg)
+    self.announce('({}) {}'.format(nick, msg))
+
+  def notice(self, nick, msg):
+    print('Nc', nick, msg)
+    while len(msg) > 0:
+      self.conn.notice(nick, msg[:400])
+      msg = msg[400:]
