@@ -1,4 +1,4 @@
-from plugins.cah import game, com
+from . import game, com
 
 __all__ = ['Game', 'Communicator']
 
