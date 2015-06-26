@@ -2,166 +2,166 @@
   "black": [
     {
       "gaps": 2,
-      "text": "If Ned Stark had _, he never would have _."
+      "text": "If Ned Stark had %s, he never would have %s"
     },
     {
       "gaps": 1,
-      "text": "Brace yourselves, _ is coming."
+      "text": "Brace yourselves, %s is coming"
     },
     {
       "gaps": 1,
-      "text": "In exchange for his sister, Viserys was given _."
+      "text": "In exchange for his sister, Viserys was given %s"
     },
     {
       "gaps": 1,
-      "text": "Despite his best efforts, King Robert filled his reign with _."
+      "text": "Despite his best efforts, King Robert filled his reign with %s"
     },
     {
       "gaps": 1,
-      "text": "_ was proclaimed the true king of the Seven Kingdoms."
+      "text": "%s was proclaimed the true king of the Seven Kingdoms"
     },
     {
       "gaps": 1,
-      "text": "In _, you win or you lose."
+      "text": "In %s, you win or you lose"
     },
     {
       "gaps": 2,
-      "text": "Because of _, Danerys was called _ by everyone."
+      "text": "Because of %s, Danerys was called %s by everyone"
     },
     {
       "gaps": 2,
-      "text": "I will take what is mine with _ and _."
+      "text": "I will take what is mine with %s and %s"
     },
     {
       "gaps": 1,
-      "text": "There is no word for _ in Dothraki."
+      "text": "There is no word for %s in Dothraki"
     },
     {
       "gaps": 2,
-      "text": "In the next Game of Thrones book, George R. R. Martin said _ will _."
+      "text": "In the next Game of Thrones book, George R. R. Martin said %s will %s"
     },
     {
       "gaps": 2,
-      "text": "All hail _! King of _!"
+      "text": "All hail %s! King of %s!"
     },
     {
       "gaps": 1,
-      "text": "A Lannister always pays _."
+      "text": "A Lannister always pays %s"
     },
     {
       "gaps": 1,
-      "text": "First lesson, stick them with _."
+      "text": "First lesson, stick them with %s"
     },
     {
       "gaps": 2,
-      "text": "In the name of _, first of his _."
+      "text": "In the name of %s, first of his %s"
     },
     {
       "gaps": 1,
-      "text": "The things I do for _."
+      "text": "The things I do for %s"
     },
     {
       "gaps": 1,
-      "text": "Hodor only ever says _."
+      "text": "Hodor only ever says %s"
     },
     {
       "gaps": 2,
-      "text": "The next Game of Thrones book will be titled _ of _."
+      "text": "The next Game of Thrones book will be titled %s of %s"
     },
     {
       "gaps": 1,
-      "text": "A Dothraki wedding without _ is considered a dull affair."
+      "text": "A Dothraki wedding without %s is considered a dull affair"
     },
     {
       "gaps": 1,
-      "text": "After I was caught _, I was forced to join the Night's Watch."
+      "text": "After I was caught %s, I was forced to join the Night's Watch"
     },
     {
       "gaps": 1,
-      "text": "A man without _ is a man without power."
+      "text": "A man without %s is a man without power"
     }
   ],
   "white": [
-    "Jaime Lannister, 'The Kingslayer'.",
-    "Cersei Lannister, the Queen.",
-    "Joffrey Baratheon, the Prince.",
-    "Tyrion Lannister, 'The Imp'.",
-    "Ned Stark, Lord of Winterfell, Warden of the North.",
-    "Robb Stark, heir apparent of Winterfell.",
-    "Jon Snow, the bastard.",
-    "Catelyn Stark, Lady of Winterfell.",
-    "Sansa Stark, betrothed to Prince Joffrey.",
-    "Arya Stark.",
-    "Bran Stark.",
-    "Hodor.",
-    "The Wall.",
-    "The Night's Watch.",
-    "Danerys Targaryen, Khaleesi of the Dothraki.",
-    "Theon Greyjoy, Ned Stark's youthful ward.",
-    "Peter 'Littlefinger' Baelish.",
-    "Lord Varys, the Spider.",
-    "King Robert Baratheon, First of His Name, King of the Andals and the First Men, Lord Protector of the Realm.",
-    "Khal Drogo, Dothraki horse lord.",
-    "The Iron Throne.",
+    "Jaime Lannister, 'The Kingslayer'",
+    "Cersei Lannister, the Queen",
+    "Joffrey Baratheon, the Prince",
+    "Tyrion Lannister, 'The Imp'",
+    "Ned Stark, Lord of Winterfell, Warden of the North",
+    "Robb Stark, heir apparent of Winterfell",
+    "Jon Snow, the bastard",
+    "Catelyn Stark, Lady of Winterfell",
+    "Sansa Stark, betrothed to Prince Joffrey",
+    "Arya Stark",
+    "Bran Stark",
+    "Hodor",
+    "The Wall",
+    "The Night's Watch",
+    "Danerys Targaryen, Khaleesi of the Dothraki",
+    "Theon Greyjoy, Ned Stark's youthful ward",
+    "Peter 'Littlefinger' Baelish",
+    "Lord Varys, the Spider",
+    "King Robert Baratheon, First of His Name, King of the Andals and the First Men, Lord Protector of the Realm",
+    "Khal Drogo, Dothraki horse lord",
+    "The Iron Throne",
     "HODOR!!",
-    "Ros, the red-headed whore.",
-    "Winterfell.",
-    "Kings's Landing.",
-    "The North.",
-    "Beyond the Wall.",
-    "Westeros.",
-    "The Seven Kingdoms.",
-    "Direwolves.",
-    "White Walkers.",
-    "Dragons.",
-    "'Winter is Coming'.",
-    "The old gods and the new.",
-    "Incest, hot twin on twin action.",
-    "House Stark.",
-    "House Lannister.",
-    "House Targaryen.",
-    "George R. R. Martin.",
-    "Gratuitous nudity, the way only HBO® can provide.",
-    "Throwing a boy out of a window to cover up incest.",
-    "Joining the Night's Watch.",
-    "Selling your sister to Dothraki nomads.",
-    "Making your husband love you through cunning use of reverse cowgirl.",
-    "Running a whorehouse, which is better than owning ships.",
-    "Conquering the continent with dragons.",
-    "Being forced to marry an abusive king.",
-    "Beheading a man for having no honor.",
-    "Explaining complicated plot with lots of naked women around.",
-    "Trusting Littlefinger.",
-    "Learning the prince is a bastard and the product of incest.",
-    "Slapping Joffrey. Repeatedly.",
-    "Cutting off your enemies' heads and mounting them on spikes.",
-    "Raising your husband's bastard son as your own.",
-    "Asking a teenage girl if she's 'bled yet'.",
-    "Making millions of fans cry by killing off beloved characters.",
-    "Hodoring.",
-    "Riding off to join your best friend's rebellion.",
-    "Breastfeeding your creepy son until he's 9 years old.",
-    "Having a giant wolf for a pet.",
-    "Beheaded on the steps of the Sept of Baelor.",
-    "Killed by a member of the Kingsguard.",
-    "Seized the Iron Throne by any means necessary.",
-    "Built a 700 foot high wall to keep out bad things.",
-    "Born a bastard.",
-    "Butchered by White Walkers and arranged in an artful pattern.",
-    "Appointed as Hand of the King.",
-    "Found enough wolf cubs for all the children.",
-    "Fondled by your brother on your wedding day.",
-    "Climbed the wrong wall at the wrong time.",
-    "Started a pointless vendetta with another House.",
-    "Increased ratings with the use of gratuitous nudity.",
-    "Carried by Hodor.",
-    "Pissed off of the Wall just because.",
-    "Swore an oath to the old gods and the new.",
-    "Brought home a new baby bastard for your wife to hate.",
-    "Negotiated a wedding no one will like.",
-    "Rode a dragon, like a boss.",
-    "Changed things from the book, infuriating fans.",
-    "Spent an entire reign chasing boars and fucking whores."
+    "Ros, the red-headed whore",
+    "Winterfell",
+    "Kings's Landing",
+    "The North",
+    "Beyond the Wall",
+    "Westeros",
+    "The Seven Kingdoms",
+    "Direwolves",
+    "White Walkers",
+    "Dragons",
+    "'Winter is Coming'",
+    "The old gods and the new",
+    "Incest, hot twin on twin action",
+    "House Stark",
+    "House Lannister",
+    "House Targaryen",
+    "George R. R. Martin",
+    "Gratuitous nudity, the way only HBO® can provide",
+    "Throwing a boy out of a window to cover up incest",
+    "Joining the Night's Watch",
+    "Selling your sister to Dothraki nomads",
+    "Making your husband love you through cunning use of reverse cowgirl",
+    "Running a whorehouse, which is better than owning ships",
+    "Conquering the continent with dragons",
+    "Being forced to marry an abusive king",
+    "Beheading a man for having no honor",
+    "Explaining complicated plot with lots of naked women around",
+    "Trusting Littlefinger",
+    "Learning the prince is a bastard and the product of incest",
+    "Slapping Joffrey. Repeatedly",
+    "Cutting off your enemies' heads and mounting them on spikes",
+    "Raising your husband's bastard son as your own",
+    "Asking a teenage girl if she's 'bled yet'",
+    "Making millions of fans cry by killing off beloved characters",
+    "Hodoring",
+    "Riding off to join your best friend's rebellion",
+    "Breastfeeding your creepy son until he's 9 years old",
+    "Having a giant wolf for a pet",
+    "Beheaded on the steps of the Sept of Baelor",
+    "Killed by a member of the Kingsguard",
+    "Seized the Iron Throne by any means necessary",
+    "Built a 700 foot high wall to keep out bad things",
+    "Born a bastard",
+    "Butchered by White Walkers and arranged in an artful pattern",
+    "Appointed as Hand of the King",
+    "Found enough wolf cubs for all the children",
+    "Fondled by your brother on your wedding day",
+    "Climbed the wrong wall at the wrong time",
+    "Started a pointless vendetta with another House",
+    "Increased ratings with the use of gratuitous nudity",
+    "Carried by Hodor",
+    "Pissed off of the Wall just because",
+    "Swore an oath to the old gods and the new",
+    "Brought home a new baby bastard for your wife to hate",
+    "Negotiated a wedding no one will like",
+    "Rode a dragon, like a boss",
+    "Changed things from the book, infuriating fans",
+    "Spent an entire reign chasing boars and fucking whores"
   ],
   "name": "[C] Game of Thrones (no spoilers)"
 }

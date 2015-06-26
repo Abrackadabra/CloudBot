@@ -153,9 +153,11 @@ def test_playleave(com, g):
 
   assert len(g.players) == 4
 
+  g.d('a', 'pick', '0')
   g.d('a', 'leave')
 
   assert len(g.players) == 3
+  assert len(g.played) == 0
   assert g.czar != 'a'
 
   assert 'Restarting the round' in ' '.join(com.log[:-5])

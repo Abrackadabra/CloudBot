@@ -2,39 +2,39 @@
   "black": [
     {
       "gaps": 1,
-      "text": "All your _ are belong to us"
+      "text": "All your %s are belong to us"
     },
     {
       "gaps": 1,
-      "text": "Sorry Mario, but _ is in another castle."
+      "text": "Sorry Mario, but %s is in another castle"
     },
     {
       "gaps": 1,
-      "text": "_ is a lie."
+      "text": "%s is a lie"
     },
     {
       "gaps": 1,
-      "text": "In Kingdom Hearts, Donald Duck will be replaced with _ ."
+      "text": "In Kingdom Hearts, Donald Duck will be replaced with %s "
     },
     {
       "gaps": 1,
-      "text": "we must embrace _ and burn it as fuel for out journey."
+      "text": "we must embrace %s and burn it as fuel for out journey"
     },
     {
       "gaps": 1,
-      "text": "Because of the lastest school shooting, _ is being blamed for making kids too violent."
+      "text": "Because of the lastest school shooting, %s is being blamed for making kids too violent"
     },
     {
       "gaps": 1,
-      "text": ">walk into gamestop<br>>see _<br>>walk out"
+      "text": ">walk into gamestop<br>>see %s<br>>walk out"
     },
     {
       "gaps": 1,
-      "text": "WHAT THE FUCK DID YOU SAY ABOUT ME YOU _?"
+      "text": "WHAT THE FUCK DID YOU SAY ABOUT ME YOU %s?"
     },
     {
       "gaps": 1,
-      "text": "HEY, GOLLEN PALACE? HOW U SAY _ IN CHINESE?"
+      "text": "HEY, GOLLEN PALACE? HOW U SAY %s IN CHINESE?"
     },
     {
       "gaps": 1,
@@ -42,59 +42,59 @@
     },
     {
       "gaps": 1,
-      "text": "This will be the 6th time we've posted _; we've become increasingly efficient at it."
+      "text": "This will be the 6th time we've posted %s; we've become increasingly efficient at it"
     },
     {
       "gaps": 1,
-      "text": "I have the bigger _."
+      "text": "I have the bigger %s"
     },
     {
       "gaps": 1,
-      "text": "The princess is in another _"
+      "text": "The princess is in another %s"
     },
     {
       "gaps": 1,
-      "text": "When you see it... you don't see _."
+      "text": "When you see it... you don't see %s"
     },
     {
       "gaps": 1,
-      "text": "_ TEAM RULES!!"
+      "text": "%s TEAM RULES!!"
     },
     {
       "gaps": 1,
-      "text": "Rev up those _, because I am sure hungry for one- HELP! HELP!"
+      "text": "Rev up those %s, because I am sure hungry for one- HELP! HELP!"
     },
     {
       "gaps": 1,
-      "text": "wooooooow, it took all 3 of you to _"
+      "text": "wooooooow, it took all 3 of you to %s"
     },
     {
       "gaps": 1,
-      "text": "Only casuals like _."
+      "text": "Only casuals like %s"
     },
     {
       "gaps": 1,
-      "text": "_ is 2deep and edgy for you."
+      "text": "%s is 2deep and edgy for you"
     },
     {
       "gaps": 2,
-      "text": "It's like _with _!"
+      "text": "It's like %swith %s!"
     },
     {
       "gaps": 2,
-      "text": "Check your privilege, you _ _."
+      "text": "Check your privilege, you %s %s"
     },
     {
       "gaps": 2,
-      "text": "Jill, here's a _. It might come in handy if you, the master of _, take it with you. "
+      "text": "Jill, here's a %s. It might come in handy if you, the master of %s, take it with you. "
     },
     {
       "gaps": 2,
-      "text": "_ is a pretty cool guy, eh _ and doesn't afraid of anything."
+      "text": "%s is a pretty cool guy, eh %s and doesn't afraid of anything"
     },
     {
       "gaps": 1,
-      "text": "Ironic _ is still _.<br><br>(same in both blanks)"
+      "text": "Ironic %s is still %s.<br><br>(same in both blanks)"
     },
     {
       "gaps": 1,
@@ -102,19 +102,19 @@
     },
     {
       "gaps": 2,
-      "text": ">_<br>>_<br>>2011<br>>ISHYGDDT"
+      "text": ">%s<br>>%s<br>>2011<br>>ISHYGDDT"
     },
     {
       "gaps": 2,
-      "text": "All you had to do was _ the damn _!"
+      "text": "All you had to do was %s the damn %s!"
     },
     {
       "gaps": 2,
-      "text": "The new ititeration in the Call of Duty franchise has players fighting off _ deep in the jungles of _ "
+      "text": "The new ititeration in the Call of Duty franchise has players fighting off %s deep in the jungles of %s "
     },
     {
       "gaps": 1,
-      "text": "Here lies _: peperony and chease"
+      "text": "Here lies %s: peperony and chease"
     },
     {
       "gaps": 1,
@@ -122,19 +122,19 @@
     },
     {
       "gaps": 1,
-      "text": "The president has been kidnapped by _. Are you a bad enough dude to rescue the president?"
+      "text": "The president has been kidnapped by %s. Are you a bad enough dude to rescue the president?"
     },
     {
       "gaps": 1,
-      "text": "We _ now."
+      "text": "We %s now"
     },
     {
       "gaps": 1,
-      "text": "That's the second biggest _ I've ever seen!"
+      "text": "That's the second biggest %s I've ever seen!"
     },
     {
       "gaps": 1,
-      "text": "You were almost a _ sandwich!"
+      "text": "You were almost a %s sandwich!"
     },
     {
       "gaps": 1,
@@ -142,55 +142,55 @@
     },
     {
       "gaps": 1,
-      "text": "I've covered _, you know."
+      "text": "I've covered %s, you know"
     },
     {
       "gaps": 1,
-      "text": "The newest trope against women in video games: _."
+      "text": "The newest trope against women in video games: %s"
     },
     {
       "gaps": 1,
-      "text": "You have been banned. Reason: _."
+      "text": "You have been banned. Reason: %s"
     },
     {
       "gaps": 1,
-      "text": "_ has changed. "
+      "text": "%s has changed. "
     },
     {
       "gaps": 1,
-      "text": "_. _ never changes."
+      "text": "%s. %s never changes"
     },
     {
       "gaps": 1,
-      "text": "Objective: _"
+      "text": "Objective: %s"
     },
     {
       "gaps": 1,
-      "text": "But you can call me _ the _. Has a nice ring to it dontcha think?"
+      "text": "But you can call me %s the %s. Has a nice ring to it dontcha think?"
     },
     {
       "gaps": 1,
-      "text": "_ has changed."
+      "text": "%s has changed"
     },
     {
       "gaps": 1,
-      "text": "Is a man not entitiled to _?"
+      "text": "Is a man not entitiled to %s?"
     },
     {
       "gaps": 1,
-      "text": "I'm here to _ and chew bubble gum, and I'm all out of gum."
+      "text": "I'm here to %s and chew bubble gum, and I'm all out of gum"
     },
     {
       "gaps": 1,
-      "text": "_ sappin' my sentry. "
+      "text": "%s sappin' my sentry. "
     },
     {
       "gaps": 1,
-      "text": "_ is waiting for your challenge!"
+      "text": "%s is waiting for your challenge!"
     },
     {
       "gaps": 1,
-      "text": "EA Sports! It's _."
+      "text": "EA Sports! It's %s"
     },
     {
       "gaps": 1,
@@ -198,11 +198,11 @@
     },
     {
       "gaps": 1,
-      "text": "Why is the _ fandom the worst?"
+      "text": "Why is the %s fandom the worst?"
     },
     {
       "gaps": 1,
-      "text": "_ is a pretty cool guy"
+      "text": "%s is a pretty cool guy"
     },
     {
       "gaps": 1,
@@ -210,31 +210,31 @@
     },
     {
       "gaps": 1,
-      "text": "brb guys, _ break"
+      "text": "brb guys, %s break"
     },
     {
       "gaps": 1,
-      "text": "OH MY GOD JC, A _"
+      "text": "OH MY GOD JC, A %s"
     },
     {
       "gaps": 1,
-      "text": "Achievement Unlocked: _ !"
+      "text": "Achievement Unlocked: %s !"
     },
     {
       "gaps": 1,
-      "text": "I'm _ under the table right now!"
+      "text": "I'm %s under the table right now!"
     },
     {
       "gaps": 1,
-      "text": "Viral marketers are trying to push the new _."
+      "text": "Viral marketers are trying to push the new %s"
     },
     {
       "gaps": 1,
-      "text": "I wouldn't call it a Battlestation, more like a _."
+      "text": "I wouldn't call it a Battlestation, more like a %s"
     },
     {
       "gaps": 1,
-      "text": "Fans started a kickstarter for a new _ game. "
+      "text": "Fans started a kickstarter for a new %s game. "
     },
     {
       "gaps": 1,
@@ -242,19 +242,19 @@
     },
     {
       "gaps": 1,
-      "text": "I love the _, it's so bad"
+      "text": "I love the %s, it's so bad"
     },
     {
       "gaps": 1,
-      "text": "Valve is going to make _ 2 before they release HL3."
+      "text": "Valve is going to make %s 2 before they release HL3"
     },
     {
       "gaps": 1,
-      "text": "_: Gotta go fast!"
+      "text": "%s: Gotta go fast!"
     },
     {
       "gaps": 1,
-      "text": "The best final fantasy game was _."
+      "text": "The best final fantasy game was %s"
     },
     {
       "gaps": 1,
@@ -266,19 +266,19 @@
     },
     {
       "gaps": 1,
-      "text": ">implying you aren't _"
+      "text": ">implying you aren't %s"
     },
     {
       "gaps": 1,
-      "text": "All you had to do was follow the damn _, CJ!"
+      "text": "All you had to do was follow the damn %s, CJ!"
     },
     {
       "gaps": 1,
-      "text": " Microsoft revealed that the Xbox One's demos had actually been running on _ "
+      "text": " Microsoft revealed that the Xbox One's demos had actually been running on %s "
     },
     {
       "gaps": 1,
-      "text": "WE WILL DRAG THIS _ INTO THE 21ST CENTURY."
+      "text": "WE WILL DRAG THIS %s INTO THE 21ST CENTURY"
     },
     {
       "gaps": 1,
@@ -286,7 +286,7 @@
     },
     {
       "gaps": 2,
-      "text": "What is a _ but a _?"
+      "text": "What is a %s but a %s?"
     },
     {
       "gaps": 1,
@@ -294,47 +294,47 @@
     },
     {
       "gaps": 1,
-      "text": "What if _ was a girl?"
+      "text": "What if %s was a girl?"
     },
     {
       "gaps": 1,
-      "text": "Wake up, Mr. Freeman. Wake up and _."
+      "text": "Wake up, Mr. Freeman. Wake up and %s"
     },
     {
       "gaps": 1,
-      "text": "Based _."
+      "text": "Based %s"
     },
     {
       "gaps": 1,
-      "text": "Pop Quiz: Beatles Song- _ terday."
+      "text": "Pop Quiz: Beatles Song- %s terday"
     },
     {
       "gaps": 1,
-      "text": "_ confirmed for Super Smash Bros!"
+      "text": "%s confirmed for Super Smash Bros!"
     },
     {
       "gaps": 1,
-      "text": "I'm in ur base, _"
+      "text": "I'm in ur base, %s"
     },
     {
       "gaps": 1,
-      "text": "_ only, no items, Final Destination. "
+      "text": "%s only, no items, Final Destination. "
     },
     {
       "gaps": 1,
-      "text": "The newest IP from Nintendo, Super _ Bros. "
+      "text": "The newest IP from Nintendo, Super %s Bros. "
     },
     {
       "gaps": 1,
-      "text": "The future of gaming lies with the _."
+      "text": "The future of gaming lies with the %s"
     },
     {
       "gaps": 1,
-      "text": "The newest feature of the Xbox One is _."
+      "text": "The newest feature of the Xbox One is %s"
     },
     {
       "gaps": 1,
-      "text": "Enjoy _ while you play your Xbox one!"
+      "text": "Enjoy %s while you play your Xbox one!"
     },
     {
       "gaps": 1,
@@ -342,31 +342,31 @@
     },
     {
       "gaps": 1,
-      "text": "_ has no games."
+      "text": "%s has no games"
     },
     {
       "gaps": 1,
-      "text": "The new TF2 promo items are based on _."
+      "text": "The new TF2 promo items are based on %s"
     },
     {
       "gaps": 1,
-      "text": "The best way to be comfy when playing video games is with _."
+      "text": "The best way to be comfy when playing video games is with %s"
     },
     {
       "gaps": 1,
-      "text": "PS3: It only does _."
+      "text": "PS3: It only does %s"
     },
     {
       "gaps": 1,
-      "text": "The new Nintendo _ is a big gimmick. "
+      "text": "The new Nintendo %s is a big gimmick. "
     },
     {
       "gaps": 1,
-      "text": ">tfw when _."
+      "text": ">tfw when %s"
     },
     {
       "gaps": 1,
-      "text": "PC gamers have made a petition to get _ on their platform."
+      "text": "PC gamers have made a petition to get %s on their platform"
     },
     {
       "gaps": 1,
@@ -374,59 +374,59 @@
     },
     {
       "gaps": 1,
-      "text": "Kotaku addresses sexism in _ in their latest article."
+      "text": "Kotaku addresses sexism in %s in their latest article"
     },
     {
       "gaps": 1,
-      "text": "Get double XP for Halo 3 with purchase of _."
+      "text": "Get double XP for Halo 3 with purchase of %s"
     },
     {
       "gaps": 1,
-      "text": "LoL stole their new character design off of _."
+      "text": "LoL stole their new character design off of %s"
     },
     {
       "gaps": 1,
-      "text": "_ is the cancer killing video games."
+      "text": "%s is the cancer killing video games"
     },
     {
       "gaps": 1,
-      "text": "Suffer, like _ did."
+      "text": "Suffer, like %s did"
     },
     {
       "gaps": 1,
-      "text": "It's like _ with guns!"
+      "text": "It's like %s with guns!"
     },
     {
       "gaps": 1,
-      "text": " _ would like to play."
+      "text": " %s would like to play"
     },
     {
       "gaps": 1,
-      "text": "A mod of doom was made that was based off of _."
+      "text": "A mod of doom was made that was based off of %s"
     },
     {
       "gaps": 1,
-      "text": "I really didn't like what they did with the _ Movie adaption."
+      "text": "I really didn't like what they did with the %s Movie adaption"
     },
     {
       "gaps": 1,
-      "text": "\"HEY, GOLLEN PALACE? HOW U SAY _ IN CHINESE?\""
+      "text": "\"HEY, GOLLEN PALACE? HOW U SAY %s IN CHINESE?\""
     },
     {
       "gaps": 1,
-      "text": "Pumpkin doesn't want this."
+      "text": "Pumpkin doesn't want this"
     },
     {
       "gaps": 1,
-      "text": "NEXT TIME ON GAME GRUMPS: _."
+      "text": "NEXT TIME ON GAME GRUMPS: %s"
     },
     {
       "gaps": 1,
-      "text": "I used to be an adventurer like you, until _."
+      "text": "I used to be an adventurer like you, until %s"
     },
     {
       "gaps": 1,
-      "text": "Yeah, well, my dad works for _."
+      "text": "Yeah, well, my dad works for %s"
     }
   ],
   "white": [
@@ -602,7 +602,7 @@
     "Pheonix Wright",
     "Hank Hill",
     "Banjo-Kazooie",
-    "the 8 million jews.",
+    "the 8 million jews",
     "Honk! Honk!",
     "Alright",
     "Hideo Kojima",

@@ -2,315 +2,315 @@
   "black": [
     {
       "gaps": 1,
-      "text": "/r/ _."
+      "text": "/r/ %s"
     },
     {
       "gaps": 1,
-      "text": "The Ada Initiative is now attacking _."
+      "text": "The Ada Initiative is now attacking %s"
     },
     {
       "gaps": 1,
-      "text": "Not another _ in the hotel elevator!"
+      "text": "Not another %s in the hotel elevator!"
     },
     {
       "gaps": 1,
-      "text": "Closing Ceremonies drinking game: Every time _ is mentioned... DRINK!"
+      "text": "Closing Ceremonies drinking game: Every time %s is mentioned... DRINK!"
     },
     {
       "gaps": 1,
-      "text": "In a Congressional hearing, US CYBERCOM commander Gen. Alexander claimed the latest data breach was due to _."
+      "text": "In a Congressional hearing, US CYBERCOM commander Gen. Alexander claimed the latest data breach was due to %s"
     },
     {
       "gaps": 1,
-      "text": "The Maker Faire was unexpectedly interrupted by _."
+      "text": "The Maker Faire was unexpectedly interrupted by %s"
     },
     {
       "gaps": 1,
-      "text": "Do you even _?"
+      "text": "Do you even %s?"
     },
     {
       "gaps": 1,
-      "text": "Come to the dark side, we have _."
+      "text": "Come to the dark side, we have %s"
     },
     {
       "gaps": 1,
-      "text": "Y U NO _!!!!!"
+      "text": "Y U NO %s!!!!!"
     },
     {
       "gaps": 1,
-      "text": "While alone in the server room I _."
+      "text": "While alone in the server room I %s"
     },
     {
       "gaps": 1,
-      "text": "When I get drunk I am an expert on _"
+      "text": "When I get drunk I am an expert on %s"
     },
     {
       "gaps": 1,
-      "text": "Well, guess what? I've got a fever, and the only prescription is more _."
-    },
-    {
-      "gaps": 2,
-      "text": "We should take _ and push it _."
-    },
-    {
-      "gaps": 1,
-      "text": "We decided to _ to raise money for the EFF."
-    },
-    {
-      "gaps": 1,
-      "text": "TSA wouldn't allow me through because of my _."
-    },
-    {
-      "gaps": 1,
-      "text": "Tonight's Final Hacker Jeopardy category will be _!"
-    },
-    {
-      "gaps": 1,
-      "text": "Today's PaulDotCom podcast featured _."
-    },
-    {
-      "gaps": 1,
-      "text": "These are not the _ you are looking for."
-    },
-    {
-      "gaps": 1,
-      "text": "The snozberries taste like _."
-    },
-    {
-      "gaps": 1,
-      "text": "The only winning move is to _."
-    },
-    {
-      "gaps": 1,
-      "text": "The next cyber war will feature _."
-    },
-    {
-      "gaps": 1,
-      "text": "The best part of Alexis Park was all the _."
-    },
-    {
-      "gaps": 1,
-      "text": "So long and thanks for all the _."
-    },
-    {
-      "gaps": 1,
-      "text": "Security through obscurity is better than _."
-    },
-    {
-      "gaps": 1,
-      "text": "Rule 34 _."
-    },
-    {
-      "gaps": 1,
-      "text": "Rock, Paper, Scissors, Lizard, _."
-    },
-    {
-      "gaps": 1,
-      "text": "Our most powerful weapon for the Zombie Apocalypse will be _."
-    },
-    {
-      "gaps": 1,
-      "text": "Only half of programming is coding. The other 90% is _."
-    },
-    {
-      "gaps": 1,
-      "text": "One does not simply _."
-    },
-    {
-      "gaps": 1,
-      "text": "On the Internet, no one can tell you're _."
-    },
-    {
-      "gaps": 1,
-      "text": "Occupy _."
+      "text": "Well, guess what? I've got a fever, and the only prescription is more %s"
     },
     {
       "gaps": 2,
-      "text": "Next year's scavenger hunt is rumored to include finding a _ with a _."
+      "text": "We should take %s and push it %s"
     },
     {
       "gaps": 1,
-      "text": "Next time we meet we should _."
+      "text": "We decided to %s to raise money for the EFF"
     },
     {
       "gaps": 1,
-      "text": "My extremely large _ is what makes me better than you."
+      "text": "TSA wouldn't allow me through because of my %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Tonight's Final Hacker Jeopardy category will be %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "Today's PaulDotCom podcast featured %s"
+    },
+    {
+      "gaps": 1,
+      "text": "These are not the %s you are looking for"
+    },
+    {
+      "gaps": 1,
+      "text": "The snozberries taste like %s"
+    },
+    {
+      "gaps": 1,
+      "text": "The only winning move is to %s"
+    },
+    {
+      "gaps": 1,
+      "text": "The next cyber war will feature %s"
+    },
+    {
+      "gaps": 1,
+      "text": "The best part of Alexis Park was all the %s"
+    },
+    {
+      "gaps": 1,
+      "text": "So long and thanks for all the %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Security through obscurity is better than %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Rule 34 %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Rock, Paper, Scissors, Lizard, %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Our most powerful weapon for the Zombie Apocalypse will be %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Only half of programming is coding. The other 90% is %s"
+    },
+    {
+      "gaps": 1,
+      "text": "One does not simply %s"
+    },
+    {
+      "gaps": 1,
+      "text": "On the Internet, no one can tell you're %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Occupy %s"
     },
     {
       "gaps": 2,
-      "text": "My _ brings all the _ to the yard."
+      "text": "Next year's scavenger hunt is rumored to include finding a %s with a %s"
     },
     {
       "gaps": 1,
-      "text": "Most hackers smell like _."
+      "text": "Next time we meet we should %s"
     },
     {
       "gaps": 1,
-      "text": "Las Vegas is best known for _."
-    },
-    {
-      "gaps": 1,
-      "text": "Keep calm and _."
-    },
-    {
-      "gaps": 1,
-      "text": "It's dangerous to go alone. Take _."
-    },
-    {
-      "gaps": 1,
-      "text": "It smells like _ in this room."
-    },
-    {
-      "gaps": 1,
-      "text": "In a shocking move Archive.org decided to NOT back up _."
+      "text": "My extremely large %s is what makes me better than you"
     },
     {
       "gaps": 2,
-      "text": "I'mma let you finish but _ is the best _ of all time."
+      "text": "My %s brings all the %s to the yard"
     },
     {
       "gaps": 1,
-      "text": "I'm fucking tired of hearing about _."
+      "text": "Most hackers smell like %s"
     },
     {
       "gaps": 1,
-      "text": "I would be doing more with my life, except for this _ in the way."
+      "text": "Las Vegas is best known for %s"
     },
     {
       "gaps": 1,
-      "text": "I work 80 hours a week and still can't afford a _."
+      "text": "Keep calm and %s"
     },
     {
       "gaps": 1,
-      "text": "I used to be a hacker like you, until I took a(n) _ to the knee."
+      "text": "It's dangerous to go alone. Take %s"
     },
     {
       "gaps": 1,
-      "text": "I use _ to secure all of my personal data."
+      "text": "It smells like %s in this room"
     },
     {
       "gaps": 1,
-      "text": "I spotted the fed and all I got was _."
-    },
-    {
-      "gaps": 1,
-      "text": "I look like a geeky hacker, but I don't know anything about _."
-    },
-    {
-      "gaps": 1,
-      "text": "I have the biggest _, ever!"
-    },
-    {
-      "gaps": 1,
-      "text": "I find your lack of _ disturbing."
-    },
-    {
-      "gaps": 1,
-      "text": "I can't believe they rejected my talk on _."
-    },
-    {
-      "gaps": 1,
-      "text": "I can haz _."
-    },
-    {
-      "gaps": 1,
-      "text": "HOLY _ BATMAN!!"
+      "text": "In a shocking move Archive.org decided to NOT back up %s"
     },
     {
       "gaps": 2,
-      "text": "High Tech start-up company combines _ with _."
+      "text": "I'mma let you finish but %s is the best %s of all time"
     },
     {
       "gaps": 1,
-      "text": "Go home _, you're drunk."
+      "text": "I'm fucking tired of hearing about %s"
     },
     {
       "gaps": 1,
-      "text": "Go Go Gadget _!"
+      "text": "I would be doing more with my life, except for this %s in the way"
+    },
+    {
+      "gaps": 1,
+      "text": "I work 80 hours a week and still can't afford a %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I used to be a hacker like you, until I took a(n) %s to the knee"
+    },
+    {
+      "gaps": 1,
+      "text": "I use %s to secure all of my personal data"
+    },
+    {
+      "gaps": 1,
+      "text": "I spotted the fed and all I got was %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I look like a geeky hacker, but I don't know anything about %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I have the biggest %s, ever!"
+    },
+    {
+      "gaps": 1,
+      "text": "I find your lack of %s disturbing"
+    },
+    {
+      "gaps": 1,
+      "text": "I can't believe they rejected my talk on %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I can haz %s"
+    },
+    {
+      "gaps": 1,
+      "text": "HOLY %s BATMAN!!"
     },
     {
       "gaps": 2,
-      "text": "Drink all the _. Hack all the _."
+      "text": "High Tech start-up company combines %s with %s"
     },
     {
       "gaps": 1,
-      "text": "Def Con Kids will now focus on teaching young hackers _."
+      "text": "Go home %s, you're drunk"
     },
     {
       "gaps": 1,
-      "text": "Confession Bear Says: _"
+      "text": "Go Go Gadget %s!"
+    },
+    {
+      "gaps": 2,
+      "text": "Drink all the %s. Hack all the %s"
     },
     {
       "gaps": 1,
-      "text": "But does _ run NetBSD?"
+      "text": "Def Con Kids will now focus on teaching young hackers %s"
     },
     {
       "gaps": 1,
-      "text": "Am I the only one around here who _."
+      "text": "Confession Bear Says: %s"
     },
     {
       "gaps": 1,
-      "text": "All I did was _ but someone gave me a red card."
+      "text": "But does %s run NetBSD?"
     },
     {
       "gaps": 1,
-      "text": "35% of all hackers have to deal with _."
+      "text": "Am I the only one around here who %s"
     },
     {
       "gaps": 1,
-      "text": "_. There's an app for that."
+      "text": "All I did was %s but someone gave me a red card"
     },
     {
       "gaps": 1,
-      "text": "_. This is why I can't have nice things!"
+      "text": "35% of all hackers have to deal with %s"
     },
     {
       "gaps": 1,
-      "text": "_: You keep using that term. I do not think it means what you think it means."
+      "text": "%s. There's an app for that"
     },
     {
       "gaps": 1,
-      "text": "_ is now outsourced to call centers in India."
+      "text": "%s. This is why I can't have nice things!"
     },
     {
       "gaps": 1,
-      "text": "_ shot first."
+      "text": "%s: You keep using that term. I do not think it means what you think it means"
     },
     {
       "gaps": 1,
-      "text": "_ Killed the barrel roll"
+      "text": "%s is now outsourced to call centers in India"
     },
     {
       "gaps": 1,
-      "text": "_ A'int Nobody Got Time For Dat!!"
+      "text": "%s shot first"
     },
     {
       "gaps": 1,
-      "text": "_ Put a bird on it!"
+      "text": "%s Killed the barrel roll"
     },
     {
       "gaps": 1,
-      "text": "_ makes me puke rainbows."
+      "text": "%s A'int Nobody Got Time For Dat!!"
     },
     {
       "gaps": 1,
-      "text": "_ is also monitored by Prism."
+      "text": "%s Put a bird on it!"
     },
     {
       "gaps": 1,
-      "text": "_ is what keeps us together."
+      "text": "%s makes me puke rainbows"
     },
     {
       "gaps": 1,
-      "text": "_ is a better replacement for crypto."
+      "text": "%s is also monitored by Prism"
     },
     {
       "gaps": 1,
-      "text": "_ riding a Segway"
+      "text": "%s is what keeps us together"
     },
     {
       "gaps": 1,
-      "text": "One day, over my fireplace, I'm going to have a massive painting of _. You know, to remind me where I came from."
+      "text": "%s is a better replacement for crypto"
+    },
+    {
+      "gaps": 1,
+      "text": "%s riding a Segway"
+    },
+    {
+      "gaps": 1,
+      "text": "One day, over my fireplace, I'm going to have a massive painting of %s. You know, to remind me where I came from"
     }
   ],
   "white": [
@@ -321,7 +321,7 @@
     "Why not Zoidberg?!",
     "White Shirt",
     "Warp core breach",
-    "W.O.P.R.",
+    "W.O.P.R",
     "Vinyl Vanna",
     "Vegas 2.0",
     "Using 4Chan for parenting advice",
@@ -343,12 +343,12 @@
     "The smell of glitter and lost dreams",
     "The plan was to crowd source a plan",
     "The fractured elements of her psyche reassembled themselves into an exact likeness of a snarling ferret and she self-destructed",
-    "The asshole sitting to my right.",
+    "The asshole sitting to my right",
     "The asshole sitting to my left",
     "That's What ~ She",
     "That's Racist!",
-    "That place where I put that thing that time.",
-    "That just happened and we let that happen.",
+    "That place where I put that thing that time",
+    "That just happened and we let that happen",
     "Tentacle Porn",
     "TARDIS",
     "Sweat, anger and shame",
@@ -361,7 +361,7 @@
     "Spyware",
     "Spotting a FED",
     "SPAM with Bacon",
-    "Something something danger zone. I know. I'm not even trying anymore.",
+    "Something something danger zone. I know. I'm not even trying anymore",
     "Spacedicks",
     "Slow Clap",
     "Six gummy bears and some scotch",
@@ -399,7 +399,7 @@
     "Pressing the red button",
     "Prenda Law",
     "Prairie dogging during an interview",
-    "Practicing Gringo Warrior at home with baby oil. Naked.",
+    "Practicing Gringo Warrior at home with baby oil. Naked",
     "P0rn",
     "PORK CHOP SANDWICHES!",
     "Pop, Pop, Ret",

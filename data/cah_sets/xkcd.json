@@ -2,103 +2,103 @@
   "black": [
     {
       "gaps": 1,
-      "text": "_.tumblr.com"
+      "text": "%s.tumblr.com"
     },
     {
       "gaps": 1,
-      "text": "Did you know you can just buy _?"
+      "text": "Did you know you can just buy %s?"
     },
     {
       "gaps": 1,
-      "text": "My new favorite game is Strip _."
+      "text": "My new favorite game is Strip %s"
     },
     {
       "gaps": 1,
-      "text": "Now I have to live my whole life pretending _ never happened. It's going to be a fun 70 years."
+      "text": "Now I have to live my whole life pretending %s never happened. It's going to be a fun 70 years"
     },
     {
       "gaps": 2,
-      "text": "_'s fetish: _."
+      "text": "%s's fetish: %s"
     },
     {
       "gaps": 1,
-      "text": "2009 called? Did you warn them about _?"
+      "text": "2009 called? Did you warn them about %s?"
     },
     {
       "gaps": 1,
-      "text": "Just because I have _ doesn't mean you could milk me now. I'd have to be lactating."
+      "text": "Just because I have %s doesn't mean you could milk me now. I'd have to be lactating"
     },
     {
       "gaps": 1,
-      "text": "_. That's right. Shit just got REAL."
+      "text": "%s. That's right. Shit just got REAL"
     },
     {
       "gaps": 3,
-      "text": "Take me down to the _, where the _ is green and the _ are pretty."
+      "text": "Take me down to the %s, where the %s is green and the %s are pretty"
     },
     {
       "gaps": 1,
-      "text": "Did you know November is _ Awareness Month?"
+      "text": "Did you know November is %s Awareness Month?"
     },
     {
       "gaps": 2,
-      "text": "Until I see more data, I'm going to assume _ causes _."
+      "text": "Until I see more data, I'm going to assume %s causes %s"
     },
     {
       "gaps": 1,
-      "text": "3D printers sound great until you receive spam containing actual _."
+      "text": "3D printers sound great until you receive spam containing actual %s"
     },
     {
       "gaps": 1,
-      "text": "I'm going to name my child _."
+      "text": "I'm going to name my child %s"
     },
     {
       "gaps": 1,
-      "text": "_. So it has come to this."
+      "text": "%s. So it has come to this"
     },
     {
       "gaps": 1,
-      "text": "If you really hate someone, teach them to recognize _."
+      "text": "If you really hate someone, teach them to recognize %s"
     },
     {
       "gaps": 2,
-      "text": "It's fun to mentally replace the word _ with _."
+      "text": "It's fun to mentally replace the word %s with %s"
     },
     {
       "gaps": 1,
-      "text": "University Researchers create life in lab! _ blamed!"
+      "text": "University Researchers create life in lab! %s blamed!"
     },
     {
       "gaps": 2,
-      "text": "Ebay review: Instead of _, package contained _. Would not buy again."
+      "text": "Ebay review: Instead of %s, package contained %s. Would not buy again"
     },
     {
       "gaps": 1,
-      "text": "Social rule 99.1: If friends spend more than 60 minutes deciding what to do, they must default to _."
+      "text": "Social rule 99.1: If friends spend more than 60 minutes deciding what to do, they must default to %s"
     },
     {
       "gaps": 1,
-      "text": "The #1 Programmer's excuse for legitimately slacking off: _."
+      "text": "The #1 Programmer's excuse for legitimately slacking off: %s"
     },
     {
       "gaps": 2,
-      "text": "I like alter songs by replacing _ with _."
+      "text": "I like alter songs by replacing %s with %s"
     },
     {
       "gaps": 1,
-      "text": "Real Programmers use _."
+      "text": "Real Programmers use %s"
     },
     {
       "gaps": 1,
-      "text": "After finding Higgs-Boson, I can always use the LHC for _."
+      "text": "After finding Higgs-Boson, I can always use the LHC for %s"
     },
     {
       "gaps": 1,
-      "text": "_ linked to Acne! 95% confidence."
+      "text": "%s linked to Acne! 95% confidence"
     },
     {
       "gaps": 1,
-      "text": "How many Google results are there for \"Died in a _ accident?\""
+      "text": "How many Google results are there for \"Died in a %s accident?\""
     },
     {
       "gaps": 1,
@@ -106,27 +106,27 @@
     },
     {
       "gaps": 1,
-      "text": "In the extended base metaphor, shortstop is _."
+      "text": "In the extended base metaphor, shortstop is %s"
     },
     {
       "gaps": 1,
-      "text": "My health declined when I realized I could eat _ whenever I wanted."
+      "text": "My health declined when I realized I could eat %s whenever I wanted"
     },
     {
       "gaps": 2,
-      "text": "_ is just applied _."
+      "text": "%s is just applied %s"
     },
     {
       "gaps": 3,
-      "text": "I set up script to buy things on ebay for $1, but then it bought _, _, and _."
+      "text": "I set up script to buy things on ebay for $1, but then it bought %s, %s, and %s"
     },
     {
       "gaps": 1,
-      "text": "I can extrude _, but I can't retract it."
+      "text": "I can extrude %s, but I can't retract it"
     },
     {
       "gaps": 2,
-      "text": "I don't actually care about _, I just like _."
+      "text": "I don't actually care about %s, I just like %s"
     },
     {
       "gaps": 1,
@@ -134,23 +134,23 @@
     },
     {
       "gaps": 3,
-      "text": "Spoiler Alert! _ kills _ with _!"
+      "text": "Spoiler Alert! %s kills %s with %s!"
     },
     {
       "gaps": 1,
-      "text": "I'm like _, except with love."
+      "text": "I'm like %s, except with love"
     },
     {
       "gaps": 1,
-      "text": "Do you really expect _? No, Mister Bond. I expect you to die!"
+      "text": "Do you really expect %s? No, Mister Bond. I expect you to die!"
     },
     {
       "gaps": 2,
-      "text": "I didn't actually want you to be _; I just wanted you to be _."
+      "text": "I didn't actually want you to be %s; I just wanted you to be %s"
     },
     {
       "gaps": 1,
-      "text": "I filled my apartment with _."
+      "text": "I filled my apartment with %s"
     },
     {
       "gaps": 1,
@@ -158,75 +158,75 @@
     },
     {
       "gaps": 1,
-      "text": "Waking up would be a lot easier if _ didn't look so much like you."
+      "text": "Waking up would be a lot easier if %s didn't look so much like you"
     },
     {
       "gaps": 1,
-      "text": "All of my algorithms were really just disguised _."
+      "text": "All of my algorithms were really just disguised %s"
     },
     {
       "gaps": 2,
-      "text": "I got a lot more interested in _ when I made the connection to _."
+      "text": "I got a lot more interested in %s when I made the connection to %s"
     },
     {
       "gaps": 1,
-      "text": "_? No, I'm not really into Pokémon."
+      "text": "%s? No, I'm not really into Pokémon"
     },
     {
       "gaps": 1,
-      "text": "When I eat _, I like to pretend I'm a Turing machine."
+      "text": "When I eat %s, I like to pretend I'm a Turing machine"
     },
     {
       "gaps": 1,
-      "text": "Dreaming about _ in Cirque du Soleil."
+      "text": "Dreaming about %s in Cirque du Soleil"
     },
     {
       "gaps": 1,
-      "text": "It turns out God created the universe using _."
+      "text": "It turns out God created the universe using %s"
     },
     {
       "gaps": 1,
-      "text": "Freestyle rapping is really just _."
+      "text": "Freestyle rapping is really just %s"
     },
     {
       "gaps": 2,
-      "text": "If I could rearrange the alphabet, I'd put _ and _ together."
+      "text": "If I could rearrange the alphabet, I'd put %s and %s together"
     },
     {
       "gaps": 1,
-      "text": "Human intelligence decreases with increasing proximity to _."
+      "text": "Human intelligence decreases with increasing proximity to %s"
     },
     {
       "gaps": 1,
-      "text": "_ would be a good name for a band."
+      "text": "%s would be a good name for a band"
     },
     {
       "gaps": 1,
-      "text": "_ wouldn't be funny if not for the irony."
+      "text": "%s wouldn't be funny if not for the irony"
     },
     {
       "gaps": 1,
-      "text": "Help, I'm trapped in a _ factory!"
+      "text": "Help, I'm trapped in a %s factory!"
     },
     {
       "gaps": 1,
-      "text": "None of the places I floated to had _."
+      "text": "None of the places I floated to had %s"
     },
     {
       "gaps": 1,
-      "text": "_. My normal method is useless here."
+      "text": "%s. My normal method is useless here"
     },
     {
       "gaps": 1,
-      "text": "We had a _ party, but it turned out not to be very much fun."
+      "text": "We had a %s party, but it turned out not to be very much fun"
     },
     {
       "gaps": 1,
-      "text": "My hobby: _."
+      "text": "My hobby: %s"
     },
     {
       "gaps": 1,
-      "text": "_ makes terrible pillow talk."
+      "text": "%s makes terrible pillow talk"
     },
     {
       "gaps": 1,
@@ -234,7 +234,7 @@
     },
     {
       "gaps": 1,
-      "text": "I'm pretty sure you can't send _ through the mail."
+      "text": "I'm pretty sure you can't send %s through the mail"
     },
     {
       "gaps": 1,
@@ -242,31 +242,31 @@
     },
     {
       "gaps": 1,
-      "text": "_ is too big for small talk."
+      "text": "%s is too big for small talk"
     },
     {
       "gaps": 1,
-      "text": "New movie this summer: _ beats up everyone."
+      "text": "New movie this summer: %s beats up everyone"
     },
     {
       "gaps": 2,
-      "text": "By 2019, _ will be outnumbered by _."
+      "text": "By 2019, %s will be outnumbered by %s"
     },
     {
       "gaps": 2,
-      "text": "The past is a foreign country... with _ and _!"
+      "text": "The past is a foreign country... with %s and %s!"
     },
     {
       "gaps": 1,
-      "text": "Hey baby, wanna come back to my sex _?"
+      "text": "Hey baby, wanna come back to my sex %s?"
     },
     {
       "gaps": 1,
-      "text": "_. It works in Kerbal Space Program."
+      "text": "%s. It works in Kerbal Space Program"
     },
     {
       "gaps": 2,
-      "text": "What role has social media played in _? Well, it's certainly made _ stupider."
+      "text": "What role has social media played in %s? Well, it's certainly made %s stupider"
     }
   ],
   "white": [

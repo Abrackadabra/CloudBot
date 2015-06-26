@@ -133,8 +133,8 @@ class WaitingForPlayers(GamePhase):
 
   @GamePhase.command
   def status(self, g: Game, nick, args):
-    g.com.announce('Waiting for people to join. Creator: {}. {} players.'
-                   ''.format(g.creator, len(g.players)))
+    g.com.announce('Waiting for people to join. Creator: {}. {} players: {}.'
+                   ''.format(g.creator, len(g.players), ', '.join(g.players)))
 
   @GamePhase.command
   def list_sets(self, g: Game, nick, args):
@@ -249,7 +249,7 @@ class PlayingCards(GamePhase):
         continue
 
       hand_s = ' '.join(['[{}] {}'.format(i, j) for i, j in enumerate(hand)])
-      g.com.notice(player, 'Your hand: {}.'.format(hand_s))
+      g.com.notice(player, 'Your hand: {}'.format(hand_s))
 
     g.played = {}
 
@@ -281,6 +281,8 @@ class PlayingCards(GamePhase):
     g.com.announce('{} has left the game!'.format(nick))
 
     g.players.remove(nick)
+    if nick in g.played:
+      del g.played[nick]
     g.deck.return_whites(g.hands[nick])
     del g.hands[nick]
 
@@ -311,8 +313,8 @@ class PlayingCards(GamePhase):
 
     parts = args.split()
     choice = []
-    if len(parts) < g.black_card.gaps:
-      g.com.notice(nick, 'Not enough cards. {} needed.'.format(g.black_card.gaps))
+    if len(parts) != g.black_card.gaps:
+      g.com.notice(nick, 'Wrong number of cards. {} needed.'.format(g.black_card.gaps))
       return
     for i in parts[:g.black_card.gaps]:
       if not i.isnumeric():
@@ -351,8 +353,8 @@ class PlayingCards(GamePhase):
       if i not in g.played and i != g.czar:
         waiting.append(i)
 
-    g.com.announce('{} players. Black card: "{}". Waiting for {} to play.'
-                   ''.format(len(g.players), g.black_card, ', '.join(waiting)))
+    g.com.announce('{} players. {} is the card czar. Black card: "{}". Waiting for {} to play.'
+                   ''.format(len(g.players), g.czar, g.black_card, ', '.join(waiting)))
 
   @GamePhase.command
   def cards(self, g: Game, nick, args):

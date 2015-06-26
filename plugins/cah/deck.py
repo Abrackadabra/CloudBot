@@ -4,7 +4,7 @@ import random
 
 
 class BlackCard(object):
-  MARKER = '_'
+  MARKER = '%s'
 
   def __init__(self, text, gaps):
     """
@@ -22,7 +22,7 @@ class BlackCard(object):
 
     if self.MARKER in s:
       for i in cards:
-        s = s.replace(self.MARKER, '\x02{}\x02'.format(i), 1)
+        s = s.replace(self.MARKER, '\x02{}\x02'.format(i), 1 if len(cards) > 0 else -1)
       return s
 
     return '{} {}'.format(s, ' '.join(cards))
