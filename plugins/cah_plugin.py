@@ -1,14 +1,17 @@
+import json
 from pprint import pprint
 import re
 import asyncio
+import requests
 
 from cloudbot import hook
-from .cah import Game, Communicator
+from .cah import Game, Communicator, Set
 
 
 @asyncio.coroutine
 @hook.irc_raw("NICK")
 def on_nick(irc_raw):
+  global game
   old_nick, new_nick = re.findall(r':([^!]+)', irc_raw)
 
   if old_nick in game.players + game.joiners:
@@ -31,6 +34,7 @@ def on_quit(nick):
 
 @hook.irc_raw("004")
 def on_ready(conn, chan, bot):
+  global game
   game_chan = conn.config \
     .get('plugins', {}) \
     .get('yacah', {}) \
@@ -38,7 +42,6 @@ def on_ready(conn, chan, bot):
 
   com = Communicator(conn, game_chan)
 
-  global game
   game = Game(com, 'data/cah_sets', game_chan)
 
   com.announce('Reloaded.')
@@ -63,3 +66,15 @@ def catch_all(nick, chan, match):
 
   if re.match(r'^\d+[ \d+]*$', text):
     game.process(nick, 'pick', text)
+
+@asyncio.coroutine
+@hook.command('load_set', permissions=['botcontrol'])
+def command_load_set(text):
+  try:
+    set = Set.load(text)
+    set.to_file(game.card_dir)
+    game.deck.read_dir(game.card_dir)
+    return 'Successfully loaded {}.'.format(set.name)
+  except Exception as e:
+    return 'Error: {}'.format(e.args)
+

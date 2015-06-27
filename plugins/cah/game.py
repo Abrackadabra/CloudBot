@@ -13,6 +13,7 @@ class Game(object):
     self.com = com
     self.chan = chan
 
+    self.card_dir = card_dir
     self.deck = Deck(card_dir)
 
     self.phase = NoGame()
@@ -90,6 +91,8 @@ class NoGame(GamePhase):
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
     g.com.announce('No one is playing.')
+
+  list_sets = WaitingForPlayers.list_sets
 
 
 class WaitingForPlayers(GamePhase):
@@ -324,7 +327,6 @@ class PlayingCards(GamePhase):
       return new_state.act(g) or new_state
 
     g.czar_index = g.players.index(g.czar)
-
 
   @Command(names=['pick', 'p'])
   def pick(self, g: Game, nick, args):

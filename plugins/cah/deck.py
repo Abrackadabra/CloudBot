@@ -1,6 +1,7 @@
 import json
 import os
 import random
+import requests
 
 
 class BlackCard(object):
@@ -30,15 +31,67 @@ class BlackCard(object):
   def __eq__(self, other):
     return self.text == other.text and self.gaps == other.gaps
 
-
 class Set(object):
-  def __init__(self, filename):
+  def __init__(self, name, black, white):
+    self.name = name
+    self.black = black
+    self.white = white
+
+  @staticmethod
+  def read(filename):
     with open(filename) as file:
       s = json.loads(' '.join(file.readlines()))
 
-      self.black = [BlackCard(**i) for i in s['black']]
-      self.white = s['white']
-      self.name = s['name']
+      return Set(
+        name=s['name'],
+        black=[BlackCard(**i) for i in s['black']],
+        white=s['white']
+      )
+
+  @staticmethod
+  def load(set_id):
+    if len(set_id) != 5:
+      raise Exception('Wrong syntax, set id should be 5 symbols')
+
+    URL_META = 'https://api.cardcastgame.com/v1/decks/{}'
+    URL_CARDS = 'https://api.cardcastgame.com/v1/decks/{}/cards'
+
+    r = requests.get(URL_META.format(set_id))
+
+    if r.status_code == 404:
+      raise Exception('No such set.')
+    if r.status_code != 200:
+      raise Exception('Strange error.')
+
+    x = json.loads(r.text)
+    name = x['name']
+
+    r = requests.get(URL_CARDS.format(set_id))
+
+    if r.status_code == 404:
+      raise Exception('No such set.')
+    if r.status_code != 200:
+      raise Exception('Strange error.')
+
+    x = json.loads(r.text)
+
+    black = []
+    for i in x['calls']:
+      gaps = len(i['text']) - 1
+      text = BlackCard.MARKER.join(i['text'])
+      black.append(BlackCard(text, gaps))
+
+    white = []
+    for i in x['responses']:
+      white.append(i['text'])
+
+    return Set(name=name, black=black, white=white)
+
+  def to_file(self, dir):
+    filename = self.name.lower().replace(' ', '_') + '.json'
+
+    with open(os.path.join(dir, 'cardcast', filename), 'w') as file:
+      file.write(json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=2))
 
 
 class Deck(object):
@@ -46,12 +99,7 @@ class Deck(object):
     self.sets = {}
     """:type : dict[str, Set]"""
 
-    files = os.listdir(dir)
-    for filename in files:
-      filename = os.path.join(dir, filename)
-      if os.path.isfile(filename) and filename.endswith('.json'):
-        set = Set(filename)
-        self.sets[set.name] = set
+    self.read_dir(dir)
 
     self.reset()
 
@@ -113,3 +161,18 @@ class Deck(object):
 
   def list_used_sets(self):
     return list(self.used_sets)
+
+  def read_dir(self, dir):
+    files = os.listdir(dir)
+    for filename in files:
+      filename = os.path.join(dir, filename)
+      if os.path.isfile(filename) and filename.endswith('.json'):
+        set = Set.read(filename)
+        self.sets[set.name] = set
+
+    files = os.listdir(os.path.join(dir, 'cardcast'))
+    for filename in files:
+      filename = os.path.join(dir, 'cardcast', filename)
+      if os.path.isfile(filename) and filename.endswith('.json'):
+        set = Set.read(filename)
+        self.sets[set.name] = set
