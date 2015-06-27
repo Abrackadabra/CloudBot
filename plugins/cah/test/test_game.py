@@ -36,7 +36,7 @@ def com():
 
 @pytest.fixture(scope='function')
 def g(com):
-  game = Game(com, 'data/cah_sets')
+  game = Game(com, 'data/cah_sets', '')
 
   def d(nick, command, args=''):
     print('<{}: {} {}'.format(nick, command, args))
@@ -219,7 +219,6 @@ def test_choosejoinleave(com, g):
   assert 'e' in g.players
 
 
-
 def test_status(com, g):
   """
   :type com: Communicator
@@ -280,3 +279,49 @@ def test_sets(com, g):
 
   g.d('a', 'add_set', 'all')
   assert len(g.deck.used_sets) > 10
+
+
+def test_short(com, g):
+  """
+  :type com: Communicator
+  :type g: Game
+  """
+  g.d('a', 'c')
+
+  g.d('a', 'la')
+  assert 'Base Set' in com.log[-1]
+
+  g.d('a', 'lu')
+  assert 'Base Set' in com.log[-1]
+
+  g.d('a', 'a', '1 2')
+
+  assert len(g.deck.used_sets) == 3
+
+  g.d('a', 'r', '0')
+  assert len(g.deck.used_sets) == 2
+
+  g.d('a', 'l')
+  g.d('a', 'c')
+  assert len(g.deck.used_sets) == 1
+
+  g.d('a', 'a', 'all')
+  assert len(g.deck.used_sets) > 10
+
+
+def test_scores(com, g):
+  """
+  :type com: Communicator
+  :type g: Game
+  """
+  g.d('a', 'c')
+
+  g.d('b', 'j')
+  g.d('c', 'j')
+
+  g.d('a', 'st')
+
+  g.d('a', 'sc')
+
+  for i in 'abc':
+    assert i in com.log[-1]
