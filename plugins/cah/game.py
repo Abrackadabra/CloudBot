@@ -5,7 +5,7 @@ from .score import Scores
 
 
 class Game(object):
-  RANDO_NICK = 'Rando Cardissian'
+  RANDO_NICK = 'Rando Cardrissian'
 
   def __init__(self, com, card_dir, chan):
     """
@@ -288,7 +288,7 @@ class PlayingCards(GamePhase):
     g.black_card = g.deck.draw_black()
     g.com.announce('Round `{}`. The card czar is `{}`. This round\'s card is...'
                    ''.format(g.round, g.czar))
-    g.com.announce('{}'.format(g.black_card))
+    g.com.announce('    {}'.format(g.black_card))
 
     example_args = ' '.join(map(str, range(g.black_card.gaps)))
     example = 'pick {}'.format(example_args)

@@ -23,10 +23,10 @@ class BlackCard(object):
 
     if self.MARKER in s:
       for i in cards:
-        s = s.replace(self.MARKER, '`{}`'.format(i), 1 if len(cards) > 0 else -1)
+        s = s.replace(self.MARKER, '`[{}]`'.format(i), 1 if len(cards) > 0 else -1)
       return s
 
-    return '{} {}'.format(s, ' '.join(['`{}`'.format(i) for i in cards]))
+    return '{} {}'.format(s, ' '.join(['`[{}]`'.format(i) for i in cards]))
 
   def __eq__(self, other):
     return self.text == other.text and self.gaps == other.gaps
