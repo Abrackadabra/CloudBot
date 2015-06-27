@@ -83,7 +83,7 @@ class Set(object):
 
     white = []
     for i in x['responses']:
-      white.append(i['text'])
+      white.append(i['text'][0])
 
     return Set(name=name, black=black, white=white)
 

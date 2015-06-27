@@ -1,6 +1,3 @@
-from os import system
-from pprint import pprint
-
 import pytest
 
 from plugins.cah import Communicator, Game
