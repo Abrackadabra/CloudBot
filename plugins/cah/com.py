@@ -4,17 +4,18 @@ class Communicator(object):
     self.chan = chan
 
   def announce(self, msg):
-    print('A', msg)
+    msg = msg.replace('`', '\x02')
+
     while len(msg) > 0:
       self.conn.message(self.chan, msg[:400])
       msg = msg[400:]
 
   def reply(self, nick, msg):
-    print('R', nick, msg)
     self.announce('({}) {}'.format(nick, msg))
 
   def notice(self, nick, msg):
-    print('Nc', nick, msg)
+    msg = msg.replace('`', '\x02')
+
     while len(msg) > 0:
       self.conn.notice(nick, msg[:400])
       msg = msg[400:]
