@@ -104,7 +104,7 @@ class NoGame(GamePhase):
 
   @Command(names=['create', 'c'])
   def create(self, g: Game, nick, args):
-    g.com.announce('Game is created.')
+    g.com.announce('`{}` has created a game! Type `j` to join.'.format(nick))
 
     g.reset()
 

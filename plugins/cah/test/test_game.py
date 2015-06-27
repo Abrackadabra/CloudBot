@@ -11,16 +11,19 @@ class FakeCommunicator(Communicator):
     return
 
   def reply(self, nick, msg):
+    msg = msg.replace('`', '')
     s = '({}) {}'.format(nick, msg)
     self.log.append(s)
     print('>' + s)
 
   def announce(self, msg):
+    msg = msg.replace('`', '')
     s = '{}'.format(msg)
     self.log.append(s)
     print('>' + s)
 
   def notice(self, nick, msg):
+    msg = msg.replace('`', '')
     s = '`{}` {}'.format(nick, msg)
     self.log.append(s)
     print('>' + s)
@@ -49,7 +52,7 @@ def test_create(com, g):
   :type g: Game
   """
   g.d('a', 'create')
-  assert com.log[-1] == 'Game is created.'
+  assert 'a has created a game' in com.log[-1]
 
 
 def test_leave(com, g):
