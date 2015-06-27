@@ -215,7 +215,7 @@ def test_choosejoinleave(com, g):
   g.d('e', 'join')
   g.d('a', 'leave')
 
-  assert 'Round 0' in ' '.join(com.log[-8:])
+  assert 'Round 0' in ' '.join(com.log)
   assert 'e' in g.players
 
 
@@ -258,6 +258,11 @@ def test_sets(com, g):
   :type com: Communicator
   :type g: Game
   """
+  g.d('a', 'la')
+  assert 'Base Set' in com.log[-1]
+  g.d('a', 'lu')
+  assert 'Base Set' in com.log[-1]
+
   g.d('a', 'create')
 
   g.d('a', 'list_sets')
@@ -325,3 +330,28 @@ def test_scores(com, g):
 
   for i in 'abc':
     assert i in com.log[-1]
+
+
+def test_rando(com, g):
+  """
+  :type com: Communicator
+  :type g: Game
+  """
+  g.d('a', 'c')
+  g.deck.black_pool = []
+  for i in range(20):
+    g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
+
+  g.d('a', 'rando', 'on')
+  g.d('b', 'j')
+  g.d('a', 'st')
+
+  g.czar_index = g.players.index('a')
+  g.czar = 'a'
+
+  g.d('b', 'pick', '0')
+
+  g.d('a', 'pick', str(g.player_perm.index(g.RANDO_NICK)))
+
+  g.d('a', 'sc')
+  assert 'Rando Cardissian-1p' in com.log[-1]

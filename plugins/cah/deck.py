@@ -175,4 +175,4 @@ class Deck(object):
       filename = os.path.join(dir, 'cardcast', filename)
       if os.path.isfile(filename) and filename.endswith('.json'):
         set = Set.read(filename)
-        self.sets[set.name] = set
+        self.sets['[CC] {}'.format(set.name)] = set

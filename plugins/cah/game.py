@@ -1,4 +1,3 @@
-from pprint import pprint
 import random
 
 from .deck import Deck
@@ -6,6 +5,8 @@ from .score import Scores
 
 
 class Game(object):
+  RANDO_NICK = 'Rando Cardissian'
+
   def __init__(self, com, card_dir, chan):
     """
     :type com: Communicator
@@ -45,6 +46,17 @@ class Game(object):
 
     self.deck.reset()
 
+    self.rando = False
+
+  def list_players(self):
+    r = list(self.players)
+    if self.rando:
+      r.append(self.RANDO_NICK)
+    return r
+
+  def count_players(self):
+    return len(self.list_players())
+
 
 class Command(object):
   """
@@ -69,14 +81,27 @@ class Command(object):
 
 
 class GamePhase(object):
+  def copy_command(self, method):
+    name = method.__name__
+    copy = lambda *args, **kwargs: method(self, *args, **kwargs)
+    copy = Command(names=method.names)(copy)
+    setattr(self, name, copy)
+
   def process(self, g, nick, command, args):
     for i in dir(self):
       method = getattr(self, i)
       if Command.is_command(method) and command in method.names:
         return method(g, nick, args)
 
+  def next_czar(self, g):
+    g.czar_index = (g.czar_index + 1) % len(g.players)
+    g.czar = g.players[g.czar_index]
+
 
 class NoGame(GamePhase):
+  def __init__(self):
+    self.copy_command(WaitingForPlayers.list_sets)
+
   @Command(names=['create', 'c'])
   def create(self, g: Game, nick, args):
     g.com.announce('Game is created.')
@@ -92,8 +117,6 @@ class NoGame(GamePhase):
   def status(self, g: Game, nick, args):
     g.com.announce('No one is playing.')
 
-  list_sets = WaitingForPlayers.list_sets
-
 
 class WaitingForPlayers(GamePhase):
   @Command(names=['join', 'j'])
@@ -102,7 +125,7 @@ class WaitingForPlayers(GamePhase):
       g.com.notice(nick, 'You are already playing.')
     else:
       g.players.append(nick)
-      g.com.announce('{} has joined the game. {} players total.'.format(nick, len(g.players)))
+      g.com.announce('{} has joined the game. {} players total.'.format(nick, g.count_players()))
 
   @Command(names=['leave', 'l'])
   def leave(self, g: Game, nick, args):
@@ -110,7 +133,7 @@ class WaitingForPlayers(GamePhase):
       g.com.notice(nick, 'You are not playing.')
     else:
       g.players.remove(nick)
-      g.com.announce('{} has left the game. {} players remaining.'.format(nick, len(g.players)))
+      g.com.announce('{} has left the game. {} players remaining.'.format(nick, g.count_players()))
 
       if nick == g.creator:
         g.com.announce('Creator has left the game. Game aborted.')
@@ -121,7 +144,7 @@ class WaitingForPlayers(GamePhase):
   def start(self, g: Game, nick, args):
     if nick != g.creator:
       g.com.notice(nick, 'Only {} can start the game.'.format(g.creator))
-    elif len(g.players) < 3:
+    elif g.count_players() < 3:
       g.com.reply(nick, 'Need at least 3 players to start a game.')
     else:
       new_state = PlayingCards()
@@ -153,7 +176,7 @@ class WaitingForPlayers(GamePhase):
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
     g.com.announce('Waiting for people to join. Creator: {}. {} players: {}.'
-                   ''.format(g.creator, len(g.players), ', '.join(g.players)))
+                   ''.format(g.creator, g.count_players(), ', '.join(g.list_players())))
 
   @Command(names=['list_sets', 'listsets', 'listall', 'list_all', 'la'])
   def list_sets(self, g: Game, nick, args):
@@ -217,19 +240,35 @@ class WaitingForPlayers(GamePhase):
     g.deck.remove_set(sets[c])
     self.list_used_sets(g, nick, args)
 
+  @Command()
+  def rando(self, g: Game, nick, args):
+    if args == '':
+      g.com.announce('{} is {}.'.format(g.RANDO_NICK, 'on' if g.rando else 'off'))
+    elif nick != g.creator:
+      g.com.notice(nick, 'Only {} can control {}.'.format(g.creator, g.RANDO_NICK))
+    elif args == 'on':
+      g.rando = True
+      g.com.announce('{} is on.'.format(g.RANDO_NICK))
+    elif args == 'off':
+      g.rando = False
+      g.com.announce('{} is off.'.format(g.RANDO_NICK))
+    else:
+      g.com.notice(nick, 'Possible arguments: on, off.')
+
 
 class PlayingCards(GamePhase):
   def deal(self, g: Game):
-    for i in g.players:
+    for i in g.list_players():
       g.scores.register(i)
 
     random.shuffle(g.players)
-    for player in g.players:
+    for player in g.list_players():
       g.hands[player] = g.deck.draw_white(10)
       g.scores.register(player)
 
-    g.czar_index = random.randrange(len(g.players))
-    g.czar = g.players[g.czar_index]
+    g.czar_index = 0
+
+    self.next_czar(g)
 
   def act(self, g: Game):
     if g.scores.highest() >= g.limit:
@@ -243,9 +282,6 @@ class PlayingCards(GamePhase):
       g.hands[i] = g.deck.draw_white(10)
       g.scores.register(i)
 
-      random.shuffle(g.players)
-      g.czar_index = random.randrange(len(g.players))
-      g.czar = g.players[g.czar_index]
     g.joiners.clear()
 
     g.black_card = g.deck.draw_black()
@@ -265,14 +301,20 @@ class PlayingCards(GamePhase):
                     example_args)
     g.com.announce(msg)
 
-    for player, hand in g.hands.items():
+    for player in g.players:
       if player == g.czar:
         continue
+
+      hand = g.hands[player]
 
       hand_s = ' '.join(['[{}] {}'.format(i, j) for i, j in enumerate(hand)])
       g.com.notice(player, 'Your hand: {}'.format(hand_s))
 
     g.played = {}
+
+    if g.rando:
+      g.played[g.RANDO_NICK] = list(g.hands[g.RANDO_NICK][:g.black_card.gaps])
+
 
   @Command(names=['scores', 'sc'])
   def scores(self, g: Game, nick, args):
@@ -311,7 +353,7 @@ class PlayingCards(GamePhase):
     g.deck.return_whites(g.hands[nick])
     del g.hands[nick]
 
-    if len(g.players) < 3:
+    if g.count_players() < 3:
       g.com.announce('There are not enough players to continue. Game stopped.')
       g.reset()
       return NoGame()
@@ -320,8 +362,7 @@ class PlayingCards(GamePhase):
       g.com.announce('The card czar left. Restarting the round...')
       g.deck.return_black(g.black_card)
 
-      g.czar_index %= len(g.players)
-      g.czar = g.players[g.czar_index]
+      self.next_czar(g)
 
       new_state = PlayingCards()
       return new_state.act(g) or new_state
@@ -359,7 +400,7 @@ class PlayingCards(GamePhase):
 
     g.played[nick] = choice
 
-    if len(g.played) < len(g.players) - 1:
+    if len(g.played) < g.count_players() - 1:
       return
 
     for player, cards in g.played.items():
@@ -378,7 +419,7 @@ class PlayingCards(GamePhase):
         waiting.append(i)
 
     g.com.announce('{} players. {} is the card czar. Black card: "{}". Waiting for {} to play.'
-                   ''.format(len(g.players), g.czar, g.black_card, ', '.join(waiting)))
+                   ''.format(g.count_players(), g.czar, g.black_card, ', '.join(waiting)))
 
   @Command(names=['cards', 'c'])
   def cards(self, g: Game, nick, args):
@@ -396,11 +437,17 @@ class PlayingCards(GamePhase):
 
 
 class ChoosingWinner(GamePhase):
+  def __init__(self):
+    self.copy_command(PlayingCards.join)
+    self.copy_command(PlayingCards.leave)
+    self.copy_command(PlayingCards.cards)
+    self.copy_command(PlayingCards.scores)
+
   def act(self, g: Game):
     g.com.announce('Everyone has played. Now {} has to choose a winner. '
                    'Candidates are:'.format(g.czar))
 
-    g.player_perm = list(g.players)
+    g.player_perm = g.list_players()
     g.player_perm.remove(g.czar)
     random.shuffle(g.player_perm)
 
@@ -431,8 +478,7 @@ class ChoosingWinner(GamePhase):
 
     g.com.announce(str(g.scores))
 
-    g.czar_index = (g.czar_index + 1) % len(g.players)
-    g.czar = g.players[g.czar_index]
+    self.next_czar(g)
 
     g.round += 1
 
@@ -443,13 +489,8 @@ class ChoosingWinner(GamePhase):
 
     return new_state.act(g) or new_state
 
-  join = PlayingCards.join
-  leave = PlayingCards.leave
-  cards = PlayingCards.cards
-  scores = PlayingCards.scores
-
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
     g.com.announce(
       '{} players. Black card: "{}". Waiting for card czar {} to choose the winner.'
-      ''.format(len(g.players), g.black_card, g.czar))
+      ''.format(g.count_players(), g.black_card, g.czar))
