@@ -355,3 +355,29 @@ def test_rando(com, g):
 
   g.d('a', 'sc')
   assert 'Rando Cardrissian-1p' in com.log[-1]
+
+
+def test_blanks(com, g):
+  """
+  :type com: Communicator
+  :type g: Game
+  """
+  g.d('a', 'c')
+  g.deck.black_pool = []
+  for i in range(20):
+    g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
+  g.deck.white_pool = []
+
+  g.d('a', 'blank', '100')
+  g.d('b', 'j')
+  g.d('c', 'j')
+
+  g.d('a', 'st')
+
+  g.czar_index = g.players.index('a')
+  g.czar = 'a'
+
+  g.d('b', 'write', '8 TEST')
+  g.d('b', 'pick', '8')
+
+  assert 'TEST' in com.log[-1]

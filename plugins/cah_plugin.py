@@ -1,3 +1,4 @@
+from pprint import pprint
 import re
 import asyncio
 
@@ -44,25 +45,24 @@ def on_ready(conn, chan, bot):
   com.announce('Reloaded.')
 
 
-@hook.regex('^.+$')
-def catch_all(nick, chan, match):
-  if chan != game.chan:
-    return
+@hook.irc_raw('PRIVMSG')
+def catch_all(nick, chan, content):
+  if chan == game.chan or chan == nick:
+    parts = content.split(maxsplit=1)
 
-  text = match.group(0)
-  parts = text.split(maxsplit=1)
+    if len(parts) == 0:
+      return
 
-  if len(parts) == 0:
-    return
+    command = parts[0]
 
-  command = parts[0]
+    args = parts[1] if len(parts) > 1 else ''
 
-  args = parts[1] if len(parts) > 1 else ''
+    game.process(nick, command, args)
 
-  game.process(nick, command, args)
+    if re.match(r'^\d+', content):
+      game.process(nick, 'pick', content)
 
-  if re.match(r'^\d+[ \d+]*$', text):
-    game.process(nick, 'pick', text)
+
 
 
 @asyncio.coroutine

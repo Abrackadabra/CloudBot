@@ -4,6 +4,22 @@ import random
 import requests
 
 
+class WhiteCard(object):
+  def __init__(self, text, is_blank=False):
+    """
+    :type text: str
+    :type is_blank: bool
+    """
+    self.text = text.rstrip('.')
+    self.is_blank = is_blank
+
+  def __str__(self):
+    if self.text:
+      return self.text
+    return 'BLANK CARD: to play it you first have to write something on it by PMing the bot, ' \
+           'like "/msg yacahb write <cards id> <text>"'
+
+
 class BlackCard(object):
   MARKER = '%s'
 
@@ -47,7 +63,7 @@ class Set(object):
       return Set(
         name=s['name'],
         black=[BlackCard(**i) for i in s['black']],
-        white=s['white']
+        white=[WhiteCard(i) for i in s['white']]
       )
 
   @staticmethod
@@ -130,6 +146,10 @@ class Deck(object):
     self.used_sets = []
 
     self.add_set('Base Set')
+
+  def add_blank(self, n):
+    for i in range(n):
+      self.white_pool.append(WhiteCard('', True))
 
   def return_black(self, black_card):
     self.black_used.remove(black_card)
