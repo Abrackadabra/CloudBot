@@ -1,6 +1,6 @@
 import random
 
-from .deck import Deck
+from .cards import Deck
 from .score import Scores
 
 
@@ -258,6 +258,10 @@ class WaitingForPlayers(GamePhase):
 
 
 class PlayingCards(GamePhase):
+  def __init__(self):
+    self.copy_command(WaitingForPlayers.list_sets)
+    self.copy_command(WaitingForPlayers.list_used_sets)
+
   def deal(self, g: Game):
     for i in g.list_players():
       g.scores.register(i)
@@ -444,6 +448,9 @@ class ChoosingWinner(GamePhase):
     self.copy_command(PlayingCards.leave)
     self.copy_command(PlayingCards.cards)
     self.copy_command(PlayingCards.scores)
+
+    self.copy_command(WaitingForPlayers.list_sets)
+    self.copy_command(WaitingForPlayers.list_used_sets)
 
   def act(self, g: Game):
     g.com.announce('Everyone has played. Now `{}` has to choose a winner. '

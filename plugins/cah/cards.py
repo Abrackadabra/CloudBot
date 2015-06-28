@@ -15,21 +15,22 @@ class BlackCard(object):
     self.text = text
     self.gaps = gaps
 
-  def __str__(self):
-    return self.text.replace(self.MARKER, '`___`')
-
   def insert(self, cards):
     s = str(self.text)
 
     if self.MARKER in s:
       for i in cards:
-        s = s.replace(self.MARKER, '`[{}]`'.format(i), 1 if len(cards) > 0 else -1)
+        count = -1 if len(cards) == 1 else 1
+        s = s.replace(self.MARKER, '`[{}]`'.format(i), count)
       return s
 
     return '{} {}'.format(s, ' '.join(['`[{}]`'.format(i) for i in cards]))
 
   def __eq__(self, other):
     return self.text == other.text and self.gaps == other.gaps
+
+  def __str__(self):
+    return self.text.replace(self.MARKER, '`___`')
 
 
 class Set(object):

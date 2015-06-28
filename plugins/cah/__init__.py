@@ -1,7 +1,7 @@
-from . import game, com, deck
+from . import game, com, cards
 
 __all__ = ['Game', 'Communicator']
 
 Game = game.Game
 Communicator = com.Communicator
-Set = deck.Set
+Set = cards.Set

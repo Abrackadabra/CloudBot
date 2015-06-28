@@ -1,8 +1,5 @@
-import json
-from pprint import pprint
 import re
 import asyncio
-import requests
 
 from cloudbot import hook
 from .cah import Game, Communicator, Set
@@ -66,6 +63,7 @@ def catch_all(nick, chan, match):
 
   if re.match(r'^\d+[ \d+]*$', text):
     game.process(nick, 'pick', text)
+
 
 @asyncio.coroutine
 @hook.command('load_set', permissions=['botcontrol'])

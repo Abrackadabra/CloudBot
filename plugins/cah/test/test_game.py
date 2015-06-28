@@ -1,7 +1,7 @@
 import pytest
 
 from plugins.cah import Communicator, Game
-from plugins.cah.deck import BlackCard
+from plugins.cah.cards import BlackCard
 from plugins.cah.game import PlayingCards
 
 
@@ -354,4 +354,4 @@ def test_rando(com, g):
   g.d('a', 'pick', str(g.player_perm.index(g.RANDO_NICK)))
 
   g.d('a', 'sc')
-  assert 'Rando Cardissian-1p' in com.log[-1]
+  assert 'Rando Cardrissian-1p' in com.log[-1]
