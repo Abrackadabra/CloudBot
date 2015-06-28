@@ -348,7 +348,21 @@ class PlayingCards(GamePhase):
     g.played = {}
 
     if g.rando:
-      g.played[g.RANDO_NICK] = list(g.hands[g.RANDO_NICK][:g.black_card.gaps])
+      hand = g.hands[g.RANDO_NICK]
+      blanks_in_hand = 0
+      for i in list(hand):
+        if i.is_blank:
+          blanks_in_hand += 1
+          g.deck.return_whites([i])
+          hand.remove(i)
+          hand.extend(g.deck.draw_white(1))
+
+      if blanks_in_hand == 7:
+        g.com.announce('Too many blanks for Rando. Aborting.')
+        g.reset()
+        return NoGame()
+
+      g.played[g.RANDO_NICK] = list(hand[:g.black_card.gaps])
 
 
   @Command(names=['scores', 'sc'])
