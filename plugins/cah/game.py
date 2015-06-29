@@ -356,6 +356,7 @@ class WaitingForPlayers(GamePhase):
 
     if nick != g.creator:
       g.com.notice(nick, 'Only `{}` can change the number of blanks in the deck.'.format(g.creator))
+      return
 
     parts = args.split()
     if not parts[0].isnumeric():
@@ -495,7 +496,7 @@ class PlayingCards(GamePhase):
     g.joiners.append(nick)
     g.com.notice(nick, 'You will be dealt into the game when the next round begins.')
 
-  @Command(names=['leave', 'l'], player_only=True)
+  @Command(names=['leave'], player_only=True)
   def leave(self, g: Game, nick, args):
     """
     leave -- allows to leave an already running game
@@ -684,9 +685,12 @@ class ChoosingWinner(GamePhase):
       return
 
     winner = g.player_perm[c]
-    g.com.announce('`{}` wins with "{}".'
-                   .format(winner, g.black_card.insert(g.played[winner])))
-    g.scores.point(winner)
+    if winner != g.RANDO_NICK and winner not in g.players:
+      g.com.announce('Winner {} has left the game. No one gets a point.')
+    else:
+      g.com.announce('`{}` wins with "{}".'
+                     .format(winner, g.black_card.insert(g.played[winner])))
+      g.scores.point(winner)
 
     g.com.announce(str(g.scores))
 
