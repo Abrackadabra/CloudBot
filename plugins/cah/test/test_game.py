@@ -351,3 +351,12 @@ def test_blanks(com, g):
   g.d('b', 'pick', '8')
 
   assert 'TEST' in com.log[-1]
+
+
+def test_help(com: Communicator, g: Game):
+  g.d('a', '?')
+  assert 'Commands in this phase' in com.log[-1] and 'create' in com.log[-1] and \
+         'wtf' in com.log[-1]
+
+  g.d('a', '?', '?')
+  assert 'help <command>' in com.log[-1]

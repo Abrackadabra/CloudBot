@@ -1,4 +1,5 @@
 import random
+import re
 
 from .cards import Deck
 from .score import Scores
@@ -71,6 +72,12 @@ class Command(object):
     self.names = names
     self.player_only = player_only
 
+  @staticmethod
+  def strip_doc(f):
+    if not f.__doc__:
+      return 'No help available'
+    return re.sub(r'\s+', ' ', f.__doc__.strip())
+
   def __call__(self, f):
     if not self.names:
       self.names = [f.__name__]
@@ -78,13 +85,14 @@ class Command(object):
     f.names = self.names
     f.command = True
     f.player_only = self.player_only
+    f.help = self.strip_doc(f)
 
     return f
 
   @staticmethod
   def is_command(f):
     return callable(f) and hasattr(f, 'command') and hasattr(f, 'names') \
-           and hasattr(f, 'player_only')
+           and hasattr(f, 'player_only') and hasattr(f, 'help')
 
 
 class GamePhase(object):
@@ -108,12 +116,39 @@ class GamePhase(object):
     g.czar = g.players[g.czar_index]
 
 
+  @Command(names=['h', 'help', '?', 'wtf', 'command', 'commands'])
+  def help(self, g: Game, nick, args):
+    """
+    help [<command>] -- lists commands available in the current phase or returns help about
+    a specific command
+    """
+    args = args.strip()
+    if args:
+      c = args.split()[0]
+
+      for i in dir(self):
+        method = getattr(self, i)
+        if Command.is_command(method) and c in method.names:
+          g.com.notice(nick, method.help)
+      return
+
+    command_names = []
+    for i in dir(self):
+      method = getattr(self, i)
+      if Command.is_command(method):
+        command_names.append('/'.join(method.names))
+    g.com.notice(nick, 'Commands in this phase: {}'.format(', '.join(command_names)))
+
+
 class NoGame(GamePhase):
   def __init__(self):
     self.copy_command(WaitingForPlayers.list_sets)
 
   @Command(names=['create', 'c'])
   def create(self, g: Game, nick, args):
+    """
+    create -- creates a game. Creator of the game can then set various settings and start the game
+    """
     g.com.announce('`{}` has created a game! Type `j` to join.'.format(nick))
 
     g.reset()
@@ -125,12 +160,18 @@ class NoGame(GamePhase):
 
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
+    """
+    status -- shows information about the current game
+    """
     g.com.announce('No one is playing.')
 
 
 class WaitingForPlayers(GamePhase):
   @Command(names=['join', 'j'])
   def join(self, g: Game, nick, args):
+    """
+    join -- joins the active game
+    """
     if nick in g.players:
       g.com.notice(nick, 'You are already playing.')
     else:
@@ -140,6 +181,9 @@ class WaitingForPlayers(GamePhase):
 
   @Command(names=['leave'], player_only=True)
   def leave(self, g: Game, nick, args):
+    """
+    leave -- leaves the active game
+    """
     g.players.remove(nick)
     g.com.announce(
       '`{}` has left the game. `{}` players remaining.'.format(nick, g.count_players()))
@@ -151,6 +195,10 @@ class WaitingForPlayers(GamePhase):
 
   @Command(names=['start', 'st'], player_only=True)
   def start(self, g: Game, nick, args):
+    """
+    start -- starts the game. Only the game creator can use it. Once started, game's parameters
+    cannot be changed
+    """
     if nick != g.creator:
       g.com.notice(nick, 'Only `{}` can start the game.'.format(g.creator))
     elif g.count_players() < 3:
@@ -161,6 +209,9 @@ class WaitingForPlayers(GamePhase):
 
   @Command(names=['limit', 'l'])
   def limit(self, g: Game, nick, args):
+    """
+    limit [<number>] -- shows current point limit or sets it
+    """
     parts = args.split()
     if len(parts) == 0:
       g.com.reply(nick, 'Current point limit is `{}` points.'.format(g.limit))
@@ -183,23 +234,35 @@ class WaitingForPlayers(GamePhase):
 
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
+    """
+    status -- shows information about the current game
+    """
     g.com.announce('Waiting for people to join. Creator: `{}`. `{}` players: {}.'
                    ''.format(g.creator, g.count_players(), ', '.join(g.list_players())))
 
   @Command(names=['list_sets', 'listsets', 'listall', 'list_all', 'la'])
   def list_sets(self, g: Game, nick, args):
+    """
+    list_sets -- lists all available card sets. Admins can add more with .load_set
+    """
     sets = g.deck.list_all_sets()
     g.com.announce(
       'All card sets: ' + ', '.join(['[`{}`] {}'.format(i, j) for i, j in enumerate(sets)]))
 
   @Command(names=['list_used', 'listused', 'lu'])
   def list_used_sets(self, g: Game, nick, args):
+    """
+    list_used_sets -- lists all active card sets in the deck
+    """
     sets = g.deck.list_used_sets()
     g.com.announce(
       'Used card sets: ' + ', '.join(['[`{}`] {}'.format(i, j) for i, j in enumerate(sets)]))
 
   @Command(names=['add_set', 'addset', 'add', 'a'])
   def add_set(self, g: Game, nick, args):
+    """
+    add_set -- adds a card set to the deck
+    """
     if nick != g.creator:
       g.com.notice(nick, 'Only `{}` can change used card sets.'.format(g.creator))
       return
@@ -226,6 +289,9 @@ class WaitingForPlayers(GamePhase):
 
   @Command(names=['remove_set', 'removeset', 'remove', 'r'])
   def remove_set(self, g: Game, nick, args):
+    """
+    remove_set -- removes a card set from the deck
+    """
     if nick != g.creator:
       g.com.notice(nick, 'Only `{}` can change used card sets.'.format(g.creator))
       return
@@ -250,6 +316,9 @@ class WaitingForPlayers(GamePhase):
 
   @Command()
   def rando(self, g: Game, nick, args):
+    """
+    rando [on|off] -- allows to control Rando's setting
+    """
     if not args:
       g.com.announce('{} is `{}`.'.format(g.RANDO_NICK, 'on' if g.rando else 'off'))
     elif nick != g.creator:
@@ -265,6 +334,9 @@ class WaitingForPlayers(GamePhase):
 
   @Command()
   def blank(self, g: Game, nick, args):
+    """
+    blank [<num>] -- controls number of blank white cards in the deck
+    """
     if not args:
       g.com.announce('There are `{}` blank cards in the deck.'.format(g.blanks))
       return
@@ -387,12 +459,18 @@ class PlayingCards(GamePhase):
       return NoGame()
 
 
-  @Command(names=['scores', 'sc'])
+  @Command(names=['scores', 'sc', 'stats', 'points', 'pts'])
   def scores(self, g: Game, nick, args):
+    """
+    scores -- shows current point score
+    """
     g.com.announce(str(g.scores))
 
   @Command(names=['join', 'j'])
   def join(self, g: Game, nick, args):
+    """
+    join -- allows to join an already running game
+    """
     if nick in g.players:
       g.com.notice(nick, 'You are already playing.')
       return
@@ -406,6 +484,9 @@ class PlayingCards(GamePhase):
 
   @Command(names=['leave', 'l'], player_only=True)
   def leave(self, g: Game, nick, args):
+    """
+    leave -- allows to leave an already running game
+    """
     if nick in g.joiners:
       g.com.notice(nick, 'You will not join.')
       g.joiners.remove(nick)
@@ -438,6 +519,9 @@ class PlayingCards(GamePhase):
 
   @Command(names=['pick', 'p'], player_only=True)
   def pick(self, g: Game, nick, args):
+    """
+    pick [<num>[ <num>[...]]] -- pick cards from you hand to play
+    """
     if nick == g.czar:
       g.com.notice(nick, 'You are the card czar. '
                          'You choose the winner after everyone else has played.')
@@ -484,6 +568,9 @@ class PlayingCards(GamePhase):
 
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
+    """
+    status -- shows information about the current game
+    """
     waiting = []
     for i in g.players:
       if i not in g.played and i != g.czar:
@@ -493,19 +580,28 @@ class PlayingCards(GamePhase):
                    'Waiting for `{}` to play.'
                    ''.format(g.count_players(), g.czar, g.black_card, ', '.join(waiting)))
 
-  @Command(names=['cards', 'c'], player_only=True)
+  @Command(names=['cards', 'c', 'hand', 'h'], player_only=True)
   def cards(self, g: Game, nick, args):
+    """
+    cards -- shows your hand
+    """
     hand = g.hands[nick]
     hand_s = ' '.join(['[`{}`] {}'.format(i, j) for i, j in enumerate(hand)])
     g.com.notice(nick, 'Your hand: {}.'.format(hand_s))
 
   @Command(names=['limit', 'l'])
   def limit(self, g: Game, nick, args):
+    """
+    limit -- shows the point limit
+    """
     g.com.reply(nick, 'The point limit is `{}` points.'.format(g.limit))
 
 
   @Command(player_only=True)
   def write(self, g: Game, nick, args: str):
+    """
+    write <num> <text> -- writes <text> on blank card <num> from you hand
+    """
     parts = args.split(maxsplit=1)
 
     if not args or len(parts) < 2 or not parts[0].isnumeric():
@@ -552,8 +648,11 @@ class ChoosingWinner(GamePhase):
       s = g.black_card.insert(g.played[player])
       g.com.announce('[`{}`] {}'.format(i, s))
 
-  @Command(names=['pick', 'p'])
+  @Command(names=['pick', 'p', 'winner', 'w'])
   def pick(self, g: Game, nick, args):
+    """
+    pick <num> -- pick the winner
+    """
     if nick != g.czar:
       return
 
@@ -587,6 +686,9 @@ class ChoosingWinner(GamePhase):
 
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
+    """
+    status -- shows information about the current game
+    """
     g.com.announce(
       '`{}` players. Black card: "{}". Waiting for card czar `{}` to choose the winner.'
       ''.format(g.count_players(), g.black_card, g.czar))
