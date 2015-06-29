@@ -359,4 +359,23 @@ def test_help(com: Communicator, g: Game):
          'wtf' in com.log[-1]
 
   g.d('a', '?', '?')
-  assert 'help <command>' in com.log[-1]
+  assert 'help [<command>]' in com.log[-1]
+
+
+def test_pucki(com: Communicator, g: Game):
+  g.d('a', 'c')
+
+  g.d('b', 'j')
+  g.d('c', 'j')
+  g.d('d', 'j')
+
+  g.d('a', 'st')
+  g.czar_index = g.players.index('a')
+  g.czar = 'a'
+
+  g.d('b', 'pick', '0')
+  g.d('c', 'pick', '0')
+  g.d('d', 'pick', '0')
+
+  g.d('c', 'leave')
+  g.d('c', 'hand')

@@ -78,12 +78,20 @@ class Command(object):
       return 'No help available'
     return re.sub(r'\s+', ' ', f.__doc__.strip())
 
+  @staticmethod
+  def copy_fields(a, b):
+    b.names = a.names
+    b.player_only = a.player_only
+    b.help = a.help
+
   def __call__(self, f):
     if not self.names:
       self.names = [f.__name__]
 
     f.names = self.names
     f.command = True
+    if 'c' in f.names:
+      print('wut')
     f.player_only = self.player_only
     f.help = self.strip_doc(f)
 
@@ -99,13 +107,17 @@ class GamePhase(object):
   def copy_command(self, method):
     name = method.__name__
     copy = lambda *args, **kwargs: method(self, *args, **kwargs)
-    copy = Command(names=method.names)(copy)
+    copy = Command()(copy)
+    Command.copy_fields(method, copy)
     setattr(self, name, copy)
 
   def process(self, g: Game, nick, command, args):
     for i in dir(self):
       method = getattr(self, i)
       if Command.is_command(method) and command in method.names:
+        if i == 'cards':
+          print('waaat')
+
         if method.player_only and nick not in g.players:
           continue
 
@@ -597,12 +609,16 @@ class PlayingCards(GamePhase):
     """
     g.com.reply(nick, 'The point limit is `{}` points.'.format(g.limit))
 
+  def sanitize(self, s):
+    return ''.join([i for i in s if i.isprintable()])
 
   @Command(player_only=True)
   def write(self, g: Game, nick, args: str):
     """
     write <num> <text> -- writes <text> on blank card <num> from you hand
     """
+    args = self.sanitize(args)
+
     parts = args.split(maxsplit=1)
 
     if not args or len(parts) < 2 or not parts[0].isnumeric():
