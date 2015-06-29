@@ -259,59 +259,29 @@ def test_sets(com, g):
   :type g: Game
   """
   g.d('a', 'la')
-  assert 'Base Set' in com.log[-1]
+  assert 'Main Deck' in com.log[-1]
   g.d('a', 'lu')
-  assert 'Base Set' in com.log[-1]
+  assert 'Main Deck' in com.log[-1]
 
   g.d('a', 'create')
 
   g.d('a', 'list_sets')
-  assert 'Base Set' in com.log[-1]
+  assert 'Main Deck' in com.log[-1]
 
   g.d('a', 'list_used_sets')
-  assert 'Base Set' in com.log[-1]
+  assert 'Main Deck' in com.log[-1]
 
-  g.d('a', 'add_set', '1 2')
-
-  assert len(g.deck.used_sets) == 3
+  def_count = len(g.deck.used_sets)
 
   g.d('a', 'remove_set', '0')
-  assert len(g.deck.used_sets) == 2
+  assert len(g.deck.used_sets) == def_count - 1
 
   g.d('a', 'leave')
   g.d('a', 'create')
-  assert len(g.deck.used_sets) == 1
+  assert len(g.deck.used_sets) == def_count
 
   g.d('a', 'add_set', 'all')
-  assert len(g.deck.used_sets) > 10
-
-
-def test_short(com, g):
-  """
-  :type com: Communicator
-  :type g: Game
-  """
-  g.d('a', 'c')
-
-  g.d('a', 'la')
-  assert 'Base Set' in com.log[-1]
-
-  g.d('a', 'lu')
-  assert 'Base Set' in com.log[-1]
-
-  g.d('a', 'a', '1 2')
-
-  assert len(g.deck.used_sets) == 3
-
-  g.d('a', 'r', '0')
-  assert len(g.deck.used_sets) == 2
-
-  g.d('a', 'leave')
-  g.d('a', 'c')
-  assert len(g.deck.used_sets) == 1
-
-  g.d('a', 'a', 'all')
-  assert len(g.deck.used_sets) > 10
+  assert len(g.deck.used_sets) > def_count
 
 
 def test_scores(com, g):

@@ -1,0 +1,3813 @@
+{
+  "black": [
+    {
+      "gaps": 1,
+      "text": "Called on account of %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s is the new %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Last week, I created a Chef recipe for %s; this week, it's an entire cookbook for %s. Automation FTW!"
+    },
+    {
+      "gaps": 1,
+      "text": "I'm pretty sure %s isn't thread safe"
+    },
+    {
+      "gaps": 1,
+      "text": "%s make me a sandwich"
+    },
+    {
+      "gaps": 1,
+      "text": "\"Our release schedule doesn't have time for %s.\""
+    },
+    {
+      "gaps": 1,
+      "text": "xkcd.com just made a hilarious comic making fun of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "A lot of disk space is needed for %s"
+    },
+    {
+      "gaps": 1,
+      "text": "ERROR: %s NOT FOUND"
+    },
+    {
+      "gaps": 1,
+      "text": "We don't have to worry about CAP Theorem because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s as a service."
+    },
+    {
+      "gaps": 1,
+      "text": "git --%s"
+    },
+    {
+      "gaps": 2,
+      "text": "The first rule of %s is: You do not talk about %s."
+    },
+    {
+      "gaps": 1,
+      "text": "140 characters is just enough to explain %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Software Defined %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Developers need access to production machines because %s."
+    },
+    {
+      "gaps": 1,
+      "text": "When I write a book about my experiences, it'll be called \"%s, the good parts\""
+    },
+    {
+      "gaps": 2,
+      "text": "The %s on the server were deleted because %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "Amazon built a datacenter on the moon to lessen the risk of %s causing problems."
+    },
+    {
+      "gaps": 1,
+      "text": "I don't always test my code, but when I do I do it in %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Would you like %s with that?"
+    },
+    {
+      "gaps": 1,
+      "text": "The production datacenter burned down because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Move %s and break things."
+    },
+    {
+      "gaps": 1,
+      "text": "When I told Jez Humble about our %s, he actually cried."
+    },
+    {
+      "gaps": 1,
+      "text": "The Internet is for cat memes and %s,"
+    },
+    {
+      "gaps": 1,
+      "text": "%s all the things."
+    },
+    {
+      "gaps": 1,
+      "text": "Security? We've got that! We use %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The most stable part of our infrastructure? %s"
+    },
+    {
+      "gaps": 1,
+      "text": "The %s Public License."
+    },
+    {
+      "gaps": 1,
+      "text": "I assure you %s is secure!"
+    },
+    {
+      "gaps": 1,
+      "text": "I don't have any UNIX Beards in stock, but we do have  %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Make it %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s isn't a job title"
+    },
+    {
+      "gaps": 2,
+      "text": "Our new startup is the %s for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "It compiles %s to JavaScript."
+    },
+    {
+      "gaps": 1,
+      "text": "Free as in %s."
+    },
+    {
+      "gaps": 2,
+      "text": "It's like %s on %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Security? We've got that! We use %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We can just fix that with a little %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Our entire app is geared towards providing %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Apple just patented %s."
+    },
+    {
+      "gaps": 1,
+      "text": "RedHat has announced that RHEL 8 will ship with %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Jordan Sissel hates %s so much that he created a new opensource project called %s to work around it."
+    },
+    {
+      "gaps": 1,
+      "text": "%s took EBS down again today."
+    },
+    {
+      "gaps": 1,
+      "text": "Everytime you allocate you have to %s when you're done"
+    },
+    {
+      "gaps": 1,
+      "text": "Our competitive advantage is our %s."
+    },
+    {
+      "gaps": 1,
+      "text": "If you're %s, you're gonna have a bad time."
+    },
+    {
+      "gaps": 2,
+      "text": "Last week, I created a Chef recipe for %s; this week, it's an entire cookbook for %s. Automation FTW!"
+    },
+    {
+      "gaps": 2,
+      "text": "We rewrote %s in %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s is why the jDBA thought it might be time to go to #mysql on freenode"
+    },
+    {
+      "gaps": 1,
+      "text": "We took the plunge and rewrote %s in Go"
+    },
+    {
+      "gaps": 2,
+      "text": "It's not the recommended configuration to use %s with %s but it's in production right now."
+    },
+    {
+      "gaps": 1,
+      "text": "%s Considered Harmful"
+    },
+    {
+      "gaps": 1,
+      "text": "%s or it didn't happen."
+    },
+    {
+      "gaps": 1,
+      "text": "%s dooms any project to epic failure."
+    },
+    {
+      "gaps": 2,
+      "text": "That talk outline said it would be about %s, but it ended up being more like %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The NSA is really interested in our latest project: %s."
+    },
+    {
+      "gaps": 2,
+      "text": "According to the logs, %s was initially caused by %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is weaponized privilege."
+    },
+    {
+      "gaps": 1,
+      "text": "Move %s and break things."
+    },
+    {
+      "gaps": 1,
+      "text": "On the plus side, we finally got rid of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is dead."
+    },
+    {
+      "gaps": 1,
+      "text": "%s runs Ruby as root"
+    },
+    {
+      "gaps": 1,
+      "text": "Crossing %s could lead to total protonic reversal."
+    },
+    {
+      "gaps": 2,
+      "text": "github.com/%s/%s"
+    },
+    {
+      "gaps": 1,
+      "text": "So, I was using Wireshark to check network traffic... Did you know we have %s in production?"
+    },
+    {
+      "gaps": 2,
+      "text": "The two pillars of our Continuous Deployment pipeline are %s and %s."
+    },
+    {
+      "gaps": 2,
+      "text": "\"Guys, seriously, if we just use %s it will solve all our problems with %s!\""
+    },
+    {
+      "gaps": 1,
+      "text": "I will replace you with a very small %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Continuous %s."
+    },
+    {
+      "gaps": 1,
+      "text": "It turns out that the button labeled \"Don't Push\" actually does %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s implements every single standard for %s.  Poorly."
+    },
+    {
+      "gaps": 1,
+      "text": "This week, Aphyr runs %s through jepsen."
+    },
+    {
+      "gaps": 1,
+      "text": "Hack %s into redis."
+    },
+    {
+      "gaps": 2,
+      "text": "A monad is just a %s in the category of %s, what's the problem?"
+    },
+    {
+      "gaps": 3,
+      "text": "I need you to do a %s with %s before %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "The %s certification program."
+    },
+    {
+      "gaps": 2,
+      "text": "We replaced our %s with %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Sorry, you'll need to open a ticket before we can %s."
+    },
+    {
+      "gaps": 2,
+      "text": "My two most indispensable tools are %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%scoin."
+    },
+    {
+      "gaps": 1,
+      "text": "Fuck it: %s looks good to me."
+    },
+    {
+      "gaps": 1,
+      "text": "Etsy says we should %s everything."
+    },
+    {
+      "gaps": 1,
+      "text": "SIG%s"
+    },
+    {
+      "gaps": 2,
+      "text": "A manager told me I couldn't remove our dependency on %s, but I got around it with %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is webscale."
+    },
+    {
+      "gaps": 1,
+      "text": "I cannot wait until someone makes a %s cluster out of these."
+    },
+    {
+      "gaps": 1,
+      "text": "modperl can be used to implement %s"
+    },
+    {
+      "gaps": 2,
+      "text": "This users wants %s because %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "Whoever made the unscheduled change to production on Friday will be forced to use %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Our new startup is the %s for %s."
+    },
+    {
+      "gaps": 2,
+      "text": "We're demoing %s for %s at SXSW."
+    },
+    {
+      "gaps": 1,
+      "text": "How did %s ever work?"
+    },
+    {
+      "gaps": 1,
+      "text": "Every time someone brings up %s, I throw up a little in my mouth."
+    },
+    {
+      "gaps": 1,
+      "text": "The %s is used when the CPU is on fire"
+    },
+    {
+      "gaps": 1,
+      "text": "Root cause of the outage? %s."
+    },
+    {
+      "gaps": 1,
+      "text": "If we make this deadline, Management has promised us %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I ssh'd into a server running %s and promptly noped the fuck out of there."
+    },
+    {
+      "gaps": 1,
+      "text": "We turned off %s and everything magically got better."
+    },
+    {
+      "gaps": 1,
+      "text": "How hard could it be to port Linux to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We just achieved %ss per second!"
+    },
+    {
+      "gaps": 1,
+      "text": "Our backup policy is %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Functional programming - if you can't %s it, %s it."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't need backups, we've got %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We run %s in a cron job every 15 minutes."
+    },
+    {
+      "gaps": 2,
+      "text": "The RFO for the global outage was %s compunded by %s"
+    },
+    {
+      "gaps": 1,
+      "text": "My eyes started bleeding when I opened the editor and saw %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Facebook has acquired %s for $10b and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is webscale."
+    },
+    {
+      "gaps": 2,
+      "text": "It's not the recommended configuration to use %s with %s but it's in production right now."
+    },
+    {
+      "gaps": 1,
+      "text": "FC067: %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s with this one weird trick."
+    },
+    {
+      "gaps": 2,
+      "text": "Puppet is better than Chef because %s and %s"
+    },
+    {
+      "gaps": 1,
+      "text": "DevOps: Now with 100% more %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "I can't wait until we no longer use %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I can't believe you're still using %s."
+    },
+    {
+      "gaps": 1,
+      "text": "npm install %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We run %s in a cron job every 15 minutes."
+    },
+    {
+      "gaps": 2,
+      "text": "I've %s things you people wouldn't %s"
+    },
+    {
+      "gaps": 1,
+      "text": "FC067: %s"
+    },
+    {
+      "gaps": 1,
+      "text": "RIAA is suing me for downloading %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I saw the best minds of my generation %s."
+    },
+    {
+      "gaps": 2,
+      "text": "We're demoing %s for %s at SXSW."
+    },
+    {
+      "gaps": 1,
+      "text": "%s. What could go wrong?"
+    },
+    {
+      "gaps": 1,
+      "text": "%s on XEN"
+    },
+    {
+      "gaps": 1,
+      "text": "%s makes robots moves"
+    },
+    {
+      "gaps": 1,
+      "text": "C will finally be displaced by %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Disrupting the established players in %s via %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s isn't new, we used to do it in the '70s on mainframes."
+    },
+    {
+      "gaps": 1,
+      "text": "while true; do %s; done"
+    },
+    {
+      "gaps": 2,
+      "text": "A monad is just a %s in the category of %s, what's the problem?"
+    },
+    {
+      "gaps": 2,
+      "text": "Real %s don't use %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Implementing %s should take only 2 lines of code."
+    },
+    {
+      "gaps": 1,
+      "text": "Why does someone keep re-implementing system utilities in %s?"
+    },
+    {
+      "gaps": 1,
+      "text": "I accidentally the entire %s is this dangerous?"
+    },
+    {
+      "gaps": 1,
+      "text": "NoSQL is superior to SQL because %s"
+    },
+    {
+      "gaps": 1,
+      "text": "My editor of choice is %s."
+    },
+    {
+      "gaps": 2,
+      "text": "This users wants %s because %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "Accidental %s."
+    },
+    {
+      "gaps": 1,
+      "text": "One does not simply %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I'll just have Ops spin up a couple of %s environments."
+    },
+    {
+      "gaps": 1,
+      "text": "%s just got pwned."
+    },
+    {
+      "gaps": 1,
+      "text": "%s never use on git"
+    },
+    {
+      "gaps": 1,
+      "text": "%s is weaponized privilege."
+    },
+    {
+      "gaps": 1,
+      "text": "The client says it needs more %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "never %s before a demonstration"
+    },
+    {
+      "gaps": 1,
+      "text": "%s? We've got that."
+    },
+    {
+      "gaps": 1,
+      "text": "it's always a %s DNS problem"
+    },
+    {
+      "gaps": 1,
+      "text": "SIG%s"
+    },
+    {
+      "gaps": 1,
+      "text": "It worked on my %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s.io"
+    },
+    {
+      "gaps": 1,
+      "text": "%s is for closers."
+    },
+    {
+      "gaps": 2,
+      "text": "%s is more reliable than %s"
+    },
+    {
+      "gaps": 2,
+      "text": "It's like %s, but with %s and list comprehensions."
+    },
+    {
+      "gaps": 1,
+      "text": "C will finally be displaced by %s"
+    },
+    {
+      "gaps": 1,
+      "text": "It looks like you're trying to %s. Can I help?"
+    },
+    {
+      "gaps": 1,
+      "text": "It's not web scale, it's %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I saw the best minds of my generation %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is the only reason the jDBA survived typing rm -rf /"
+    },
+    {
+      "gaps": 1,
+      "text": "Who would have known that %s could destroy an entire datacenter?"
+    },
+    {
+      "gaps": 1,
+      "text": "Sorry, you'll need to open a ticket before we can %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Security through %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s. What the fuck does that mean?"
+    },
+    {
+      "gaps": 1,
+      "text": "Just change the %s, it'll be fine. "
+    },
+    {
+      "gaps": 2,
+      "text": "For the next project we are going to use %s to solve %s ."
+    },
+    {
+      "gaps": 2,
+      "text": "In the next planning session, we'll cover %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s? You can safely ignore that. Usually."
+    },
+    {
+      "gaps": 2,
+      "text": "I know we use %s, but I wrote this critical program in %s."
+    },
+    {
+      "gaps": 2,
+      "text": "grep %s | mail %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Main benefits of automation: %s and %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Remember when you told me to tell you when you were acting %s and %s? ---you're doing it now. "
+    },
+    {
+      "gaps": 2,
+      "text": "Our app is like %s, but for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "When I told Jez Humble about our %s, he actually cried."
+    },
+    {
+      "gaps": 1,
+      "text": "Would you like %s with that?"
+    },
+    {
+      "gaps": 1,
+      "text": "I can't believe you're still using %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Uber is on surge pricing because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Sorry, I'm all out of %s-fu."
+    },
+    {
+      "gaps": 2,
+      "text": "Remember when you told me to tell you when you were acting %s and %s? ---you're doing it now. "
+    },
+    {
+      "gaps": 1,
+      "text": "%s has been killed with fire.  My work is done here."
+    },
+    {
+      "gaps": 1,
+      "text": "The backups are fine, but the restore process is %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Artisanally crafted %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s discontinued support for the Linux version."
+    },
+    {
+      "gaps": 1,
+      "text": "npm install %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I cut-and-pasted this StackOverflow code for my %s."
+    },
+    {
+      "gaps": 2,
+      "text": "It's like %s on %s."
+    },
+    {
+      "gaps": 2,
+      "text": "When you logged in there, did you see a %s that said %s"
+    },
+    {
+      "gaps": 1,
+      "text": "No, %s being hopelessly broken is NOT an emergency."
+    },
+    {
+      "gaps": 1,
+      "text": "No route to host: %s."
+    },
+    {
+      "gaps": 1,
+      "text": "That's not a hacker, that's my %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "100% government funded %s!"
+    },
+    {
+      "gaps": 3,
+      "text": "I need you to do a %s with %s before %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is a batch command to shut the fuck up"
+    },
+    {
+      "gaps": 1,
+      "text": "Developers do not get access to production machines, because of %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%sis better than hadoop because %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Oh, we're devops! We have %s in the office, but only the DBA can touch it."
+    },
+    {
+      "gaps": 2,
+      "text": "%s and %s are rumoured to be working on a python module for a helicam"
+    },
+    {
+      "gaps": 1,
+      "text": "%s has root access."
+    },
+    {
+      "gaps": 1,
+      "text": "90% of everything is %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Did you try %s yet?"
+    },
+    {
+      "gaps": 1,
+      "text": "/dev/%s: Device is busy"
+    },
+    {
+      "gaps": 1,
+      "text": "I AM working, I'm waiting for the %s run to finish."
+    },
+    {
+      "gaps": 1,
+      "text": "ETOOMUCH%s"
+    },
+    {
+      "gaps": 1,
+      "text": "With %s, you write once, run nowhere."
+    },
+    {
+      "gaps": 2,
+      "text": "%s is more reliable than %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Chef convergence failed due to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I can't wait until we no longer use %s"
+    },
+    {
+      "gaps": 1,
+      "text": "\"Hey, %s is down. Can you fix it?\""
+    },
+    {
+      "gaps": 1,
+      "text": "Restoring from backups failed due to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Only the Enterprise Edition(tm) has %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Nine circles of %s hell."
+    },
+    {
+      "gaps": 1,
+      "text": "It looks like you're trying to %s. Can I help?"
+    },
+    {
+      "gaps": 1,
+      "text": "Works on my %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Who thought that %s was a good idea?"
+    },
+    {
+      "gaps": 1,
+      "text": "Sweet! I just found a Puppet module for %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "How did %s ever work?"
+    },
+    {
+      "gaps": 1,
+      "text": "I need a webinar like I need %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Etsy says we should %s everything."
+    },
+    {
+      "gaps": 1,
+      "text": "Root cause of the outage? %s."
+    },
+    {
+      "gaps": 2,
+      "text": "My next blog post will be about how we used %s to create %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s ate all my memory"
+    },
+    {
+      "gaps": 1,
+      "text": "We can %s just like Netflix"
+    },
+    {
+      "gaps": 1,
+      "text": "If we're all going to get fired, let's get fired for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s worked in dev."
+    },
+    {
+      "gaps": 1,
+      "text": "Artisanally crafted %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s found a new OpenSSL vulernability people are calling %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is a batch command to shut the fuck up"
+    },
+    {
+      "gaps": 1,
+      "text": "640k should be enough for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "It took over 40 hours to document %s. "
+    },
+    {
+      "gaps": 1,
+      "text": "Called on account of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "My Linkedin Endorsements include %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I find Java to be way too %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s makes robots moves"
+    },
+    {
+      "gaps": 2,
+      "text": "You can fix  %s with %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't need configuration management, we have %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "Why is %s better than Hadoop?"
+    },
+    {
+      "gaps": 1,
+      "text": "Larry Wall trained as missonary then %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s, the only thing worse than recruiting spam."
+    },
+    {
+      "gaps": 1,
+      "text": "If we're all going to get fired, let's get fired for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I%syour stupid issue!"
+    },
+    {
+      "gaps": 1,
+      "text": "90% of everything is %s."
+    },
+    {
+      "gaps": 3,
+      "text": "You can have %s, %s, or %s.  Pick two."
+    },
+    {
+      "gaps": 1,
+      "text": "Doge %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Oh, the %s is just a hack to get the %s to run."
+    },
+    {
+      "gaps": 2,
+      "text": "Yeah, you need to modprobe %s to get it to recognize the %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Couldn't we use %s?"
+    },
+    {
+      "gaps": 1,
+      "text": "All that we had to do to halve our response times was implement %s"
+    },
+    {
+      "gaps": 1,
+      "text": "You can't fix %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s Considered Harmful"
+    },
+    {
+      "gaps": 1,
+      "text": "On a scale from 1 to 10, this is %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "Will merge pull requests for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We're running %s in production?!"
+    },
+    {
+      "gaps": 1,
+      "text": "I laughed when they said I'd be on call 24/7 but wouldn't receive a stipend for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Circular imports import %s. "
+    },
+    {
+      "gaps": 1,
+      "text": "No route to host: %s."
+    },
+    {
+      "gaps": 2,
+      "text": "It's like %s, but with %s and list comprehensions."
+    },
+    {
+      "gaps": 1,
+      "text": "%s nagios"
+    },
+    {
+      "gaps": 1,
+      "text": "Time to schedule the postmortem for %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "%s. What the fuck does that mean?"
+    },
+    {
+      "gaps": 2,
+      "text": "So I just found %s and %s running in a screen session."
+    },
+    {
+      "gaps": 1,
+      "text": "never %s before a demonstration"
+    },
+    {
+      "gaps": 1,
+      "text": "The Internet of Things will be controlled by %s."
+    },
+    {
+      "gaps": 1,
+      "text": "\"Hey, %s is down. Can you fix it?\""
+    },
+    {
+      "gaps": 1,
+      "text": "Management said it's OK to deploy %s at 5pm on Friday "
+    },
+    {
+      "gaps": 1,
+      "text": "automagical %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s, is that even HA?"
+    },
+    {
+      "gaps": 1,
+      "text": "If %s is the answer, you are asking the wrong question."
+    },
+    {
+      "gaps": 2,
+      "text": "Instead of installing %s, what if we just used %s?"
+    },
+    {
+      "gaps": 1,
+      "text": "%s with one weird trick."
+    },
+    {
+      "gaps": 1,
+      "text": "Who thought that %s was a good idea?"
+    },
+    {
+      "gaps": 1,
+      "text": "Time to schedule the postmortem for %s ."
+    },
+    {
+      "gaps": 2,
+      "text": "We don't need %s - we have %s !"
+    },
+    {
+      "gaps": 1,
+      "text": "%s: ci or not ci?"
+    },
+    {
+      "gaps": 2,
+      "text": "You know what our app needs? More %s, less %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s on XEN"
+    },
+    {
+      "gaps": 1,
+      "text": "Please bring back %s. You broke my workflow."
+    },
+    {
+      "gaps": 1,
+      "text": "ETOOMUCH%s"
+    },
+    {
+      "gaps": 1,
+      "text": "A lot of disk space is needed for %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Good enough for %s work"
+    },
+    {
+      "gaps": 1,
+      "text": "ERROR: %s NOT FOUND"
+    },
+    {
+      "gaps": 2,
+      "text": "Hello. My name is %s and I am addicted to %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "%s. You don't exist, go away!"
+    },
+    {
+      "gaps": 1,
+      "text": "%s over IP"
+    },
+    {
+      "gaps": 2,
+      "text": "Given enough %s, all bugs are %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s, is that even HA?"
+    },
+    {
+      "gaps": 1,
+      "text": "Continuous %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Install %s"
+    },
+    {
+      "gaps": 2,
+      "text": "We replaced our %s with %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Zero-day %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Notice: Building %s for %s"
+    },
+    {
+      "gaps": 1,
+      "text": "But Google is using %s so we should too!"
+    },
+    {
+      "gaps": 1,
+      "text": "Users are %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The tech support hotline told me to %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s discontinued support for the Linux version."
+    },
+    {
+      "gaps": 1,
+      "text": "vagrant up %s"
+    },
+    {
+      "gaps": 1,
+      "text": "We're spending 20% of this sprint doing %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s is the new %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Next year I'll start learning %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Management has changed all our job titles to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Larry Wall trained as missonary then %s"
+    },
+    {
+      "gaps": 1,
+      "text": "\"There was no good solution for %s, so we built our own.\""
+    },
+    {
+      "gaps": 1,
+      "text": "Yeah, but can it run %s?"
+    },
+    {
+      "gaps": 2,
+      "text": "The %s on the server were deleted because %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "Yeah, but can it run %s?"
+    },
+    {
+      "gaps": 1,
+      "text": "%s ate all my memory"
+    },
+    {
+      "gaps": 1,
+      "text": "We can %s just like Netflix"
+    },
+    {
+      "gaps": 2,
+      "text": "The first rule of %s is: You do not talk about %s."
+    },
+    {
+      "gaps": 1,
+      "text": "No, %s being hopelessly broken is NOT an emergency."
+    },
+    {
+      "gaps": 1,
+      "text": "Problem exists between Keyboard and %s"
+    },
+    {
+      "gaps": 1,
+      "text": "The intern just ran %s on the load balancer."
+    },
+    {
+      "gaps": 1,
+      "text": "Amazon built a datacenter on the moon to lessen the risk of %s causing problems."
+    },
+    {
+      "gaps": 1,
+      "text": "\"There was no good solution for %s, so we built our own.\""
+    },
+    {
+      "gaps": 1,
+      "text": "Everytime you allocate you have to %s when you're done"
+    },
+    {
+      "gaps": 1,
+      "text": "%s, the final solution."
+    },
+    {
+      "gaps": 1,
+      "text": "End-to-end %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s all the way down."
+    },
+    {
+      "gaps": 1,
+      "text": "I was hired to maintain this 20 year old script that runs our critical %s infrastructure."
+    },
+    {
+      "gaps": 2,
+      "text": "Hi, I'm Troy McClure. You may remember me from such commit messages as %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The only thing necessary for evil to triumph is %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Nobody ever got fired for buying %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Read-eval-%s-loop."
+    },
+    {
+      "gaps": 1,
+      "text": "%s all the way down."
+    },
+    {
+      "gaps": 1,
+      "text": "Good enough for %s work"
+    },
+    {
+      "gaps": 1,
+      "text": "while true; do %s; done"
+    },
+    {
+      "gaps": 3,
+      "text": "%s - the idiots guide to %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I don't have any UNIX Beards in stock, but we do have  %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Could you just push this update for %s?  It should be a no-op."
+    },
+    {
+      "gaps": 1,
+      "text": "Could you just push this update for %s?  It should be a no-op."
+    },
+    {
+      "gaps": 1,
+      "text": "I made a new editor, better than vim and emacs. It's called %s"
+    },
+    {
+      "gaps": 2,
+      "text": "%s begins with %s."
+    },
+    {
+      "gaps": 1,
+      "text": "How do I even %s ?"
+    },
+    {
+      "gaps": 2,
+      "text": "Script kiddies got into %s because %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The %s is used when the CPU is on fire"
+    },
+    {
+      "gaps": 1,
+      "text": "%s is more memory than anyone will ever need on a computer."
+    },
+    {
+      "gaps": 1,
+      "text": "%s, the final solution."
+    },
+    {
+      "gaps": 2,
+      "text": "My next blog post will be about how we used %s to create %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s make me a sandwich"
+    },
+    {
+      "gaps": 1,
+      "text": "How even is %s formed?"
+    },
+    {
+      "gaps": 1,
+      "text": "%s: the gift that keeps on giving."
+    },
+    {
+      "gaps": 1,
+      "text": "I just finished writing an API for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s dependency hell."
+    },
+    {
+      "gaps": 2,
+      "text": "My two most indispensable tools are %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "xkcd.com just made a hilarious comic making fun of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Developers do not get access to production machines, because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Google Analytics says 100% of my website visitors are %s"
+    },
+    {
+      "gaps": 1,
+      "text": "bollocks up %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I find Java to be way too %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Ask Me Anything about %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Our greatest achievement in the last year is %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s isn't new, we used to do it in the '70s on mainframes."
+    },
+    {
+      "gaps": 1,
+      "text": "On the plus side, we finally got rid of %s."
+    },
+    {
+      "gaps": 2,
+      "text": "ln -s %s %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Can anyone help me get %s running on Cisco IOS?"
+    },
+    {
+      "gaps": 1,
+      "text": "So, I was using Wireshark to check network traffic... Did you know we have %s in production?"
+    },
+    {
+      "gaps": 2,
+      "text": "Marketing says we're leaders in the %s space, but I think it's more accurate to say we specialize in %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The status console is green, but I can't access %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s begins with %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s nagios"
+    },
+    {
+      "gaps": 1,
+      "text": "bash: command not found: %s"
+    },
+    {
+      "gaps": 1,
+      "text": "A soiled napkin with the contents of %s scribbled on it"
+    },
+    {
+      "gaps": 2,
+      "text": "You should think of your servers like %s and not like %s."
+    },
+    {
+      "gaps": 1,
+      "text": "C-x; C-%s"
+    },
+    {
+      "gaps": 1,
+      "text": "git --%s"
+    },
+    {
+      "gaps": 1,
+      "text": "Did you know that we have %s on pager rotation?"
+    },
+    {
+      "gaps": 1,
+      "text": "Crossing %s could lead to total protonic reversal."
+    },
+    {
+      "gaps": 1,
+      "text": "Circular imports import %s. "
+    },
+    {
+      "gaps": 1,
+      "text": "We don't need to worry about %s, We're using MongoDB."
+    },
+    {
+      "gaps": 1,
+      "text": "I made a new editor, better than vim and emacs. It's called %s"
+    },
+    {
+      "gaps": 1,
+      "text": "The %s Public License."
+    },
+    {
+      "gaps": 1,
+      "text": "Did you try %s yet?"
+    },
+    {
+      "gaps": 1,
+      "text": "Conway's Game of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "140 characters is just enough to explain %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Hack %s into redis."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is a feature, not a bug."
+    },
+    {
+      "gaps": 1,
+      "text": "We can't pay you, but we can offer %s in compensation."
+    },
+    {
+      "gaps": 2,
+      "text": "I aliased %s to git %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Why is %s better than Hadoop?"
+    },
+    {
+      "gaps": 2,
+      "text": "%sis better than hadoop because %s"
+    },
+    {
+      "gaps": 1,
+      "text": "My next Velocity talk is called \"%sops\""
+    },
+    {
+      "gaps": 1,
+      "text": "The status console is green, but I can't access %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I laughed when they said I'd be on call 24/7 but wouldn't receive a stipend for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s: the gift that keeps on giving."
+    },
+    {
+      "gaps": 1,
+      "text": "End-to-end %s."
+    },
+    {
+      "gaps": 2,
+      "text": "You know what our app needs? More %s, less %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s as a service."
+    },
+    {
+      "gaps": 2,
+      "text": "%s and %s are rumoured to be working on a python module for a helicam"
+    },
+    {
+      "gaps": 2,
+      "text": "The two pillars of our Continuous Deployment pipeline are %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Security through %s."
+    },
+    {
+      "gaps": 2,
+      "text": "It has been %s days since the last %s"
+    },
+    {
+      "gaps": 2,
+      "text": "I came up with an awesome regex that converts %s to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s has root access."
+    },
+    {
+      "gaps": 1,
+      "text": "it's always a %s DNS problem"
+    },
+    {
+      "gaps": 1,
+      "text": "%s worked in dev."
+    },
+    {
+      "gaps": 1,
+      "text": "Management said it's OK to deploy %s at 5pm on Friday "
+    },
+    {
+      "gaps": 1,
+      "text": "NoSQL is superior to SQL because %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Only the Enterprise Edition(tm) has %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s. You don't exist, go away!"
+    },
+    {
+      "gaps": 1,
+      "text": "Network dropped connection because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Users are %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s never use on git"
+    },
+    {
+      "gaps": 3,
+      "text": "You can have %s, %s, or %s.  Pick two."
+    },
+    {
+      "gaps": 2,
+      "text": "The consultant we hired is certain that %s will drastically increase the performance of %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I was hired to maintain this 20 year old script that runs our critical %s infrastructure."
+    },
+    {
+      "gaps": 1,
+      "text": "Amazon Elastic %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Just change the %s, it'll be fine. "
+    },
+    {
+      "gaps": 1,
+      "text": "The NSA is really interested in our latest project: %s."
+    },
+    {
+      "gaps": 1,
+      "text": "When I hooked the 3D printer up to the Internet, it accidentally created %s."
+    },
+    {
+      "gaps": 1,
+      "text": "How hard could it be to port Linux to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Rub a little %s on it"
+    },
+    {
+      "gaps": 1,
+      "text": "I bet if we switch to %s it will just work"
+    },
+    {
+      "gaps": 1,
+      "text": "I put %s on the scripts to make it run faster."
+    },
+    {
+      "gaps": 1,
+      "text": "RedHat has announced that RHEL 8 will ship with %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s Driven Development."
+    },
+    {
+      "gaps": 2,
+      "text": "False alarm, it was just %s running %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Glitter-bombed with %s."
+    },
+    {
+      "gaps": 3,
+      "text": "%s mismatch between %s and %s"
+    },
+    {
+      "gaps": 2,
+      "text": "A sales rep just tried to pitch me on %s; I told them we already have %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The %s certification program."
+    },
+    {
+      "gaps": 1,
+      "text": "%s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s would be so much better if we rewrote it in Clojure."
+    },
+    {
+      "gaps": 1,
+      "text": "%s thought leader."
+    },
+    {
+      "gaps": 2,
+      "text": "It figures - an article about our %s was posted just as we're pivoting to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Purely numeric hostname and not a %s -----rejecting!"
+    },
+    {
+      "gaps": 1,
+      "text": "%s.  Failed to cache catalog."
+    },
+    {
+      "gaps": 2,
+      "text": "Oh, the %s is just a hack to get the %s to run."
+    },
+    {
+      "gaps": 2,
+      "text": "%s running on a rack of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "git: You are in detached %s state."
+    },
+    {
+      "gaps": 1,
+      "text": "640k should be enough for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "DB tuning wiith %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is the newest gTLD"
+    },
+    {
+      "gaps": 1,
+      "text": "We wrote our own build tool based on %s"
+    },
+    {
+      "gaps": 2,
+      "text": "A monad is just a %s in the category of %s, what's the problem?"
+    },
+    {
+      "gaps": 1,
+      "text": "You can't fix %s"
+    },
+    {
+      "gaps": 1,
+      "text": "WAIT, YOU DELETED %s\u00e2\u20ac\u00bd\u00e2\u20ac\u00bd\u00e2\u20ac\u00bd"
+    },
+    {
+      "gaps": 1,
+      "text": "Epic yak-shave caused by %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I found a Samba share full of %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s for the win!"
+    },
+    {
+      "gaps": 1,
+      "text": "If %s is the answer, you are asking the wrong question."
+    },
+    {
+      "gaps": 1,
+      "text": "The ticket to install %s?  I deletegated it."
+    },
+    {
+      "gaps": 1,
+      "text": "%s would be so much better if we rewrote it in Clojure."
+    },
+    {
+      "gaps": 2,
+      "text": "Instead of installing %s, what if we just used %s?"
+    },
+    {
+      "gaps": 1,
+      "text": "Works on my %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I don't own any jeans skinny enough to wear to a %s meetup."
+    },
+    {
+      "gaps": 2,
+      "text": "%s is the new %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Running Windows in production leads to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Problem exists between Keyboard and %s"
+    },
+    {
+      "gaps": 1,
+      "text": "We wrote our own build tool based on %s"
+    },
+    {
+      "gaps": 1,
+      "text": "We're a %s as a Service company."
+    },
+    {
+      "gaps": 2,
+      "text": "Whoops, I thought that method was supposed to %s the %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We should try it with an actual %s."
+    },
+    {
+      "gaps": 2,
+      "text": "We rewrote %s in %s"
+    },
+    {
+      "gaps": 1,
+      "text": "The ticket to install %s?  I deletegated it."
+    },
+    {
+      "gaps": 2,
+      "text": "If it weren't for %s we'd all be %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I'm just finishing up my manifesto on %s."
+    },
+    {
+      "gaps": 1,
+      "text": "It compiles %s to JavaScript."
+    },
+    {
+      "gaps": 1,
+      "text": "10 PRINT \"%s\"; GOTO 10"
+    },
+    {
+      "gaps": 2,
+      "text": "Script kiddies got into %s because %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I put %s on the scripts to make it run faster."
+    },
+    {
+      "gaps": 1,
+      "text": "I ended up having to buy a replacement %s on eBay."
+    },
+    {
+      "gaps": 1,
+      "text": "Our greatest achievement in the last year is %s."
+    },
+    {
+      "gaps": 2,
+      "text": "I've %s things you people wouldn't %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I think maybe I'll leave %s off my resum\u00c3\u00a9."
+    },
+    {
+      "gaps": 1,
+      "text": "100% government funded %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "I'll just have Ops spin up a couple of %s environments."
+    },
+    {
+      "gaps": 1,
+      "text": "Amazon Elastic %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s with one weird trick."
+    },
+    {
+      "gaps": 1,
+      "text": "%s.io"
+    },
+    {
+      "gaps": 1,
+      "text": "If we make this deadline, Management has promised us %s."
+    },
+    {
+      "gaps": 1,
+      "text": "If you're %s, you're gonna have a bad time."
+    },
+    {
+      "gaps": 1,
+      "text": "%s, the only thing worse than recruiting spam."
+    },
+    {
+      "gaps": 1,
+      "text": "Why don't we just fork %s ?"
+    },
+    {
+      "gaps": 1,
+      "text": "Management has changed all our job titles to %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Disturbing %s leaves %s fucked"
+    },
+    {
+      "gaps": 1,
+      "text": "%s, as one does."
+    },
+    {
+      "gaps": 1,
+      "text": "Install %s"
+    },
+    {
+      "gaps": 1,
+      "text": "It's like trying to herd %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I'm just finishing up my manifesto on %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Is %s something we need to optimize for?"
+    },
+    {
+      "gaps": 1,
+      "text": "We accidently the whole %s.."
+    },
+    {
+      "gaps": 1,
+      "text": "%s-to-butt plugin"
+    },
+    {
+      "gaps": 1,
+      "text": "I don't own any jeans skinny enough to wear to a %s meetup."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't have enough package managers said %s"
+    },
+    {
+      "gaps": 1,
+      "text": "When I was a kid we didn't have %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Conway's Game of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Read-eval-%s-loop."
+    },
+    {
+      "gaps": 2,
+      "text": "%s isn't cool. You know what's cool? %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Please bring back %s. You broke my workflow."
+    },
+    {
+      "gaps": 2,
+      "text": "s/%s/%s/g"
+    },
+    {
+      "gaps": 1,
+      "text": "Did you know that we have %s on pager rotation?"
+    },
+    {
+      "gaps": 2,
+      "text": "Yeah, you need to modprobe %s to get it to recognize the %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%scoin."
+    },
+    {
+      "gaps": 1,
+      "text": "%s-ility"
+    },
+    {
+      "gaps": 1,
+      "text": "%s is for closers."
+    },
+    {
+      "gaps": 1,
+      "text": "Implementing %s should take only 2 lines of code."
+    },
+    {
+      "gaps": 1,
+      "text": "It's not web scale, it's %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Asynchronous REST API calls are the solution to %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Make it %s."
+    },
+    {
+      "gaps": 1,
+      "text": "When I write a book about my experiences, it'll be called \"%s, the good parts\""
+    },
+    {
+      "gaps": 2,
+      "text": "%s, for some values of %s."
+    },
+    {
+      "gaps": 2,
+      "text": "s/%s/%s/g"
+    },
+    {
+      "gaps": 2,
+      "text": "\"Guys, seriously, if we just use %s it will solve all our problems with %s!\""
+    },
+    {
+      "gaps": 1,
+      "text": "Fuck it, time to break out the emergency %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s has just discovered %s.  We're doomed."
+    },
+    {
+      "gaps": 1,
+      "text": "Install %s"
+    },
+    {
+      "gaps": 1,
+      "text": "A neckbeard made of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I think maybe I'll leave %s off my resum\u00c3\u00a9."
+    },
+    {
+      "gaps": 1,
+      "text": "Developers need access to production machines because %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Why don't we just fork %s ?"
+    },
+    {
+      "gaps": 1,
+      "text": "We took the plunge and rewrote %s in Go"
+    },
+    {
+      "gaps": 1,
+      "text": "%s took EBS down again today."
+    },
+    {
+      "gaps": 1,
+      "text": "Who would have known that %s could destroy an entire datacenter?"
+    },
+    {
+      "gaps": 1,
+      "text": "%sSQL"
+    },
+    {
+      "gaps": 1,
+      "text": "C-x; C-%s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s will help you remember to sanitze your database inputs."
+    },
+    {
+      "gaps": 1,
+      "text": "/dev/%s: Device is busy"
+    },
+    {
+      "gaps": 1,
+      "text": "Apple just patented %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Why is root running %s under tmux?"
+    },
+    {
+      "gaps": 1,
+      "text": "I opened the server cabinet and it was full of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We can't pay you, but we can offer %s in compensation."
+    },
+    {
+      "gaps": 2,
+      "text": "The first 90% of development is %s. The second 90% is %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s? We've got that."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is a feature, not a bug."
+    },
+    {
+      "gaps": 1,
+      "text": "%s isn't a job title"
+    },
+    {
+      "gaps": 1,
+      "text": "We're a %s as a Service company."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't need to worry about %s, We're using MongoDB."
+    },
+    {
+      "gaps": 1,
+      "text": "Glitter-bombed with %s."
+    },
+    {
+      "gaps": 2,
+      "text": "ln -s %s %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Our only hope at recovering the data is %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%sSQL"
+    },
+    {
+      "gaps": 1,
+      "text": "Learn %s the hard way"
+    },
+    {
+      "gaps": 1,
+      "text": "%s-Stack Developer"
+    },
+    {
+      "gaps": 1,
+      "text": "%swill never get job in Microsoft"
+    },
+    {
+      "gaps": 1,
+      "text": "%s, as one does."
+    },
+    {
+      "gaps": 2,
+      "text": "Puppet is better than Chef because %s and %s"
+    },
+    {
+      "gaps": 2,
+      "text": "We run production on %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Our only hope at recovering the data is %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Robots are going to make %s obsolete."
+    },
+    {
+      "gaps": 1,
+      "text": "The tech support hotline told me to %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Network dropped connection because of %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s, for some values of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The most stable part of our infrastructure? %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s is how I resolve all merge conflicts."
+    },
+    {
+      "gaps": 1,
+      "text": "I can haz %s."
+    },
+    {
+      "gaps": 1,
+      "text": "An error occurred: E%s"
+    },
+    {
+      "gaps": 1,
+      "text": "Wrap it with the %s duct tape"
+    },
+    {
+      "gaps": 1,
+      "text": "We should try it with an actual %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Jordan Sissel hates %s so much that he created a new opensource project called %s to work around it."
+    },
+    {
+      "gaps": 1,
+      "text": "My next Velocity talk is called \"%sops\""
+    },
+    {
+      "gaps": 1,
+      "text": "WAIT, YOU DELETED %s\u00e2\u20ac\u00bd\u00e2\u20ac\u00bd\u00e2\u20ac\u00bd"
+    },
+    {
+      "gaps": 1,
+      "text": "I don't always test my code, but when I do I do it in %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I'm writing my next IRC bot with %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I've received a Microsoft MVP Award for %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Never question the %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Hello. My name is %s and I am addicted to %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "The trouble with kids these days is %s"
+    },
+    {
+      "gaps": 2,
+      "text": "%s, %s and just a few lines of Perl."
+    },
+    {
+      "gaps": 1,
+      "text": "After %s came up, the retrospective really went downhill."
+    },
+    {
+      "gaps": 1,
+      "text": "modperl can be used to implement %s"
+    },
+    {
+      "gaps": 1,
+      "text": "alt.binaries.%s"
+    },
+    {
+      "gaps": 1,
+      "text": "Whoever made the unscheduled change to production on Friday will be forced to use %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I got paged at 3am because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Enterprise %s in the cloud."
+    },
+    {
+      "gaps": 1,
+      "text": "An error occurred: E%s"
+    },
+    {
+      "gaps": 2,
+      "text": "Hi, I'm Troy McClure. You may remember me from such commit messages as %s and %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s, %s and just a few lines of Perl."
+    },
+    {
+      "gaps": 1,
+      "text": "%s: ci or not ci?"
+    },
+    {
+      "gaps": 1,
+      "text": "I installed %s by accident."
+    },
+    {
+      "gaps": 1,
+      "text": "%s? I'd hit that."
+    },
+    {
+      "gaps": 1,
+      "text": "DB tuning wiith %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s for the win!"
+    },
+    {
+      "gaps": 1,
+      "text": "Richard Stallman will kill you with his teeth for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I ended up having to buy a replacement %s on eBay."
+    },
+    {
+      "gaps": 1,
+      "text": "Enterprise-ready %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Running Windows in production leads to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s dooms any project to epic failure."
+    },
+    {
+      "gaps": 1,
+      "text": "Uber is on surge pricing because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is why the jDBA thought it might be time to go to #mysql on freenode"
+    },
+    {
+      "gaps": 1,
+      "text": "%s? I'd hit that."
+    },
+    {
+      "gaps": 1,
+      "text": "Fixing your fathers computer with %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Facebook has acquired %s for $10b and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s Driven Development."
+    },
+    {
+      "gaps": 1,
+      "text": "I've received a Microsoft MVP Award for %s"
+    },
+    {
+      "gaps": 2,
+      "text": "%s, now with %s support."
+    },
+    {
+      "gaps": 1,
+      "text": "We can discuss %s at the stand-up meeting."
+    },
+    {
+      "gaps": 2,
+      "text": "grep %s | mail %s"
+    },
+    {
+      "gaps": 1,
+      "text": "It's like trying to herd %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s found a new OpenSSL vulernability people are calling %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We can just fix that with a little %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s-ility"
+    },
+    {
+      "gaps": 1,
+      "text": "WARN: %s has been deprecated."
+    },
+    {
+      "gaps": 1,
+      "text": "Our production backups are stored using %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%swill never get job in Microsoft"
+    },
+    {
+      "gaps": 1,
+      "text": "Learn %s the hard way"
+    },
+    {
+      "gaps": 1,
+      "text": "Employees must %s before returning to work."
+    },
+    {
+      "gaps": 1,
+      "text": "It is completely dark. You are likely to be eaten by a %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Asynchronous REST API calls are the solution to %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s will help you remember to sanitze your database inputs."
+    },
+    {
+      "gaps": 1,
+      "text": "The client says it needs more %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "Is %s something we need to optimize for?"
+    },
+    {
+      "gaps": 1,
+      "text": "I will replace you with a very small %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Chef convergence failed due to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "10 PRINT \"%s\"; GOTO 10"
+    },
+    {
+      "gaps": 1,
+      "text": "I thought you said %s was secure?"
+    },
+    {
+      "gaps": 1,
+      "text": "To secure our next round of funding, Management says we need %s."
+    },
+    {
+      "gaps": 2,
+      "text": "I asked the contractor for %s and they delivered %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Put some %s on it"
+    },
+    {
+      "gaps": 1,
+      "text": "%s just got pwned."
+    },
+    {
+      "gaps": 1,
+      "text": "I ssh'd into a server running %s and promptly noped the fuck out of there."
+    },
+    {
+      "gaps": 1,
+      "text": "Never question the %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Disturbing %s leaves %s fucked"
+    },
+    {
+      "gaps": 1,
+      "text": "Oh, we're devops! We have %s in the office, but only the DBA can touch it."
+    },
+    {
+      "gaps": 1,
+      "text": "My Linkedin Endorsements include %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The only thing necessary for evil to triumph is %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s should be deprecated in favour of %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "Zero-day %s."
+    },
+    {
+      "gaps": 2,
+      "text": "When you logged in there, did you see a %s that said %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Whoops, I thought that method was supposed to %s the %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Free as in %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The backups are fine, but the restore process is %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Our production backups are stored using %s."
+    },
+    {
+      "gaps": 2,
+      "text": "A sales rep just tried to pitch me on %s; I told them we already have %s."
+    },
+    {
+      "gaps": 1,
+      "text": "My editor of choice is %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The trouble with kids these days is %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Management just told me I need to get certified in %s."
+    },
+    {
+      "gaps": 1,
+      "text": "\"Our release schedule doesn't have time for %s.\""
+    },
+    {
+      "gaps": 1,
+      "text": "Just think of the Internet as %s."
+    },
+    {
+      "gaps": 2,
+      "text": "I asked the contractor for %s and they delivered %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Richard Stallman will kill you with his teeth for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Enterprise %s in the cloud."
+    },
+    {
+      "gaps": 1,
+      "text": "All that we had to do to halve our response times was implement %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s with this one weird trick."
+    },
+    {
+      "gaps": 1,
+      "text": "bash: command not found: %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Marketing says we're leaders in the %s space, but I think it's more accurate to say we specialize in %s."
+    },
+    {
+      "gaps": 2,
+      "text": "The RFO for the global outage was %s compunded by %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I just finished working on my rocket powered %s."
+    },
+    {
+      "gaps": 2,
+      "text": "We don't need %s - we have %s !"
+    },
+    {
+      "gaps": 1,
+      "text": "%s computing"
+    },
+    {
+      "gaps": 1,
+      "text": "We accidently the whole %s.."
+    },
+    {
+      "gaps": 1,
+      "text": "Amazon does %s, why can't we?"
+    },
+    {
+      "gaps": 2,
+      "text": "According to the logs, %s was initially caused by %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I can haz %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s-to-butt plugin"
+    },
+    {
+      "gaps": 2,
+      "text": "I came up with an awesome regex that converts %s to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "...and then there was the time I found %s on the root partition."
+    },
+    {
+      "gaps": 1,
+      "text": "We just achieved %ss per second!"
+    },
+    {
+      "gaps": 2,
+      "text": "I aliased %s to git %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s all the things."
+    },
+    {
+      "gaps": 1,
+      "text": "My eyes started bleeding when I opened the editor and saw %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Why is root running %s under tmux?"
+    },
+    {
+      "gaps": 1,
+      "text": "Sweet! I just found a Puppet module for %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "I could hire a %s to do your job!"
+    },
+    {
+      "gaps": 1,
+      "text": "Restoring from backups failed due to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is the only reason the jDBA survived typing rm -rf /"
+    },
+    {
+      "gaps": 3,
+      "text": "%s - the idiots guide to %s and %s."
+    },
+    {
+      "gaps": 2,
+      "text": "I'd like %s, %s, and a pony."
+    },
+    {
+      "gaps": 1,
+      "text": "Every time someone brings up %s, I throw up a little in my mouth."
+    },
+    {
+      "gaps": 1,
+      "text": "I cut-and-pasted this StackOverflow code for my %s."
+    },
+    {
+      "gaps": 1,
+      "text": "automagical %s"
+    },
+    {
+      "gaps": 2,
+      "text": "%s, now with %s support."
+    },
+    {
+      "gaps": 1,
+      "text": "I AM working, I'm waiting for the %s run to finish."
+    },
+    {
+      "gaps": 1,
+      "text": "That's not a hacker, that's my %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "%s? You can safely ignore that. Usually."
+    },
+    {
+      "gaps": 1,
+      "text": "We turned off %s and everything magically got better."
+    },
+    {
+      "gaps": 2,
+      "text": "%s implements every single standard for %s.  Poorly."
+    },
+    {
+      "gaps": 1,
+      "text": "Facebook changed their profiles today because %s."
+    },
+    {
+      "gaps": 1,
+      "text": "This isn't going to be all unicorns and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Robots are going to make %s obsolete."
+    },
+    {
+      "gaps": 2,
+      "text": "You can fix  %s with %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "Rub a little %s on it"
+    },
+    {
+      "gaps": 1,
+      "text": "%s"
+    },
+    {
+      "gaps": 1,
+      "text": "Our entire app is geared towards providing %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The %s that ops provides developers."
+    },
+    {
+      "gaps": 1,
+      "text": "%s thought leader."
+    },
+    {
+      "gaps": 1,
+      "text": "vagrant up %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I'm pretty sure %s isn't thread safe"
+    },
+    {
+      "gaps": 1,
+      "text": "Doge %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We're spending 20% of this sprint doing %s."
+    },
+    {
+      "gaps": 2,
+      "text": "So I just found %s and %s running in a screen session."
+    },
+    {
+      "gaps": 1,
+      "text": "Just think of the Internet as %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is the newest gTLD"
+    },
+    {
+      "gaps": 1,
+      "text": "How do I even %s ?"
+    },
+    {
+      "gaps": 1,
+      "text": "A Beowulf cluster of %s."
+    },
+    {
+      "gaps": 2,
+      "text": "That talk outline said it would be about %s, but it ended up being more like %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The production datacenter burned down because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Put some %s on it"
+    },
+    {
+      "gaps": 1,
+      "text": "alt.binaries.%s"
+    },
+    {
+      "gaps": 1,
+      "text": "Our competitive advantage is our %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Those who don't understand %s are condemned to reinvent it, poorly"
+    },
+    {
+      "gaps": 1,
+      "text": "Install %s"
+    },
+    {
+      "gaps": 1,
+      "text": "When I hooked the 3D printer up to the Internet, it accidentally created %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I got paged at 3am because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "A soiled napkin with the contents of %s scribbled on it"
+    },
+    {
+      "gaps": 2,
+      "text": "For the next project we are going to use %s to solve %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "On a scale from 1 to 10, this is %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "%s it; ship it."
+    },
+    {
+      "gaps": 1,
+      "text": "I tried %s. The doctors say I'll never walk again."
+    },
+    {
+      "gaps": 1,
+      "text": "Epic yak-shave caused by %s."
+    },
+    {
+      "gaps": 1,
+      "text": "This isn't going to be all unicorns and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I thought you said %s was secure?"
+    },
+    {
+      "gaps": 2,
+      "text": "How is %s better than %s ?"
+    },
+    {
+      "gaps": 2,
+      "text": "If it weren't for %s we'd all be %s."
+    },
+    {
+      "gaps": 2,
+      "text": "How is %s better than %s ?"
+    },
+    {
+      "gaps": 1,
+      "text": "We're running %s in production?!"
+    },
+    {
+      "gaps": 1,
+      "text": "Google Analytics says 100% of my website visitors are %s"
+    },
+    {
+      "gaps": 1,
+      "text": "One does not simply %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I was 6 beers in when I got the pager alert that %swas down."
+    },
+    {
+      "gaps": 1,
+      "text": "r/%s."
+    },
+    {
+      "gaps": 1,
+      "text": "Lambdas are just a lame implementation of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Say concurrent threads again and I will %s you."
+    },
+    {
+      "gaps": 1,
+      "text": "But Google is using %s so we should too!"
+    },
+    {
+      "gaps": 2,
+      "text": "I'd like %s, %s, and a pony."
+    },
+    {
+      "gaps": 2,
+      "text": "It has been %s days since the last %s"
+    },
+    {
+      "gaps": 1,
+      "text": "It took over 40 hours to document %s. "
+    },
+    {
+      "gaps": 1,
+      "text": "%s is how I resolve all merge conflicts."
+    },
+    {
+      "gaps": 2,
+      "text": "The first 90% of development is %s. The second 90% is %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Our app is like %s, but for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I accidentally the entire %s is this dangerous?"
+    },
+    {
+      "gaps": 1,
+      "text": "Listening to the fans in the server farm leads to %s"
+    },
+    {
+      "gaps": 1,
+      "text": "DevOps: Now with 100% more %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "I assure you %s is secure!"
+    },
+    {
+      "gaps": 1,
+      "text": "Software Defined %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't need backups, we've got %s."
+    },
+    {
+      "gaps": 2,
+      "text": "A manager told me I couldn't remove our dependency on %s, but I got around it with %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s computing"
+    },
+    {
+      "gaps": 1,
+      "text": "I cannot wait until someone makes a %s cluster out of these."
+    },
+    {
+      "gaps": 1,
+      "text": "%s has been killed with fire.  My work is done here."
+    },
+    {
+      "gaps": 1,
+      "text": "Sorry, I'm all out of %s-fu."
+    },
+    {
+      "gaps": 2,
+      "text": "Functional programming - if you can't %s it, %s it."
+    },
+    {
+      "gaps": 2,
+      "text": "Notice: Building %s for %s"
+    },
+    {
+      "gaps": 2,
+      "text": "Disrupting the established players in %s via %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s. What could go wrong?"
+    },
+    {
+      "gaps": 1,
+      "text": "I opened the server cabinet and it was full of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s over IP"
+    },
+    {
+      "gaps": 1,
+      "text": "The Internet is for cat memes and %s,"
+    },
+    {
+      "gaps": 1,
+      "text": "I could hire a %s to do your job!"
+    },
+    {
+      "gaps": 2,
+      "text": "I know we use %s, but I wrote this critical program in %s."
+    },
+    {
+      "gaps": 2,
+      "text": "The consultant we hired is certain that %s will drastically increase the performance of %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Enterprise-ready %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Purely numeric hostname and not a %s -----rejecting!"
+    },
+    {
+      "gaps": 1,
+      "text": "The intern just ran %s on the load balancer."
+    },
+    {
+      "gaps": 1,
+      "text": "Amazon does %s, why can't we?"
+    },
+    {
+      "gaps": 1,
+      "text": "%s it; ship it."
+    },
+    {
+      "gaps": 1,
+      "text": "In order to improve security, we're upgrading to %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s should be deprecated in favour of %s ."
+    },
+    {
+      "gaps": 1,
+      "text": "With %s, you write once, run nowhere."
+    },
+    {
+      "gaps": 1,
+      "text": "Those who don't understand %s are condemned to reinvent it, poorly"
+    },
+    {
+      "gaps": 1,
+      "text": "The Internet of Things will be controlled by %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I found a Samba share full of %s"
+    },
+    {
+      "gaps": 1,
+      "text": "To secure our next round of funding, Management says we need %s."
+    },
+    {
+      "gaps": 1,
+      "text": "WARN: %s has been deprecated."
+    },
+    {
+      "gaps": 3,
+      "text": "%s mismatch between %s and %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s runs Ruby as root"
+    },
+    {
+      "gaps": 1,
+      "text": "%s is dead."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't have enough package managers said %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Ask Me Anything about %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s dependency hell."
+    },
+    {
+      "gaps": 2,
+      "text": "%s is the new %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We really need to open-source our %s."
+    },
+    {
+      "gaps": 1,
+      "text": "This week, Aphyr runs %s through jepsen."
+    },
+    {
+      "gaps": 1,
+      "text": "I need a webinar like I need %s."
+    },
+    {
+      "gaps": 1,
+      "text": "It is completely dark. You are likely to be eaten by a %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Accidental %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We really need to open-source our %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Employees must %s before returning to work."
+    },
+    {
+      "gaps": 1,
+      "text": "I was 6 beers in when I got the pager alert that %swas down."
+    },
+    {
+      "gaps": 2,
+      "text": "%s isn't cool. You know what's cool? %s"
+    },
+    {
+      "gaps": 1,
+      "text": "When I was a kid we didn't have %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Management just told me I need to get certified in %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Given enough %s, all bugs are %s."
+    },
+    {
+      "gaps": 2,
+      "text": "%s running on a rack of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "A neckbeard made of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I just finished working on my rocket powered %s."
+    },
+    {
+      "gaps": 1,
+      "text": "The %s that ops provides developers."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't need configuration management, we have %s!"
+    },
+    {
+      "gaps": 1,
+      "text": "I tried %s. The doctors say I'll never walk again."
+    },
+    {
+      "gaps": 1,
+      "text": "RIAA is suing me for downloading %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I bet if we switch to %s it will just work"
+    },
+    {
+      "gaps": 1,
+      "text": "A Beowulf cluster of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Fuck it, time to break out the emergency %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Lambdas are just a lame implementation of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Can anyone help me get %s running on Cisco IOS?"
+    },
+    {
+      "gaps": 1,
+      "text": "Our backup policy is %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I'm writing my next IRC bot with %s."
+    },
+    {
+      "gaps": 2,
+      "text": "You should think of your servers like %s and not like %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Of course culture is important to us, that's why we have %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I grabbed %s on my way out the door after our paychecks bounced and management stopped answering their phones."
+    },
+    {
+      "gaps": 1,
+      "text": "Fuck it: %s looks good to me."
+    },
+    {
+      "gaps": 1,
+      "text": "After %s came up, the retrospective really went downhill."
+    },
+    {
+      "gaps": 2,
+      "text": "Main benefits of automation: %s and %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Will merge pull requests for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "We can discuss %s at the stand-up meeting."
+    },
+    {
+      "gaps": 1,
+      "text": "Wrap it with the %s duct tape"
+    },
+    {
+      "gaps": 2,
+      "text": "We run production on %s and %s."
+    },
+    {
+      "gaps": 2,
+      "text": "Real %s don't use %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I grabbed %s on my way out the door after our paychecks bounced and management stopped answering their phones."
+    },
+    {
+      "gaps": 1,
+      "text": "Say concurrent threads again and I will %s you."
+    },
+    {
+      "gaps": 1,
+      "text": "git: You are in detached %s state."
+    },
+    {
+      "gaps": 2,
+      "text": "%s, %s and just a few lines of Perl."
+    },
+    {
+      "gaps": 1,
+      "text": "...and then there was the time I found %s on the root partition."
+    },
+    {
+      "gaps": 1,
+      "text": "r/%s."
+    },
+    {
+      "gaps": 2,
+      "text": "In the next planning session, we'll cover %s and %s."
+    },
+    {
+      "gaps": 2,
+      "text": "It figures - an article about our %s was posted just as we're pivoting to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Couldn't we use %s?"
+    },
+    {
+      "gaps": 1,
+      "text": "Why does someone keep re-implementing system utilities in %s?"
+    },
+    {
+      "gaps": 1,
+      "text": "In order to improve security, we're upgrading to %s."
+    },
+    {
+      "gaps": 1,
+      "text": "It's easy! Just run %s"
+    },
+    {
+      "gaps": 1,
+      "text": "%s or it didn't happen."
+    },
+    {
+      "gaps": 1,
+      "text": "It turns out that the button labeled \"Don't Push\" actually does %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s.  Failed to cache catalog."
+    },
+    {
+      "gaps": 1,
+      "text": "%s-Stack Developer"
+    },
+    {
+      "gaps": 1,
+      "text": "It worked on my %s."
+    },
+    {
+      "gaps": 2,
+      "text": "github.com/%s/%s"
+    },
+    {
+      "gaps": 1,
+      "text": "Fixing your fathers computer with %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Facebook changed their profiles today because %s."
+    },
+    {
+      "gaps": 1,
+      "text": "I just finished writing an API for %s."
+    },
+    {
+      "gaps": 1,
+      "text": "It's easy! Just run %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Listening to the fans in the server farm leads to %s"
+    },
+    {
+      "gaps": 1,
+      "text": "I%syour stupid issue!"
+    },
+    {
+      "gaps": 2,
+      "text": "%s has just discovered %s.  We're doomed."
+    },
+    {
+      "gaps": 1,
+      "text": "Of course culture is important to us, that's why we have %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Next year I'll start learning %s"
+    },
+    {
+      "gaps": 1,
+      "text": "How even is %s formed?"
+    },
+    {
+      "gaps": 1,
+      "text": "I installed %s by accident."
+    },
+    {
+      "gaps": 1,
+      "text": "We don't have to worry about CAP Theorem because of %s."
+    },
+    {
+      "gaps": 1,
+      "text": "Nine circles of %s hell."
+    },
+    {
+      "gaps": 2,
+      "text": "False alarm, it was just %s running %s."
+    },
+    {
+      "gaps": 1,
+      "text": "bollocks up %s"
+    },
+    {
+      "gaps": 1,
+      "text": "Nobody ever got fired for buying %s."
+    },
+    {
+      "gaps": 1,
+      "text": "%s is more memory than anyone will ever need on a computer."
+    }
+  ],
+  "name": "DevOps against Humanity [HFU3S]",
+  "white": [
+    "Git",
+    "the unix epoch",
+    "patent",
+    "traceroute",
+    "Git Blame",
+    "functional programming",
+    "the BOFH",
+    "sparkly Devops Princess",
+    "f00d",
+    "that XKCD comic about sysadmins",
+    "geometric distances",
+    "A $60 QNAP and some positive thinking",
+    "rm -rf /",
+    "kernel panic",
+    "curl 4chan | sudo sh",
+    "rockstar",
+    "a pseudorandom number generator",
+    "losing the root password",
+    "Functional Reactive",
+    "puppet",
+    "your Mum",
+    "ops doing dev = technical debt",
+    "a virtual machine running a virtual machine until it brings on the Singularity",
+    "Python datetime module",
+    "Lotus123",
+    "the Goddamn CDN",
+    "automagic Metaprogramming",
+    "production deployments that depend on GitHub",
+    "big ball of mud",
+    "unplugging a server and waiting to see who complains",
+    "automate",
+    "the tech lead's shitty pet project",
+    "a jailbroken iPad",
+    "catastrophic cancellation",
+    "MongoDB",
+    "secret sauce",
+    "10,000 Nagios alerts per second",
+    "12 factor application",
+    "copypasta",
+    "Node.js",
+    "dev",
+    "a Volker-Craig terminal",
+    "IE6",
+    "more buzzwords than you can shake a scrum at",
+    "a contractor that tells you it was a real learning experience",
+    "Bingo Balls",
+    "a server rack full of crushed dreams",
+    "vagrant",
+    "Scrum Master",
+    "waiting for console.aws.amazon.com",
+    "an IRC bot written entirely in sed",
+    "those ksh scripts",
+    "wat",
+    "RFC 1149",
+    "Bus error",
+    "Trello board",
+    "running out of IPv4 addresses",
+    "piping random scripts from the internet into bash",
+    "write-only code",
+    "BOFH",
+    "PagerDuty configured with a random number generator",
+    "Tcl",
+    "CouchDB",
+    "a shared root password",
+    "your account",
+    "Larry Ellison",
+    "eventual persistence",
+    "DevOps Days",
+    "picking the best color to paint your bike shed",
+    "Linus Torvalds",
+    "CEOs with root access",
+    "4chan Party Van",
+    "a self-aware PHP script",
+    "killall -9",
+    "ssh in a for loop",
+    "127.0.0.1",
+    "being acquired by Oracle",
+    "delightful",
+    "meritocracy",
+    "Unix philosophy",
+    "Daniel J. Bernstein",
+    "Golang",
+    "a tiny ounce of knowledge",
+    "Twitter",
+    "Bitcoin mining",
+    "Richard Stallman's Neckbeard",
+    "the ib_logfiles",
+    "little Bobby Tables",
+    "3 hour standups",
+    "Synergy",
+    "lolscale.",
+    "networking",
+    "cowboy developer",
+    "Scala",
+    "eating sushi with Andrew Clay Shafer",
+    "UTF-7",
+    "ASAP",
+    "runlists",
+    "Distributed Computing",
+    "a sad log with a mustache",
+    "degraded performance in some AWS availability zones",
+    "a firewall full of holes",
+    "echo shell_exec(\"sudo ./smbkill \".escapeshellcmd($_GET['kill']).\" 2>&1\");",
+    "rm -rf /",
+    "complex systems usually operate in failure mode.",
+    "trying to install MongoDB on AIX 3",
+    "parsing HTML with regex",
+    "Windows XP",
+    "SQLite",
+    "developers",
+    "an angry badger with an electromagnet on its back",
+    "SIGHUP",
+    "@echo off",
+    "the last remaining Multics server on Earth",
+    "Ycombinator",
+    "a squirrel with a taste for fiber",
+    "PyPy",
+    "a CORBA service written in Ada which communicates using JSONx",
+    "Paxos",
+    "cassandra",
+    "running Openstack in Production",
+    "lolcats",
+    "Pareto Inefficient Nash Equilibriums",
+    "Python",
+    "accidentally the entire data center",
+    "kill -9",
+    "copy-on-write",
+    "a routing loop",
+    "bare metal",
+    "OpenSSL",
+    "a dozen vendor t-shirts",
+    "High Availability",
+    "IE7 Support",
+    "the Stanford of Canada",
+    "DNS",
+    "the CEO",
+    "StackOverflow is offline?!",
+    "Netscape Navigator 3.2 support",
+    "business logic in PowerPoint slides",
+    "Quipu",
+    "a series of tubes",
+    "significant whitespace",
+    "memegen",
+    "de-linting source code",
+    "two single quotes",
+    "top",
+    "a series of tubes",
+    "Paxos",
+    "vegan friendly init scripts.",
+    "animated GIF",
+    "PEBKAC",
+    "THE MAGMA PEOPLE ARE WAITING FOR OUR MISTAKES.",
+    "Apache 1.2 running as root",
+    "yet another package manager",
+    "NoQA Movement",
+    "neckbeards",
+    "Flynn",
+    "Web Scale?",
+    "Log Shipping",
+    "an entirely commented out file",
+    "proxy",
+    "Github selfies",
+    "stack trace generator",
+    "kremvax",
+    "pinging the broadcast address",
+    "works for me",
+    "single stepping through the kernel",
+    "dd",
+    "sysadmins",
+    "forcing push to master",
+    "full-stack developer",
+    "COBOL",
+    "continuous deployment",
+    "a torrent of Torrenters torrenting",
+    "Hugops!",
+    "Apache Zookeeper on a 286",
+    "stringing cloudtobutt.pl into postfix.",
+    "a simple 15 level Hiera hierarachy",
+    "thought leadership",
+    "cowsay",
+    "Windows ME",
+    "Elastic Load Balancers",
+    "Edward Snowden",
+    "percussive maintenance",
+    "hypervisors running hypervisors running hypervisors",
+    "WONTFIX",
+    "O'Reilly",
+    "zsh",
+    "a pull request with a winking smiley ;)",
+    "re-writing deployment scripts at 2 AM",
+    "Heartbleed",
+    "PIP",
+    "Spot Instances",
+    "leaky abstractions",
+    "global warming",
+    "rewriting bash scripts as CMD batch jobs",
+    "ISO 8859",
+    "Webscale",
+    "Jordan Sissel",
+    "Magic Smoke",
+    "Blue Screen Of Death",
+    "Steve Balmer wielding a battleaxe",
+    "GeoCouchDB",
+    "private keys in /var/www",
+    "short Stroking",
+    "Moe",
+    "an untested restore process",
+    "hunter2",
+    "web scale",
+    "RecruiterFail",
+    "Broadcom chipset",
+    "a new printer.",
+    "mixed endianness",
+    "Haskell",
+    "kanban",
+    "a 50k line Bash script that's achieved self awareness",
+    "RFC 2324",
+    "the next Y2K",
+    "program Management",
+    "termcap",
+    "the NSA",
+    "re-implementing TCP over TCP",
+    "NoSQL",
+    "phpMyAdmin",
+    "syntactic sugar coma",
+    "a pimply faced youth with nothing to lose",
+    "beating the server into submission with your bare hands.",
+    "Catastrophic Failure as a Service",
+    "I heard about it on Hacker News",
+    "Halt and Catch Fire",
+    "LinkedIn",
+    "unknown source in your stack trace",
+    "/var/log symlinked to /dev/null",
+    "YoloDB",
+    "Node.js",
+    "regex",
+    "malloc",
+    "buffer overflow",
+    "pdisk",
+    "growth hacking",
+    "Magic Spray",
+    "PAM Happy Hour",
+    "reticulating splines",
+    "Ping Pong",
+    "fail early, fail often",
+    "numactl",
+    "ReiserFS",
+    "freebasing caffeine",
+    "a literal cluster fuck",
+    "a 3.5\" floppy disk",
+    "DevOps",
+    "crowdsourced architecture",
+    "banana pi",
+    "/dev/null",
+    "Dust Bunnies",
+    "winsock",
+    "Microsoft Access over a WAN",
+    "Jenkins",
+    "rebooting All The Things",
+    "penetration test",
+    "a constructor for RandomThing",
+    "UTF-9",
+    "the Ballmer Peak",
+    "/etc/hosts",
+    "hand-crafted artisan x86 assembly code",
+    "hate driven development",
+    "a proof that P=NP written in BASIC",
+    "command line options",
+    "a 500-megabyte UDP packet",
+    "the mysql client",
+    "read-only Fridays",
+    "your private browsing history",
+    "CAP Theorem",
+    "cron jobs that edit cron jobs",
+    "a coked-up tech recruiter",
+    "Hangops",
+    "rsync",
+    "2400 baud modem",
+    "VisualBasic DLLs",
+    "Sentinel System Driver",
+    "using Brain Fuck in production",
+    "your code featured on The Daily WTF.",
+    "a Pi\u00c3\u00b1ata full of error messages",
+    "the fucking JVM",
+    "RFC1178",
+    "adderall",
+    "ISO 8601",
+    "wearing protection during peer programing.",
+    "zombie processes",
+    "fpm",
+    "RAID 3 SSD cluster",
+    "$HOME/.gem",
+    "a pink sombrero and a fifth of tequila",
+    "too big to fail",
+    "arguing over the internet.",
+    "PC LOAD LETTER",
+    "bash",
+    "\"Fuck it, we'll do it live!\"",
+    "piping /var/log/messages to Twitter",
+    "NSA FOIA request",
+    "Snowflake server",
+    "Cloud 2.0",
+    "Patrick Debois",
+    "committing from the bar.",
+    "pre caffeine typos",
+    "a mobile web 2.0 RIA",
+    "git submodules",
+    "the Berkshelf way",
+    "Ethernet",
+    "servers that follow daylight savings time.",
+    "the Sales & Marketing department",
+    "that moment when you realize CTRL-Z cannot save you",
+    "RHEL4",
+    "deploying on a Friday afternoon",
+    "Agile",
+    "Tech Debt Day",
+    "a cron job that reboots the server every 5 minutes",
+    "continuous integration",
+    "OAuth",
+    "a Certified SCRUM Master",
+    "an outage window",
+    "rebasing the entire fucking repo",
+    "conflict minerals",
+    "Friday afternoon deployment",
+    "0xDEADBEEF",
+    "a former MENSA member",
+    "#And right here, we'd like a miracle.",
+    "a \"MRW\" animated gif",
+    "Indian Ocean",
+    "a home-rolled systemd replacement",
+    "# FIXME: For now, just don't validate",
+    "optimistic transactions",
+    "destroying your tools with your tools",
+    "an online book seller",
+    "post-mortems",
+    "RAID 0",
+    "NullPointerException: null",
+    "LogFiles\\W3SVC1",
+    "Cloud-based business strategy",
+    "0 day exploits",
+    "Map-Reduce",
+    "a German installation of Windows NT4",
+    "HTML9 Responsive Boilerstrap JS",
+    "Dogecoin",
+    "Perl 6",
+    "a few instances",
+    "uucp",
+    "Unicode errors",
+    "rolling Grubhub into the build failed script.",
+    "product Managers",
+    "authentication and authorization",
+    "IPv6",
+    "an Exchange email loop",
+    "smart quotes",
+    "continuous incineration",
+    "Too Big Data",
+    "a JAR full of spaghetti",
+    "LevelDB",
+    "command-line magic",
+    "a posting on Craigslist \"internet engineers\" jobs forum",
+    "Office Space",
+    "Tor",
+    "ZeroVM",
+    "git merge --force",
+    "Docker",
+    "righteous anger",
+    "GCHQ",
+    "a GitHub Outage",
+    "a custom kernel with Frontpage Extensions installed",
+    "women in tech",
+    "an angry whale shitting containers",
+    "the much neglected IPv5",
+    "a Cisco router with a flaky chip",
+    "a queue with no consumers",
+    "Developers! Developers! Developers! Developers!",
+    "ZeroMQ over SSH",
+    "Theo de Raadt yelling at newbs",
+    "Brogrammers",
+    "Maven downloading the entire internet",
+    "a non-ironic BSOD",
+    "/r/sysadmin",
+    "Erlang",
+    "raspberryPI",
+    "cats",
+    "circular imports",
+    "the gentle sound of weeping drifting from the server room",
+    "profanity in the git log",
+    "Continuous Disintegration",
+    "GNU/Linux",
+    "SIGKILL",
+    "a violation of the most basic engineering principles.",
+    "the library that imports all other libraries",
+    "Gentoo",
+    "a 1996 Java applet",
+    "sudo",
+    "kill -9 -1",
+    "enterprise Grade Bash scripts",
+    "temporary hotfixes",
+    "#define BEGIN  {",
+    "too many authorization failures",
+    "in b4 FIRST",
+    "/dev/null as a service",
+    "posting on Etsy's codeascraft blog",
+    "syntax error",
+    "Gigadevops",
+    "RTFM",
+    "Nokogiri Gem",
+    "Microsoft\u00ae Azure",
+    "server logs",
+    "server cages",
+    "a potato",
+    "# we *LIE* about what happened and return a \"success\"",
+    "Pete Cheslock",
+    "jsLinux",
+    ":(){:|:&};:",
+    "LART",
+    "Silos",
+    "fuckedcompany.com",
+    "an uncontrollable deluge of emails",
+    "Digital Ocean",
+    "FAT32",
+    "cache",
+    "snail scale",
+    "OpenLDAP",
+    "Active Directory",
+    "java",
+    "standing around outside on the streets of SOMA with an overheating laptop drunk while fixing your god damn Saturday night deployment.",
+    "a turducken made entirely of bash scripts",
+    "Paul Graham",
+    "Nagios",
+    "Heartbleed",
+    "# What is this used for?",
+    "Agony-Driven Development",
+    "Ruby",
+    "git reset --hard origin/master",
+    "DevOps Reactions",
+    "deduplication",
+    "eventual consistency",
+    "hackathons",
+    "cubism farm",
+    "HipChat",
+    "a global write lock",
+    "Sprint Planning",
+    "Dennis Ritchie",
+    "mechanically recovered turkey",
+    "a series of tiny shellscripts",
+    "Donald Knuth",
+    "culture",
+    "a cold cup of coffee",
+    "done done",
+    "the Cult of Mac",
+    "/cgi-bin/php5",
+    "packet loss",
+    "our Release Engineer",
+    "an army of chaos monkeys, all carrying flamethrowers",
+    "leap second bug",
+    ":(){ :|:&};:",
+    "a Null-modem cable",
+    "ntpdate",
+    "Sadness as a Service",
+    "an epic caffeine bender",
+    "Systemd",
+    "re-implementing TCP over UDP",
+    "smokeping",
+    "former employees who still have admin access to live production servers",
+    "NPM",
+    "75-tier architecture",
+    "mutation of immutable data",
+    "year 2038",
+    "Works on my machine!",
+    "Merge Conflicts",
+    "CFLAGS",
+    "ChatOps",
+    "unlimited data plan",
+    "fork() on Windows",
+    "a water buffalo",
+    "ponies",
+    "out-of-band access",
+    "half open TCP connections",
+    "Bullshit.io",
+    "Hacker News",
+    "Angular js",
+    "operations hipster",
+    "testing positive for mongonucleosis",
+    "COTS Shareware",
+    "a WSDL from 2003",
+    "solar flares",
+    "curl | sh -c",
+    "one giant SPOF",
+    "fat fingered",
+    "tribal knowledge",
+    "a cluster of applications on a cluster of servers",
+    "the world's only fully-functional ROFLcopter",
+    "Andrew Clay Shaffer"
+  ]
+}

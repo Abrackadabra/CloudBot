@@ -9,6 +9,9 @@ class Scores(object):
     self.scores[player] += 1
 
   def highest(self):
+    if not self.scores:
+      return 0
+
     return max(self.scores.values())
 
   def winners(self):

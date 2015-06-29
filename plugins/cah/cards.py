@@ -50,10 +50,11 @@ class BlackCard(object):
 
 
 class Set(object):
-  def __init__(self, name, black, white):
+  def __init__(self, name, black, white, default=False):
     self.name = name
     self.black = black
     self.white = white
+    self.default = default
 
   @staticmethod
   def read(filename):
@@ -63,7 +64,8 @@ class Set(object):
       return Set(
         name=s['name'],
         black=[BlackCard(**i) for i in s['black']],
-        white=[WhiteCard(i) for i in s['white']]
+        white=[WhiteCard(i) for i in s['white']],
+        default=s['default'] if 'default' in s else False
       )
 
   @staticmethod
@@ -82,7 +84,7 @@ class Set(object):
       raise Exception('Strange error.')
 
     x = json.loads(r.text)
-    name = x['name']
+    name = '{} [{}]'.format(x['name'], set_id)
 
     r = requests.get(URL_CARDS.format(set_id))
 
@@ -151,7 +153,10 @@ class Deck(object):
 
     self.used_sets = []
 
-    self.add_set('Base Set (90/460)')
+    for i, j in self.sets.items():
+      if j.default:
+        self.add_set(i)
+
 
   def add_blank(self, n):
     for i in range(n):

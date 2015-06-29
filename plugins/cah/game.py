@@ -292,10 +292,10 @@ class PlayingCards(GamePhase):
     self.copy_command(WaitingForPlayers.list_used_sets)
 
   def deal(self, g: Game):
-    if self.is_over(g):
-      g.com.announce('The game is over before it even started!')
-      g.reset()
-      return NoGame()
+    g.com.announce('Starting a `{}` player `{}`/`{}` card game.'
+                   .format(len(g.players),
+                           len(g.deck.black_pool),
+                           len(g.deck.white_pool)))
 
     g.deck.add_blank(g.blanks)
 

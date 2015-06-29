@@ -1,4 +1,5 @@
 {
+  "default": true,
   "black": [
     {
       "gaps": 1,
@@ -13,11 +14,14 @@
       "text": "Hitler's only %s."
     }
   ],
-  "name": "Balls deep in testicles",
+  "name": "Balls deep in testicles [759D2]",
   "white": [
+    "Hitler's Zen testicle",
     "Hitler's bottom testicle",
+    "Hitler's omniscient and prescient testicle",
     "Hitler's other testicle",
     "Hitler's missing testicle",
+    "Hitler's ass-testicle",
     "Hitler's up testicle",
     "Hitler's testicle he has stolen from Stalin",
     "Hitler's down testicle",
