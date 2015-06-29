@@ -1,6 +1,8 @@
+import html
 import json
 import os
 import random
+import re
 import requests
 
 
@@ -59,7 +61,10 @@ class Set(object):
   @staticmethod
   def read(filename):
     with open(filename) as file:
-      s = json.loads(' '.join(file.readlines()))
+      content = ' '.join(file.readlines())
+      content = html.unescape(content)
+      content = re.sub(r'<\w+?>', ' ', content)
+      s = json.loads(content)
 
       return Set(
         name=s['name'],

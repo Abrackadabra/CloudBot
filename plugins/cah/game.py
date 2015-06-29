@@ -611,7 +611,7 @@ class PlayingCards(GamePhase):
     g.com.reply(nick, 'The point limit is `{}` points.'.format(g.limit))
 
   def sanitize(self, s):
-    return ''.join([i for i in s if i.isprintable()])
+    return ''.join([i for i in s.strip() if i.isprintable()])
 
   @Command(player_only=True)
   def write(self, g: Game, nick, args: str):
@@ -666,7 +666,7 @@ class ChoosingWinner(GamePhase):
       s = g.black_card.insert(g.played[player])
       g.com.announce('[`{}`] {}'.format(i, s))
 
-  @Command(names=['pick', 'p', 'winner', 'w'])
+  @Command(names=['pick', 'p', 'winner', 'w'], player_only=True)
   def pick(self, g: Game, nick, args):
     """
     pick <num> -- pick the winner
