@@ -306,7 +306,7 @@ def test_short(com, g):
   g.d('a', 'r', '0')
   assert len(g.deck.used_sets) == 2
 
-  g.d('a', 'l')
+  g.d('a', 'leave')
   g.d('a', 'c')
   assert len(g.deck.used_sets) == 1
 

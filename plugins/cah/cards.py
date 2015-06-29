@@ -111,6 +111,9 @@ class Set(object):
     with open(os.path.join(dir, 'cardcast', filename), 'w') as file:
       file.write(json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=2))
 
+  def __str__(self):
+    return '{} ({}/{})'.format(self.name, len(self.black), len(self.white))
+
 
 class Deck(object):
   def __init__(self, dir):
@@ -130,6 +133,9 @@ class Deck(object):
   def draw_white(self, n):
     res = []
     for i in range(n):
+      if not self.white_pool:
+        continue
+
       x = random.choice(self.white_pool)
       self.white_pool.remove(x)
       self.white_used.append(x)
@@ -145,7 +151,7 @@ class Deck(object):
 
     self.used_sets = []
 
-    self.add_set('Base Set')
+    self.add_set('Base Set (90/460)')
 
   def add_blank(self, n):
     for i in range(n):
@@ -179,10 +185,10 @@ class Deck(object):
       self.white_pool.remove(i)
 
   def list_all_sets(self):
-    return sorted(self.sets.keys())
+    return sorted([str(i) for i in self.sets.values()])
 
   def list_used_sets(self):
-    return list(self.used_sets)
+    return sorted([str(self.sets[i]) for i in self.used_sets])
 
   def read_dir(self, dir):
     files = os.listdir(dir)
@@ -190,11 +196,12 @@ class Deck(object):
       filename = os.path.join(dir, filename)
       if os.path.isfile(filename) and filename.endswith('.json'):
         set = Set.read(filename)
-        self.sets[set.name] = set
+        self.sets[str(set)] = set
 
     files = os.listdir(os.path.join(dir, 'cardcast'))
     for filename in files:
       filename = os.path.join(dir, 'cardcast', filename)
       if os.path.isfile(filename) and filename.endswith('.json'):
         set = Set.read(filename)
-        self.sets['[CC] {}'.format(set.name)] = set
+        set.name = '[CC] {}'.format(set.name)
+        self.sets[str(set)] = set

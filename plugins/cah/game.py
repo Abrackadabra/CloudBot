@@ -50,6 +50,8 @@ class Game(object):
 
     self.blanks = 0
 
+    self.phase = NoGame()
+
   def list_players(self):
     r = list(self.players)
     if self.rando:
@@ -136,7 +138,7 @@ class WaitingForPlayers(GamePhase):
       g.com.announce('`{}` has joined the game. `{}` players total.'
                      ''.format(nick, g.count_players()))
 
-  @Command(names=['leave', 'l'], player_only=True)
+  @Command(names=['leave'], player_only=True)
   def leave(self, g: Game, nick, args):
     g.players.remove(nick)
     g.com.announce(
@@ -155,8 +157,7 @@ class WaitingForPlayers(GamePhase):
       g.com.reply(nick, 'Need at least `3` players to start a game.')
     else:
       new_state = PlayingCards()
-      new_state.deal(g)
-      return new_state.act(g) or new_state
+      return new_state.deal(g) or new_state.act(g) or new_state
 
   @Command(names=['limit', 'l'])
   def limit(self, g: Game, nick, args):
@@ -291,6 +292,11 @@ class PlayingCards(GamePhase):
     self.copy_command(WaitingForPlayers.list_used_sets)
 
   def deal(self, g: Game):
+    if self.is_over(g):
+      g.com.announce('The game is over before it even started!')
+      g.reset()
+      return NoGame()
+
     g.deck.add_blank(g.blanks)
 
     for i in g.list_players():
@@ -305,8 +311,19 @@ class PlayingCards(GamePhase):
 
     self.next_czar(g)
 
+    if self.is_over(g):
+      g.com.announce('The game is over before it even started!')
+      g.reset()
+      return NoGame()
+
+  def is_over(self, g: Game):
+    return \
+      g.scores.highest() >= g.limit or \
+      len(g.deck.black_pool) == 0 or \
+      len(g.deck.white_pool) == 0
+
   def act(self, g: Game):
-    if g.scores.highest() >= g.limit:
+    if self.is_over(g):
       g.com.announce('The game is over! `{}` won!'.format(', '.join(g.scores.winners())))
       g.reset()
       return NoGame()
@@ -363,6 +380,11 @@ class PlayingCards(GamePhase):
         return NoGame()
 
       g.played[g.RANDO_NICK] = list(hand[:g.black_card.gaps])
+
+    if self.is_over(g):
+      g.com.announce('The game is over! `{}` won!'.format(', '.join(g.scores.winners())))
+      g.reset()
+      return NoGame()
 
 
   @Command(names=['scores', 'sc'])
@@ -533,7 +555,6 @@ class ChoosingWinner(GamePhase):
   @Command(names=['pick', 'p'])
   def pick(self, g: Game, nick, args):
     if nick != g.czar:
-      g.com.notice(nick, 'You are not the card czar.')
       return
 
     parts = args.split()

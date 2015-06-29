@@ -1,6 +1,7 @@
 from pprint import pprint
 import re
 import asyncio
+import traceback
 
 from cloudbot import hook
 from .cah import Game, Communicator, Set
@@ -57,10 +58,17 @@ def catch_all(nick, chan, content):
 
     args = parts[1] if len(parts) > 1 else ''
 
-    game.process(nick, command, args)
+    try:
+      if re.match(r'^\d+', content):
+        game.process(nick, 'pick', content)
+      else:
+        game.process(nick, command, args)
+    except Exception as e:
+      traceback.print_exc()
+      game.com.announce('An error occured. Game stopped.')
 
-    if re.match(r'^\d+', content):
-      game.process(nick, 'pick', content)
+      game.reset()
+
 
 
 
