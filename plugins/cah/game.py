@@ -137,7 +137,8 @@ class GamePhase(object):
       method = getattr(self, i)
       if Command.is_command(method):
         command_names.append('/'.join(method.names))
-    g.com.notice(nick, 'Commands in this phase: {}'.format(', '.join(command_names)))
+    g.com.notice(nick, 'Commands in this phase: {}. Type "? <command>" to learn more.'
+                       ''.format(', '.join(command_names)))
 
 
 class NoGame(GamePhase):
