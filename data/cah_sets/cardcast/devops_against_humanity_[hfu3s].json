@@ -3313,6 +3313,7 @@
       "text": "%s is more memory than anyone will ever need on a computer."
     }
   ],
+  "default": false,
   "name": "DevOps against Humanity [HFU3S]",
   "white": [
     "Git",

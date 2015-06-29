@@ -360,12 +360,12 @@ class WaitingForPlayers(GamePhase):
 
     parts = args.split()
     if not parts[0].isnumeric():
-      g.com.reply('Specify a number.')
+      g.com.reply(nick, 'Specify a number.')
       return
 
     c = int(parts[0])
     if c < 0 or c > 100:
-      g.com.reply('Invalid argument.')
+      g.com.reply(nick, 'Invalid argument.')
       return
 
     g.blanks = c

@@ -1,5 +1,4 @@
 {
-  "default": true,
   "black": [
     {
       "gaps": 1,
@@ -14,6 +13,7 @@
       "text": "Hitler's only %s."
     }
   ],
+  "default": false,
   "name": "Balls deep in testicles [759D2]",
   "white": [
     "Hitler's Zen testicle",

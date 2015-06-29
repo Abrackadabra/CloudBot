@@ -1,5 +1,4 @@
 {
-  "default": true,
   "black": [
     {
       "gaps": 1,
@@ -362,6 +361,7 @@
       "text": "What would grandma find disturbing, yet oddly charming? %s."
     }
   ],
+  "default": false,
   "name": "Cards Against Humanity: Main Deck v1.6 [A5DCM]",
   "white": [
     "Ghosts.",

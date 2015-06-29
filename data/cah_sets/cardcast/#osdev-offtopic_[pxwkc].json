@@ -389,6 +389,7 @@
       "text": "<Xg\u200bF> But %s is basically like NaN, in that it's slippery and behaves in odd ways"
     }
   ],
+  "default": false,
   "name": "#osdev-offtopic [PXWKC]",
   "white": [
     "hedd\u200bwch dong",
@@ -431,6 +432,7 @@
     "Malcompliance.",
     ":)",
     "somalia",
+    "mozartrolling",
     "an annoying, undiagnosable, multithreading bug that only appears in release build on client's machine only",
     "Ignorance is strength.",
     "a switch set to 'Magic'",
