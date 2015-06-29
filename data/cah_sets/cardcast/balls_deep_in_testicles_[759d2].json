@@ -1,5 +1,4 @@
 {
-  "default": true,
   "black": [
     {
       "gaps": 1,
@@ -65,5 +64,6 @@
     "Hitler's spectacle testicle",
     "Hitler's favorite testicle",
     "Hitler's degenerate testicle"
-  ]
+  ],
+  "default": true
 }

@@ -260,10 +260,11 @@ def test_sets(com, g):
   """
   g.d('a', 'la')
   assert 'Main Deck' in com.log[-1]
-  g.d('a', 'lu')
-  assert 'Main Deck' in com.log[-1]
 
   g.d('a', 'create')
+
+  g.d('a', 'lu')
+  assert 'Main Deck' in com.log[-1]
 
   g.d('a', 'list_sets')
   assert 'Main Deck' in com.log[-1]
@@ -324,7 +325,7 @@ def test_rando(com, g):
   g.d('a', 'pick', str(g.player_perm.index(g.RANDO_NICK)))
 
   g.d('a', 'sc')
-  assert 'Rando Cardrissian-1p' in com.log[-1]
+  assert 'Cardrissian-1p' in com.log[-1]
 
 
 def test_blanks(com, g):

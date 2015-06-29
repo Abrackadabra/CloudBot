@@ -1,5 +1,4 @@
 {
-  "default": true,
   "black": [
     {
       "gaps": 1,
@@ -825,5 +824,6 @@
     "Emma Watson.",
     "The cool, refreshing taste of Pepsi\u00ae.",
     "An erection that lasts longer than four hours."
-  ]
+  ],
+  "default": true
 }
