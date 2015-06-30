@@ -1,10 +1,12 @@
 class Communicator(object):
+  BOLD_MARKER = '∆'
+
   def __init__(self, conn, chan):
     self.conn = conn
     self.chan = chan
 
   def announce(self, msg):
-    msg = msg.replace('`', '\x02')
+    msg = msg.replace(self.BOLD_MARKER, '\x02')
 
     for i in self.split_msg(msg):
       self.conn.message(self.chan, i)
@@ -13,7 +15,7 @@ class Communicator(object):
     self.announce('({}) {}'.format(nick, msg))
 
   def notice(self, nick, msg):
-    msg = msg.replace('`', '\x02')
+    msg = msg.replace(self.BOLD_MARKER, '\x02')
 
     for i in self.split_msg(msg):
       self.conn.notice(nick, i)

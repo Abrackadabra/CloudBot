@@ -11,19 +11,19 @@ class FakeCommunicator(Communicator):
     return
 
   def reply(self, nick, msg):
-    msg = msg.replace('`', '')
+    msg = msg.replace(Communicator.BOLD_MARKER, '')
     s = '({}) {}'.format(nick, msg)
     self.log.append(s)
     print('>' + s)
 
   def announce(self, msg):
-    msg = msg.replace('`', '')
+    msg = msg.replace(Communicator.BOLD_MARKER, '')
     s = '{}'.format(msg)
     self.log.append(s)
     print('>' + s)
 
   def notice(self, nick, msg):
-    msg = msg.replace('`', '')
+    msg = msg.replace(Communicator.BOLD_MARKER, '')
     s = '`{}` {}'.format(nick, msg)
     self.log.append(s)
     print('>' + s)

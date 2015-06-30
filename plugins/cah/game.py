@@ -162,7 +162,7 @@ class NoGame(GamePhase):
     """
     create -- creates a game. Creator of the game can then set various settings and start the game
     """
-    g.com.announce('`{}` has created a game! Type `j` to join.'.format(nick))
+    g.com.announce('∆{}∆ has created a game! Type ∆j∆ to join.'.format(nick))
 
     g.reset()
 
@@ -189,7 +189,7 @@ class WaitingForPlayers(GamePhase):
       g.com.notice(nick, 'You are already playing.')
     else:
       g.players.append(nick)
-      g.com.announce('`{}` has joined the game. `{}` players total.'
+      g.com.announce('∆{}∆ has joined the game. ∆{}∆ players total.'
                      ''.format(nick, g.count_players()))
 
   @Command(names=['leave'], player_only=True)
@@ -199,7 +199,7 @@ class WaitingForPlayers(GamePhase):
     """
     g.players.remove(nick)
     g.com.announce(
-      '`{}` has left the game. `{}` players remaining.'.format(nick, g.count_players()))
+      '∆{}∆ has left the game. ∆{}∆ players remaining.'.format(nick, g.count_players()))
 
     if nick == g.creator:
       g.com.announce('Creator has left the game. Game aborted.')
@@ -213,9 +213,9 @@ class WaitingForPlayers(GamePhase):
     cannot be changed
     """
     if nick != g.creator:
-      g.com.notice(nick, 'Only `{}` can start the game.'.format(g.creator))
+      g.com.notice(nick, 'Only ∆{}∆ can start the game.'.format(g.creator))
     elif g.count_players() < 3:
-      g.com.reply(nick, 'Need at least `3` players to start a game.')
+      g.com.reply(nick, 'Need at least ∆3∆ players to start a game.')
     else:
       new_state = PlayingCards()
       return new_state.deal(g) or new_state.act(g) or new_state
@@ -227,7 +227,7 @@ class WaitingForPlayers(GamePhase):
     """
     parts = args.split()
     if len(parts) == 0:
-      g.com.reply(nick, 'Current point limit is `{}` points.'.format(g.limit))
+      g.com.reply(nick, 'Current point limit is ∆{}∆ points.'.format(g.limit))
       return
 
     if not parts[0].isnumeric():
@@ -235,13 +235,13 @@ class WaitingForPlayers(GamePhase):
       return
 
     if nick != g.creator:
-      g.com.notice(nick, 'Only `{}` can change the point limit.'.format(g.creator))
+      g.com.notice(nick, 'Only ∆{}∆ can change the point limit.'.format(g.creator))
       return
 
     c = int(parts[0])
     if 0 < c < 100:
       g.limit = c
-      g.com.announce('`{}` changed the point limit to `{}`.'.format(nick, c))
+      g.com.announce('∆{}∆ changed the point limit to ∆{}∆.'.format(nick, c))
     else:
       g.com.notice(nick, 'Invalid number.')
 
@@ -250,7 +250,7 @@ class WaitingForPlayers(GamePhase):
     """
     status -- shows information about the current game
     """
-    g.com.announce('Waiting for people to join. Creator: `{}`. `{}` players: {}.'
+    g.com.announce('Waiting for people to join. Creator: ∆{}∆. ∆{}∆ players: {}.'
                    ''.format(g.creator, g.count_players(), ', '.join(g.list_players())))
 
   @Command(names=['list_sets', 'listsets', 'listall', 'list_all', 'la'])
@@ -260,7 +260,7 @@ class WaitingForPlayers(GamePhase):
     """
     sets = g.deck.list_all_sets()
     g.com.announce(
-      'All card sets: ' + ', '.join(['[`{}`] {}'.format(i, j) for i, j in enumerate(sets)]))
+      'All card sets: ' + ', '.join(['[∆{}∆] {}'.format(i, j) for i, j in enumerate(sets)]))
 
   @Command(names=['list_used', 'listused', 'lu'])
   def list_used_sets(self, g: Game, nick, args):
@@ -269,7 +269,7 @@ class WaitingForPlayers(GamePhase):
     """
     sets = g.deck.list_used_sets()
     g.com.announce(
-      'Used card sets: ' + ', '.join(['[`{}`] {}'.format(i, j) for i, j in enumerate(sets)]))
+      'Used card sets: ' + ', '.join(['[∆{}∆] {}'.format(i, j) for i, j in enumerate(sets)]))
 
   @Command(names=['add_set', 'addset', 'add', 'a'])
   def add_set(self, g: Game, nick, args):
@@ -277,7 +277,7 @@ class WaitingForPlayers(GamePhase):
     add_set -- adds a card set to the deck
     """
     if nick != g.creator:
-      g.com.notice(nick, 'Only `{}` can change used card sets.'.format(g.creator))
+      g.com.notice(nick, 'Only ∆{}∆ can change used card sets.'.format(g.creator))
       return
 
     parts = args.split()
@@ -294,7 +294,7 @@ class WaitingForPlayers(GamePhase):
       c = [int(i) for i in parts]
     for i in c:
       if i < 0 or i >= len(sets):
-        g.com.notice(nick, 'Invalid index `{}`.'.format(i))
+        g.com.notice(nick, 'Invalid index ∆{}∆.'.format(i))
         return
 
       g.deck.add_set(sets[i])
@@ -306,7 +306,7 @@ class WaitingForPlayers(GamePhase):
     remove_set -- removes a card set from the deck
     """
     if nick != g.creator:
-      g.com.notice(nick, 'Only `{}` can change used card sets.'.format(g.creator))
+      g.com.notice(nick, 'Only ∆{}∆ can change used card sets.'.format(g.creator))
       return
 
     parts = args.split()
@@ -333,17 +333,17 @@ class WaitingForPlayers(GamePhase):
     rando [on|off] -- allows to control Rando's setting
     """
     if not args:
-      g.com.announce('{} is `{}`.'.format(g.RANDO_NICK, 'on' if g.rando else 'off'))
+      g.com.announce('{} is ∆{}∆.'.format(g.RANDO_NICK, 'on' if g.rando else 'off'))
     elif nick != g.creator:
-      g.com.notice(nick, 'Only `{}` can control `{}`.'.format(g.creator, g.RANDO_NICK))
+      g.com.notice(nick, 'Only ∆{}∆ can control ∆{}∆.'.format(g.creator, g.RANDO_NICK))
     elif args == 'on':
       g.rando = True
-      g.com.announce('{} is `on`.'.format(g.RANDO_NICK))
+      g.com.announce('{} is ∆on∆.'.format(g.RANDO_NICK))
     elif args == 'off':
       g.rando = False
-      g.com.announce('{} is `off`.'.format(g.RANDO_NICK))
+      g.com.announce('{} is ∆off∆.'.format(g.RANDO_NICK))
     else:
-      g.com.reply(nick, 'Possible arguments: `on`, `off`.')
+      g.com.reply(nick, 'Possible arguments: ∆on∆, ∆off∆.')
 
   @Command()
   def blank(self, g: Game, nick, args):
@@ -351,11 +351,11 @@ class WaitingForPlayers(GamePhase):
     blank [<num>] -- controls number of blank white cards in the deck
     """
     if not args:
-      g.com.announce('There are `{}` blank cards in the deck.'.format(g.blanks))
+      g.com.announce('There are ∆{}∆ blank cards in the deck.'.format(g.blanks))
       return
 
     if nick != g.creator:
-      g.com.notice(nick, 'Only `{}` can change the number of blanks in the deck.'.format(g.creator))
+      g.com.notice(nick, 'Only ∆{}∆ can change the number of blanks in the deck.'.format(g.creator))
       return
 
     parts = args.split()
@@ -369,7 +369,7 @@ class WaitingForPlayers(GamePhase):
       return
 
     g.blanks = c
-    g.com.announce('There are `{}` blank cards in the deck.'.format(g.blanks))
+    g.com.announce('There are ∆{}∆ blank cards in the deck.'.format(g.blanks))
 
 
 class PlayingCards(GamePhase):
@@ -378,7 +378,7 @@ class PlayingCards(GamePhase):
     self.copy_command(WaitingForPlayers.list_used_sets)
 
   def deal(self, g: Game):
-    g.com.announce('Starting a `{}` player `{}`/`{}` card game.'
+    g.com.announce('Starting a ∆{}∆ player ∆{}∆/∆{}∆ card game.'
                    .format(len(g.players),
                            len(g.deck.black_pool),
                            len(g.deck.white_pool)))
@@ -410,12 +410,12 @@ class PlayingCards(GamePhase):
 
   def act(self, g: Game):
     if self.is_over(g):
-      g.com.announce('The game is over! `{}` won!'.format(', '.join(g.scores.winners())))
+      g.com.announce('The game is over! ∆{}∆ won!'.format(', '.join(g.scores.winners())))
       g.reset()
       return NoGame()
 
     for i in g.joiners:
-      g.com.announce('`{}` is joining the game!'.format(i))
+      g.com.announce('∆{}∆ is joining the game!'.format(i))
       g.players.append(i)
       g.hands[i] = g.deck.draw_white(10)
       g.scores.register(i)
@@ -423,7 +423,7 @@ class PlayingCards(GamePhase):
     g.joiners.clear()
 
     g.black_card = g.deck.draw_black()
-    g.com.announce('Round `{}`. The card czar is `{}`. This round\'s card is...'
+    g.com.announce('Round ∆{}∆. The card czar is ∆{}∆. This round\'s card is...'
                    ''.format(g.round, g.czar))
     g.com.announce('    {}'.format(g.black_card))
 
@@ -431,7 +431,7 @@ class PlayingCards(GamePhase):
     example = 'pick {}'.format(example_args)
     waiting = list(g.players)
     waiting.remove(g.czar)
-    msg = '{}: Play `{}` card{}, like "`{}`" or just "`{}`".' \
+    msg = '{}: Play ∆{}∆ card{}, like "∆{}∆" or just "∆{}∆".' \
           ''.format(', '.join(waiting),
                     g.black_card.gaps,
                     '' if g.black_card.gaps == 1 else 's',
@@ -445,7 +445,7 @@ class PlayingCards(GamePhase):
 
       hand = g.hands[player]
 
-      hand_s = ' '.join(['[`{}`] {}'.format(i, j) for i, j in enumerate(hand)])
+      hand_s = ' '.join(['[∆{}∆] {}'.format(i, j) for i, j in enumerate(hand)])
       g.com.notice(player, 'Your hand: {}'.format(hand_s))
 
     g.played = {}
@@ -468,7 +468,7 @@ class PlayingCards(GamePhase):
       g.played[g.RANDO_NICK] = list(hand[:g.black_card.gaps])
 
     if self.is_over(g):
-      g.com.announce('The game is over! `{}` won!'.format(', '.join(g.scores.winners())))
+      g.com.announce('The game is over! ∆{}∆ won!'.format(', '.join(g.scores.winners())))
       g.reset()
       return NoGame()
 
@@ -507,7 +507,7 @@ class PlayingCards(GamePhase):
       return
 
     g.com.notice(nick, 'You left the game.')
-    g.com.announce('`{}` has left the game!'.format(nick))
+    g.com.announce('∆{}∆ has left the game!'.format(nick))
 
     g.players.remove(nick)
     if nick in g.played:
@@ -544,7 +544,7 @@ class PlayingCards(GamePhase):
     parts = args.split()
     choice = []
     if len(parts) != g.black_card.gaps:
-      g.com.notice(nick, 'Wrong number of cards. `{}` needed.'.format(g.black_card.gaps))
+      g.com.notice(nick, 'Wrong number of cards. ∆{}∆ needed.'.format(g.black_card.gaps))
       return
     for i in parts[:g.black_card.gaps]:
       if not i.isnumeric():
@@ -590,8 +590,8 @@ class PlayingCards(GamePhase):
       if i not in g.played and i != g.czar:
         waiting.append(i)
 
-    g.com.announce('`{}` players. `{}` is the card czar. Black card: "{}". '
-                   'Waiting for `{}` to play.'
+    g.com.announce('∆{}∆ players. ∆{}∆ is the card czar. Black card: "{}". '
+                   'Waiting for ∆{}∆ to play.'
                    ''.format(g.count_players(), g.czar, g.black_card, ', '.join(waiting)))
 
   @Command(names=['cards', 'c', 'hand', 'h'], player_only=True)
@@ -600,7 +600,7 @@ class PlayingCards(GamePhase):
     cards -- shows your hand
     """
     hand = g.hands[nick]
-    hand_s = ' '.join(['[`{}`] {}'.format(i, j) for i, j in enumerate(hand)])
+    hand_s = ' '.join(['[∆{}∆] {}'.format(i, j) for i, j in enumerate(hand)])
     g.com.notice(nick, 'Your hand: {}.'.format(hand_s))
 
   @Command(names=['limit', 'l'])
@@ -608,7 +608,7 @@ class PlayingCards(GamePhase):
     """
     limit -- shows the point limit
     """
-    g.com.reply(nick, 'The point limit is `{}` points.'.format(g.limit))
+    g.com.reply(nick, 'The point limit is ∆{}∆ points.'.format(g.limit))
 
   def sanitize(self, s):
     return ''.join([i for i in s.strip() if i.isprintable()])
@@ -655,7 +655,7 @@ class ChoosingWinner(GamePhase):
     self.copy_command(WaitingForPlayers.list_used_sets)
 
   def act(self, g: Game):
-    g.com.announce('Everyone has played. Now `{}` has to choose a winner. '
+    g.com.announce('Everyone has played. Now ∆{}∆ has to choose a winner. '
                    'Candidates are:'.format(g.czar))
 
     g.player_perm = g.list_players()
@@ -664,7 +664,7 @@ class ChoosingWinner(GamePhase):
 
     for i, player in enumerate(g.player_perm):
       s = g.black_card.insert(g.played[player])
-      g.com.announce('[`{}`] {}'.format(i, s))
+      g.com.announce('[∆{}∆] {}'.format(i, s))
 
   @Command(names=['pick', 'p', 'winner', 'w'], player_only=True)
   def pick(self, g: Game, nick, args):
@@ -688,7 +688,7 @@ class ChoosingWinner(GamePhase):
     if winner != g.RANDO_NICK and winner not in g.players:
       g.com.announce('Winner {} has left the game. No one gets a point.')
     else:
-      g.com.announce('`{}` wins with "{}".'
+      g.com.announce('∆{}∆ wins with "{}".'
                      .format(winner, g.black_card.insert(g.played[winner])))
       g.scores.point(winner)
 
@@ -711,5 +711,5 @@ class ChoosingWinner(GamePhase):
     status -- shows information about the current game
     """
     g.com.announce(
-      '`{}` players. Black card: "{}". Waiting for card czar `{}` to choose the winner.'
+      '∆{}∆ players. Black card: "{}". Waiting for card czar ∆{}∆ to choose the winner.'
       ''.format(g.count_players(), g.black_card, g.czar))
