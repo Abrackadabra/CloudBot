@@ -63,7 +63,7 @@ class Set(object):
     with open(filename) as file:
       content = ' '.join(file.readlines())
       content = html.unescape(content)
-      content = re.sub(r'<\w+?>', ' ', content)
+      content = re.sub(r'</?\w+?>', ' ', content)
       s = json.loads(content)
 
       return Set(

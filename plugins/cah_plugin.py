@@ -8,6 +8,22 @@ from .cah import Game, Communicator, Set
 
 
 @asyncio.coroutine
+@hook.irc_raw("004")
+def on_ready(conn, chan, bot, loop):
+  global game
+  game_chan = conn.config \
+    .get('plugins', {}) \
+    .get('yacah', {}) \
+    .get('yacahb_chan', None)
+
+  com = Communicator(conn, game_chan)
+
+  game = Game(com, 'data/cah_sets', game_chan, loop)
+
+  com.announce('Reloaded.')
+
+
+@asyncio.coroutine
 @hook.irc_raw("NICK")
 def on_nick(irc_raw):
   global game
@@ -29,21 +45,6 @@ def on_part(chan, nick):
 def on_quit(nick):
   if nick in game.players + game.joiners:
     game.process(nick, 'leave', '')
-
-
-@hook.irc_raw("004")
-def on_ready(conn, chan, bot):
-  global game
-  game_chan = conn.config \
-    .get('plugins', {}) \
-    .get('yacah', {}) \
-    .get('yacahb_chan', None)
-
-  com = Communicator(conn, game_chan)
-
-  game = Game(com, 'data/cah_sets', game_chan)
-
-  com.announce('Reloaded.')
 
 
 @hook.irc_raw('PRIVMSG')
@@ -68,10 +69,6 @@ def catch_all(nick, chan, content):
       game.com.announce('An error occured. Game stopped.')
 
       game.reset()
-
-
-
-
 
 @asyncio.coroutine
 @hook.command('load_set', permissions=['botcontrol'])

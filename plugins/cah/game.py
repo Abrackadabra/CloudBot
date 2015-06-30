@@ -1,5 +1,7 @@
+from datetime import datetime, timedelta
 import random
 import re
+import asyncio
 
 from .cards import Deck
 from .score import Scores
@@ -8,12 +10,13 @@ from .score import Scores
 class Game(object):
   RANDO_NICK = 'Rando Cardrissian'
 
-  def __init__(self, com, card_dir, chan):
+  def __init__(self, com, card_dir, chan, loop):
     """
     :type com: Communicator
     """
     self.com = com
     self.chan = chan
+    self.loop = loop
 
     self.card_dir = card_dir
     self.deck = Deck(card_dir)
@@ -53,6 +56,13 @@ class Game(object):
 
     self.phase = NoGame()
 
+    if not hasattr(self, 'timeout_handles'):
+      self.timeout_handles = []
+
+    self.cancel_timeouts()
+
+    self.timeout_time = datetime.now()
+
   def list_players(self):
     r = list(self.players)
     if self.rando:
@@ -61,6 +71,11 @@ class Game(object):
 
   def count_players(self):
     return len(self.list_players())
+
+  def cancel_timeouts(self):
+    for i in self.timeout_handles:
+      i.cancel()
+    self.timeout_handles = []
 
 
 class Command(object):
@@ -90,8 +105,6 @@ class Command(object):
 
     f.names = self.names
     f.command = True
-    if 'c' in f.names:
-      print('wut')
     f.player_only = self.player_only
     f.help = self.strip_doc(f)
 
@@ -124,7 +137,6 @@ class GamePhase(object):
     g.czar_index = (g.czar_index + 1) % len(g.players)
     g.czar = g.players[g.czar_index]
 
-
   @Command(names=['h', 'help', '?', 'wtf', 'command', 'commands'])
   def help(self, g: Game, nick, args):
     """
@@ -149,6 +161,16 @@ class GamePhase(object):
     g.com.notice(nick, 'Commands in this phase: {}. Type "? <command>" to learn more.'
                        ''.format(', '.join(command_names)))
 
+  @Command(names=['time', 't'])
+  def time(self, g: Game, nick, args):
+    """
+    time -- shows time left until timeout
+    """
+    if g.timeout_handles:
+      g.com.announce('Timeout will happen in {}.'.format(g.timeout_time - datetime.now()))
+      return
+    g.com.announce('There is no timeout now.')
+
 
 class NoGame(GamePhase):
   def __init__(self):
@@ -166,7 +188,8 @@ class NoGame(GamePhase):
     g.creator = nick
     g.players = [nick]
 
-    return WaitingForPlayers()
+    new_state = WaitingForPlayers()
+    return new_state.act(g) or new_state
 
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
@@ -177,6 +200,23 @@ class NoGame(GamePhase):
 
 
 class WaitingForPlayers(GamePhase):
+  def act(self, g: Game):
+    def timeout_soon(g: Game):
+      if len(g.players) == 1:
+        g.com.announce('The game will timeout soon if nobody joins!')
+
+    def timeout(g: Game):
+      if len(g.players) == 1:
+        g.com.announce('Time out! Game stopped.')
+        g.reset()
+
+    td_soon = timedelta(minutes=4)
+    g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
+
+    td = timedelta(minutes=5)
+    g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
+    g.timeout_time = datetime.now() + td
+
   @Command(names=['join', 'j'])
   def join(self, g: Game, nick, args):
     """
@@ -215,6 +255,7 @@ class WaitingForPlayers(GamePhase):
       g.com.reply(nick, 'Need at least ∆3∆ players to start a game.')
     else:
       new_state = PlayingCards()
+      g.cancel_timeouts()
       return new_state.deal(g) or new_state.act(g) or new_state
 
   @Command(names=['limit', 'l'])
@@ -374,42 +415,31 @@ class PlayingCards(GamePhase):
     self.copy_command(WaitingForPlayers.list_sets)
     self.copy_command(WaitingForPlayers.list_used_sets)
 
-  def deal(self, g: Game):
-    g.com.announce('Starting a ∆{}∆ player ∆{}∆/∆{}∆ card game.'
-                   .format(len(g.players),
-                           len(g.deck.black_pool),
-                           len(g.deck.white_pool)))
+  def waiting_for(self, g: Game):
+    return [i for i in g.players if i not in g.played and i != g.czar]
 
-    g.deck.add_blank(g.blanks)
+  def set_timeouts(self, g: Game):
+    def timeout_soon(g: Game):
+      g.com.announce('Waiting for ∆{}∆ to play...'.format(', '.join(self.waiting_for(g))))
 
-    for i in g.list_players():
-      g.scores.register(i)
+    def timeout(g: Game):
+      g.com.announce('∆{}∆ timed out!'.format(', '.join(self.waiting_for(g))))
+      g.phase = self.transition_choosing_winner(g)
 
-    random.shuffle(g.players)
-    for player in g.list_players():
-      g.hands[player] = g.deck.draw_white(10)
-      g.scores.register(player)
+    td_soon = timedelta(seconds=45)
+    g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
 
-    g.czar_index = 0
-
-    self.next_czar(g)
-
-    if self.is_over(g):
-      g.com.announce('The game is over before it even started!')
-      g.reset()
-      return NoGame()
-
-  def is_over(self, g: Game):
-    return \
-      g.scores.highest() >= g.limit or \
-      len(g.deck.black_pool) == 0 or \
-      len(g.deck.white_pool) == 0
+    td = timedelta(seconds=60)
+    g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
+    g.timeout_time = datetime.now() + td
 
   def act(self, g: Game):
     if self.is_over(g):
       g.com.announce('The game is over! ∆{}∆ won!'.format(', '.join(g.scores.winners())))
       g.reset()
       return NoGame()
+
+    self.set_timeouts(g)
 
     for i in g.joiners:
       g.com.announce('∆{}∆ is joining the game!'.format(i))
@@ -468,6 +498,37 @@ class PlayingCards(GamePhase):
       g.com.announce('The game is over! ∆{}∆ won!'.format(', '.join(g.scores.winners())))
       g.reset()
       return NoGame()
+
+  def deal(self, g: Game):
+    g.com.announce('Starting a ∆{}∆ player ∆{}∆/∆{}∆ card game.'
+                   .format(len(g.players),
+                           len(g.deck.black_pool),
+                           len(g.deck.white_pool)))
+
+    g.deck.add_blank(g.blanks)
+
+    for i in g.list_players():
+      g.scores.register(i)
+
+    random.shuffle(g.players)
+    for player in g.list_players():
+      g.hands[player] = g.deck.draw_white(10)
+      g.scores.register(player)
+
+    g.czar_index = 0
+
+    self.next_czar(g)
+
+    if self.is_over(g):
+      g.com.announce('The game is over before it even started!')
+      g.reset()
+      return NoGame()
+
+  def is_over(self, g: Game):
+    return \
+      g.scores.highest() >= g.limit or \
+      len(g.deck.black_pool) == 0 or \
+      len(g.deck.white_pool) == 0
 
 
   @Command(names=['scores', 'sc', 'stats', 'points', 'pts'])
@@ -569,12 +630,15 @@ class PlayingCards(GamePhase):
     if len(g.played) < g.count_players() - 1:
       return
 
+    return self.transition_choosing_winner(g)
+
+  def transition_choosing_winner(self, g):
     for player, cards in g.played.items():
       for card in cards:
         g.hands[player].remove(card)
 
+    g.cancel_timeouts()
     new_state = ChoosingWinner()
-
     return new_state.act(g) or new_state
 
   @Command(names=['status', 's'])
@@ -582,14 +646,12 @@ class PlayingCards(GamePhase):
     """
     status -- shows information about the current game
     """
-    waiting = []
-    for i in g.players:
-      if i not in g.played and i != g.czar:
-        waiting.append(i)
-
     g.com.announce('∆{}∆ players. ∆{}∆ is the card czar. Black card: "{}". '
                    'Waiting for ∆{}∆ to play.'
-                   ''.format(g.count_players(), g.czar, g.black_card, ', '.join(waiting)))
+                   ''.format(g.count_players(),
+                             g.czar,
+                             g.black_card,
+                             ', '.join(self.waiting_for(g))))
 
   @Command(names=['cards', 'c', 'hand', 'h'], player_only=True)
   def cards(self, g: Game, nick, args):
@@ -651,7 +713,28 @@ class ChoosingWinner(GamePhase):
     self.copy_command(WaitingForPlayers.list_sets)
     self.copy_command(WaitingForPlayers.list_used_sets)
 
+  def set_timeouts(self, g: Game):
+    def timeout_soon(g: Game):
+      g.com.announce('Waiting for ∆{}∆ to choose the winner...'.format(g.czar))
+
+    def timeout(g: Game):
+      g.com.announce('∆{}∆ timed out!'.format(g.czar))
+      g.phase = self.transition_playing_cards(g)
+
+    td_soon = timedelta(seconds=45)
+    g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
+
+    td = timedelta(seconds=60)
+    g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
+    g.timeout_time = datetime.now() + td
+
   def act(self, g: Game):
+    if len(g.played) < 2:
+      g.com.announce('Not enough people have played anything :(. Restarting the round...')
+      return self.transition_playing_cards(g)
+
+    self.set_timeouts(g)
+
     g.com.announce('Everyone has played. Now ∆{}∆ has to choose a winner. '
                    'Candidates are:'.format(g.czar))
 
@@ -695,11 +778,14 @@ class ChoosingWinner(GamePhase):
 
     g.round += 1
 
+    return self.transition_playing_cards(g)
+
+  def transition_playing_cards(self, g: Game):
     for player, cards in g.played.items():
       g.hands[player] += g.deck.draw_white(len(cards))
 
+    g.cancel_timeouts()
     new_state = PlayingCards()
-
     return new_state.act(g) or new_state
 
   @Command(names=['status', 's'])

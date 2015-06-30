@@ -1,3 +1,4 @@
+import asyncio
 import pytest
 
 from plugins.cah import Communicator, Game
@@ -36,7 +37,9 @@ def com():
 
 @pytest.fixture(scope='function')
 def g(com):
-  game = Game(com, 'data/cah_sets', '')
+  loop = asyncio.get_event_loop()
+
+  game = Game(com, 'data/cah_sets', '', loop)
 
   def d(nick, command, args=''):
     print('<{}: {} {}'.format(nick, command, args))
