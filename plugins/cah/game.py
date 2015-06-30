@@ -115,9 +115,6 @@ class GamePhase(object):
     for i in dir(self):
       method = getattr(self, i)
       if Command.is_command(method) and command in method.names:
-        if i == 'cards':
-          print('waaat')
-
         if method.player_only and nick not in g.players:
           continue
 
