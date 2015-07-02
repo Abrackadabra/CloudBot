@@ -41,9 +41,9 @@ def g(com):
 
   game = Game(com, 'data/cah_sets', '', loop)
 
-  def d(nick, command, args=''):
+  def d(nick, command, args='', is_pm=False):
     print('<{}: {} {}'.format(nick, command, args))
-    game.process(nick, command, args)
+    game.process(nick, command, args, is_pm)
 
   game.d = d
   return game

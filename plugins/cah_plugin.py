@@ -61,12 +61,13 @@ def catch_all(nick, chan, content):
 
     try:
       if re.match(r'^\d+', content):
-        game.process(nick, 'pick', content)
-      else:
-        game.process(nick, command, args)
+        args = content
+        command = 'pick'
+
+      game.process(nick, command, args, chan == nick)
     except Exception as e:
       traceback.print_exc()
-      game.com.announce('An error occured. Game stopped.')
+      game.com.announce('An error occurred. Game stopped.')
 
       game.reset()
 
