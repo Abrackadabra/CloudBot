@@ -3193,10 +3193,6 @@
       "text": "...and then there was the time I found %s on the root partition."
     },
     {
-      "gaps": 1,
-      "text": "r/%s."
-    },
-    {
       "gaps": 2,
       "text": "In the next planning session, we'll cover %s and %s."
     },

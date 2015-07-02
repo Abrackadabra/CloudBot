@@ -426,10 +426,10 @@ class PlayingCards(GamePhase):
       g.com.announce('∆{}∆ timed out!'.format(', '.join(self.waiting_for(g))))
       g.phase = self.transition_choosing_winner(g)
 
-    td_soon = timedelta(seconds=45)
+    td_soon = timedelta(minutes=2)
     g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
 
-    td = timedelta(seconds=60)
+    td = timedelta(minutes=3)
     g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
     g.timeout_time = datetime.now() + td
 
@@ -721,10 +721,10 @@ class ChoosingWinner(GamePhase):
       g.com.announce('∆{}∆ timed out!'.format(g.czar))
       g.phase = self.transition_playing_cards(g)
 
-    td_soon = timedelta(seconds=45)
+    td_soon = timedelta(minutes=2)
     g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
 
-    td = timedelta(seconds=60)
+    td = timedelta(minutes=3)
     g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
     g.timeout_time = datetime.now() + td
 
