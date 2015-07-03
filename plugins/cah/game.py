@@ -688,6 +688,26 @@ class PlayingCards(GamePhase):
 
     self.cards(g, nick, '')
 
+  @Command(player_only=True)
+  def swap(self, g: Game, nick, args):
+    if nick == g.czar:
+      g.com.notice(nick, 'The card czar cannot swap cards.')
+      return
+
+    if g.scores.get_score(nick) <= 0:
+      g.com.notice(nick, 'You need positive score to swap cards.')
+      return
+
+    g.com.announce('∆{}∆ traded one point for a brand new hand!'.format(nick))
+
+    if nick in g.played:
+      del g.played[nick]
+
+    g.deck.return_whites(g.hands[nick])
+    g.hands[nick] = g.deck.draw_white(10)
+
+    self.cards(g, nick, '')
+
 
 class ChoosingWinner(GamePhase):
   def __init__(self):
@@ -695,6 +715,7 @@ class ChoosingWinner(GamePhase):
     self.copy_command(PlayingCards.leave)
     self.copy_command(PlayingCards.cards)
     self.copy_command(PlayingCards.scores)
+    self.copy_command(PlayingCards.swap)
 
     self.copy_command(WaitingForPlayers.list_sets)
     self.copy_command(WaitingForPlayers.list_used_sets)

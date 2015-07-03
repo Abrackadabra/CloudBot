@@ -383,3 +383,25 @@ def test_pucki(com: Communicator, g: Game):
 
   g.d('c', 'leave')
   g.d('c', 'hand')
+
+
+def test_swap(com: Communicator, g: Game):
+  g.d('a', 'c')
+
+  g.d('b', 'j')
+  g.d('c', 'j')
+
+  g.d('a', 'st')
+  g.czar_index = g.players.index('a')
+  g.czar = 'a'
+
+  g.scores.point('b')
+
+  g.d('b', 'c')
+  prev_hand = com.log[-1]
+
+  g.d('b', 'swap')
+  assert 'traded one point' in ' '.join(com.log[-5:])
+  new_hand = com.log[-1]
+
+  assert prev_hand != new_hand

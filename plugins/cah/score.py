@@ -25,6 +25,9 @@ class Scores(object):
   def inject_zwsp(self, nick):
     return nick[:1] + '\u200b' + nick[1:]
 
+  def get_score(self, nick):
+    return self.scores[nick]
+
   def __str__(self):
     s = []
     for i, j in sorted(self.scores.items(), key=lambda x: -x[1]):
