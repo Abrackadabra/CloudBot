@@ -351,7 +351,7 @@ def test_blanks(com, g):
   g.czar_index = g.players.index('a')
   g.czar = 'a'
 
-  g.d('b', 'write', '8 TEST')
+  g.d('b', 'write', '8 TEST', True)
   g.d('b', 'pick', '8')
 
   assert 'TEST' in com.log[-1]

@@ -658,7 +658,7 @@ class PlayingCards(GamePhase):
     """
     g.com.reply(nick, 'The point limit is ∆{}∆ points.'.format(g.limit))
 
-  @Command(player_only=True)
+  @Command(player_only=True, iff_pm=True)
   def write(self, g: Game, nick, args: str):
     """
     write <num> <text> -- writes <text> on blank card <num> from you hand
