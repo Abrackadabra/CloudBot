@@ -21,7 +21,7 @@ class Communicator(object):
       self.conn.notice(nick, i)
 
   MAX_SPLIT_LENGTH = 400
-  SPLIT_LEEWAY = 100
+  SPLIT_LEEWAY = 180
   SPLIT_STRINGS = [', ', '] ', ' ']
 
   def split_msg(self, s):

@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import random
 import re
+import asyncio
 
 from .cards import Deck
 from .score import Scores
@@ -8,8 +9,22 @@ from .score import Scores
 
 class Game(object):
   RANDO_NICK = 'Rando Cardrissian'
+  HAND_SIZE = 10
+  DEFAULT_POINT_LIMIT = 5
+  MAX_POINT_LIMIT = 100
 
-  def __init__(self, com, card_dir, chan, loop):
+  WAITING_FOR_PLAYERS_TIMEOUT_SOON = timedelta(minutes=4)
+  WAITING_FOR_PLAYERS_TIMEOUT = timedelta(minutes=5)
+
+  MIN_PLAYERS = 3
+
+  PLAYING_CARDS_TIMEOUT_SOON = timedelta(minutes=1)
+  PLAYING_CARDS_TIMEOUT = timedelta(minutes=2)
+
+  CHOOSING_WINNER_TIMEOUT_SOON = timedelta(minutes=1)
+  CHOOSING_WINNER_TIMEOUT = timedelta(minutes=2)
+
+  def __init__(self, com, card_dir, chan, loop: asyncio.AbstractEventLoop):
     """
     :type com: Communicator
     """
@@ -25,7 +40,7 @@ class Game(object):
 
     self.reset()
 
-  def process(self, nick, command, args, is_pm):
+  def process(self, nick, command, args, is_pm=False):
     self.phase.process(self, nick, command.lower(), args, is_pm)
 
   def reset(self):
@@ -46,7 +61,7 @@ class Game(object):
     self.player_perm = []
 
     self.joiners = []
-    self.limit = 5
+    self.limit = self.DEFAULT_POINT_LIMIT
 
     self.deck.reset()
 
@@ -56,10 +71,9 @@ class Game(object):
 
     self.phase = NoGame()
 
-    if not hasattr(self, 'timeout_handles'):
-      self.timeout_handles = []
-
     self.cancel_timeouts()
+
+    self.timeout_handles = []
 
     self.timeout_time = datetime.now()
 
@@ -73,9 +87,9 @@ class Game(object):
     return len(self.list_players())
 
   def cancel_timeouts(self):
-    for i in self.timeout_handles:
-      i.cancel()
-    self.timeout_handles = []
+    if hasattr(self, 'timeout_handles'):
+      for i in self.timeout_handles:
+        i.cancel()
 
 
 class Command(object):
@@ -210,17 +224,18 @@ class WaitingForPlayers(GamePhase):
       if len(g.players) == 1:
         g.com.announce('The game will timeout soon if nobody joins!')
 
+    g.timeout_handles.append(
+      g.loop.call_later(g.WAITING_FOR_PLAYERS_TIMEOUT_SOON.total_seconds(), timeout_soon, g))
+
     def timeout(g: Game):
       if len(g.players) == 1:
         g.com.announce('Time out! Game stopped.')
         g.reset()
 
-    td_soon = timedelta(minutes=4)
-    g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
+    g.timeout_handles.append(
+      g.loop.call_later(g.WAITING_FOR_PLAYERS_TIMEOUT.total_seconds(), timeout, g))
 
-    td = timedelta(minutes=5)
-    g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
-    g.timeout_time = datetime.now() + td
+    g.timeout_time = datetime.now() + g.WAITING_FOR_PLAYERS_TIMEOUT
 
   @Command(names=['join', 'j'])
   def join(self, g: Game, nick, args):
@@ -255,8 +270,8 @@ class WaitingForPlayers(GamePhase):
     """
     if nick != g.creator:
       g.com.notice(nick, 'Only ∆{}∆ can start the game.'.format(g.creator))
-    elif g.count_players() < 3:
-      g.com.reply(nick, 'Need at least ∆3∆ players to start a game.')
+    elif g.count_players() < g.MIN_PLAYERS:
+      g.com.reply(nick, 'Need at least ∆{}∆ players to start a game.'.format(g.MIN_PLAYERS))
     else:
       g.cancel_timeouts()
 
@@ -283,7 +298,7 @@ class WaitingForPlayers(GamePhase):
       return
 
     c = int(parts[0])
-    if 0 < c < 100:
+    if 0 < c <= g.MAX_POINT_LIMIT:
       g.limit = c
       g.com.announce('∆{}∆ changed the point limit to ∆{}∆.'.format(nick, c))
     else:
@@ -434,7 +449,7 @@ class PlayingCards(GamePhase):
 
     random.shuffle(g.players)
     for player in g.list_players():
-      g.hands[player] = g.deck.draw_white(10)
+      g.hands[player] = g.deck.draw_white(g.HAND_SIZE)
       g.scores.register(player)
 
     g.czar_index = 0
@@ -452,7 +467,7 @@ class PlayingCards(GamePhase):
     for i in g.joiners:
       g.com.announce('∆{}∆ is joining the game!'.format(i))
       g.players.append(i)
-      g.hands[i] = g.deck.draw_white(10)
+      g.hands[i] = g.deck.draw_white(g.HAND_SIZE)
       g.scores.register(i)
 
     g.joiners.clear()
@@ -509,19 +524,19 @@ class PlayingCards(GamePhase):
     def timeout_soon(g: Game):
       g.com.announce('Waiting for ∆{}∆ to play...'.format(', '.join(self._waiting_for(g))))
 
+    g.timeout_handles.append(
+      g.loop.call_later(g.PLAYING_CARDS_TIMEOUT_SOON.total_seconds(), timeout_soon, g))
+
     def timeout(g: Game):
       g.com.announce('∆{}∆ timed out!'.format(', '.join(self._waiting_for(g))))
       self._transition_choosing_winner(g)
 
-    td_soon = timedelta(minutes=2)
-    g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
-
-    td = timedelta(minutes=3)
-    g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
-    g.timeout_time = datetime.now() + td
+    g.timeout_handles.append(
+      g.loop.call_later(g.PLAYING_CARDS_TIMEOUT.total_seconds(), timeout, g))
+    g.timeout_time = datetime.now() + g.PLAYING_CARDS_TIMEOUT
 
   def _are_hands_full(self, g: Game):
-    return all(len(i) == 10 for i in g.hands.values())
+    return all(len(i) == g.HAND_SIZE for i in g.hands.values())
 
   def _transition_choosing_winner(self, g):
     g.cancel_timeouts()
@@ -573,7 +588,7 @@ class PlayingCards(GamePhase):
     g.deck.return_whites(g.hands[nick])
     del g.hands[nick]
 
-    if g.count_players() < 3:
+    if g.count_players() < g.MIN_PLAYERS:
       g.com.announce('There are not enough players to continue. Game stopped.')
       g.reset()
       return
@@ -704,7 +719,7 @@ class PlayingCards(GamePhase):
       del g.played[nick]
 
     g.deck.return_whites(g.hands[nick])
-    g.hands[nick] = g.deck.draw_white(10)
+    g.hands[nick] = g.deck.draw_white(g.HAND_SIZE)
 
     self.cards(g, nick, '')
 
@@ -743,18 +758,18 @@ class ChoosingWinner(GamePhase):
     def timeout_soon(g: Game):
       g.com.announce('Waiting for ∆{}∆ to choose the winner...'.format(g.czar))
 
+    g.timeout_handles.append(
+      g.loop.call_later(g.CHOOSING_WINNER_TIMEOUT_SOON.total_seconds(), timeout_soon, g))
+
     def timeout(g: Game):
       g.com.announce('The czar ∆{}∆ timed out! Restarting the round...'.format(g.czar))
       g.deck.return_black(g.black_card)
 
       self._transition_playing_cards(g)
 
-    td_soon = timedelta(minutes=2)
-    g.timeout_handles.append(g.loop.call_later(td_soon.total_seconds(), timeout_soon, g))
-
-    td = timedelta(minutes=3)
-    g.timeout_handles.append(g.loop.call_later(td.total_seconds(), timeout, g))
-    g.timeout_time = datetime.now() + td
+    g.timeout_handles.append(
+      g.loop.call_later(g.CHOOSING_WINNER_TIMEOUT.total_seconds(), timeout, g))
+    g.timeout_time = datetime.now() + g.CHOOSING_WINNER_TIMEOUT
 
   def _transition_playing_cards(self, g: Game):
     for player, cards in g.played.items():

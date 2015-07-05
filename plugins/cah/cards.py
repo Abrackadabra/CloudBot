@@ -78,10 +78,10 @@ class Set(object):
     if len(set_id) != 5:
       raise Exception('Wrong syntax, set id should be 5 symbols')
 
-    URL_META = 'https://api.cardcastgame.com/v1/decks/{}'
-    URL_CARDS = 'https://api.cardcastgame.com/v1/decks/{}/cards'
+    url_meta = 'https://api.cardcastgame.com/v1/decks/{}'
+    url_cards = 'https://api.cardcastgame.com/v1/decks/{}/cards'
 
-    r = requests.get(URL_META.format(set_id))
+    r = requests.get(url_meta.format(set_id))
 
     if r.status_code == 404:
       raise Exception('No such set.')
@@ -91,7 +91,7 @@ class Set(object):
     x = json.loads(r.text)
     name = '{} [{}]'.format(x['name'], set_id)
 
-    r = requests.get(URL_CARDS.format(set_id))
+    r = requests.get(url_cards.format(set_id))
 
     if r.status_code == 404:
       raise Exception('No such set.')
@@ -161,7 +161,6 @@ class Deck(object):
     for i, j in self.sets.items():
       if j.default:
         self.add_set(i)
-
 
   def add_blank(self, n):
     for i in range(n):
