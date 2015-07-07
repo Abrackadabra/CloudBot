@@ -10,8 +10,10 @@ from .score import Scores
 class Game(object):
   RANDO_NICK = 'Rando Cardrissian'
   HAND_SIZE = 10
-  DEFAULT_POINT_LIMIT = 5
+  DEFAULT_POINT_LIMIT = 10
   MAX_POINT_LIMIT = 100
+  DEFAULT_BLANK_COUNT = 50
+  DEFAULT_RANDO_STATE = True
 
   WAITING_FOR_PLAYERS_TIMEOUT_SOON = timedelta(minutes=4)
   WAITING_FOR_PLAYERS_TIMEOUT = timedelta(minutes=5)
@@ -65,9 +67,9 @@ class Game(object):
 
     self.deck.reset()
 
-    self.rando = False
+    self.rando = self.DEFAULT_RANDO_STATE
 
-    self.blanks = 0
+    self.blanks = self.DEFAULT_BLANK_COUNT
 
     self.phase = NoGame()
 
@@ -404,7 +406,7 @@ class WaitingForPlayers(GamePhase):
     else:
       g.com.reply(nick, 'Possible arguments: ∆on∆, ∆off∆.')
 
-  @Command()
+  @Command(names=['blank', 'blank', 'b'])
   def blank(self, g: Game, nick, args):
     """
     blank [<num>] -- controls number of blank white cards in the deck
