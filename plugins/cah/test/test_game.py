@@ -46,7 +46,10 @@ def g(com):
     print('<{}: {} {}'.format(nick, command, args))
     game.process(nick, command, args, is_pm)
 
-  game.d = d
+  setattr(game, 'd', d)
+  game.DEFAULT_RANDO_STATE = False
+  game.DEFAULT_BLANK_COUNT = 0
+
   return game
 
 

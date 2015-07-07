@@ -26,6 +26,10 @@ class Game(object):
   CHOOSING_WINNER_TIMEOUT_SOON = timedelta(minutes=1)
   CHOOSING_WINNER_TIMEOUT = timedelta(minutes=2)
 
+  @staticmethod
+  def inject_zwsp(nick):
+    return nick[:1] + '\u200b' + nick[1:]
+
   def __init__(self, com, card_dir, chan, loop: asyncio.AbstractEventLoop):
     """
     :type com: Communicator
@@ -655,9 +659,9 @@ class PlayingCards(GamePhase):
     g.com.announce('∆{}∆ players. ∆{}∆ is the card czar. Black card: "{}". '
                    'Waiting for ∆{}∆ to play.'
                    ''.format(g.count_players(),
-                             g.czar,
-                             g.black_card,
-                             ', '.join(self._waiting_for(g))))
+      g.czar,
+      g.black_card,
+      ', '.join(self._waiting_for(g))))
 
   @Command(names=['cards', 'c', 'hand', 'h'], player_only=True)
   def cards(self, g: Game, nick, args):
@@ -810,6 +814,9 @@ class ChoosingWinner(GamePhase):
     else:
       g.com.announce('∆{}∆ wins with "{}".'
                      .format(winner, g.black_card.insert(g.played[winner])))
+      s = 'Last round: {}'.format(
+        ', '.join('[∆{}∆] {}'.format(i, Game.inject_zwsp(j)) for i, j in enumerate(g.player_perm)))
+      g.com.announce(s)
       g.scores.point(winner)
 
     g.com.announce(str(g.scores))
