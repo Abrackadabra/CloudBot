@@ -13,14 +13,14 @@ script:
 
 after_success:
   - "coveralls"
-  
+
 env:
   - PYTHONPATH=.
 
 notifications:
   irc:
     channels:
-      - "irc.esper.net#cloudbot"
+      - "chat.freenode.net#yacah"
     template:
       - "%{repository}#%{build_number} (%{branch} - %{commit}) %{author}: %{message}"
   on_failure: always
