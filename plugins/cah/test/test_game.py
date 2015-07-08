@@ -410,11 +410,11 @@ def test_swap(com: Communicator, g: Game):
 
   assert prev_hand != new_hand
 
-
+@pytest.mark.slow
 def test_timeouts(com: Communicator, g: Game):
-  g.WAITING_FOR_PLAYERS_TIMEOUT = timedelta(seconds=0.5)
-  g.PLAYING_CARDS_TIMEOUT = timedelta(seconds=0.5)
-  g.CHOOSING_WINNER_TIMEOUT = timedelta(seconds=0.5)
+  g.WAITING_FOR_PLAYERS_TIMEOUT = timedelta(seconds=5)
+  g.PLAYING_CARDS_TIMEOUT = timedelta(seconds=5)
+  g.CHOOSING_WINNER_TIMEOUT = timedelta(seconds=5)
 
   @asyncio.coroutine
   def checker(g: Game, time, expected_phase):
@@ -430,7 +430,7 @@ def test_timeouts(com: Communicator, g: Game):
   g.d('a', 'c')
 
   assert type(g.phase) == WaitingForPlayers
-  g.loop.run_until_complete(asyncio.async(checker(g, 0.75, NoGame)))
+  g.loop.run_until_complete(asyncio.async(checker(g, 7.5, NoGame)))
 
   g.reset()
   g.d('a', 'c')
@@ -439,7 +439,7 @@ def test_timeouts(com: Communicator, g: Game):
   g.d('a', 'st')
 
   assert type(g.phase) == PlayingCards
-  g.loop.run_until_complete(asyncio.async(checker(g, 0.75, PlayingCards)))
+  g.loop.run_until_complete(asyncio.async(checker(g, 7.5, PlayingCards)))
 
   g.reset()
   g.d('a', 'c')
@@ -453,6 +453,6 @@ def test_timeouts(com: Communicator, g: Game):
   g.d('c', 'pick', '0')
 
   assert type(g.phase) == PlayingCards
-  g.loop.run_until_complete(asyncio.async(checker(g, 0.75, ChoosingWinner)))
+  g.loop.run_until_complete(asyncio.async(checker(g, 7.5, ChoosingWinner)))
 
-  g.loop.run_until_complete(asyncio.async(checker(g, 0.5, PlayingCards)))
+  g.loop.run_until_complete(asyncio.async(checker(g, 5, PlayingCards)))
