@@ -201,7 +201,7 @@ class NoGame(GamePhase):
   def __init__(self):
     self.copy_command(WaitingForPlayers.list_sets)
 
-  @Command(names=['create', 'c'])
+  @Command(names=['create', 'c', 'join', 'j', 'play', 'p'])
   def create(self, g: Game, nick, args):
     """
     create -- creates a game. Creator of the game can then set various settings and start the game
