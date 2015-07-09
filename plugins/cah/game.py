@@ -192,7 +192,15 @@ class GamePhase(object):
     time -- shows time left until timeout
     """
     if g.timeout_handles:
-      g.com.announce('Timeout will happen in {}.'.format(g.timeout_time - datetime.now()))
+      td = g.timeout_time - datetime.now()
+      secs = int(td.total_seconds())
+      mins = secs // 60
+      secs %= 60
+      if mins:
+        msg = 'Timeout will happen in {} minutes and {} seconds.'.format(mins, secs)
+      else:
+        msg = 'Timeout will happen in {} seconds.'.format(secs)
+      g.com.announce(msg)
       return
     g.com.announce('There is no timeout now.')
 
