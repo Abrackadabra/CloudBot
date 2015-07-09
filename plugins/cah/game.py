@@ -711,6 +711,10 @@ class PlayingCards(GamePhase):
 
   @Command(player_only=True)
   def swap(self, g: Game, nick, args):
+    """
+    swap -- if you have positive score, you can spend one point to return all cards you have
+    and draw a new hand
+    """
     if nick == g.czar:
       g.com.notice(nick, 'The card czar cannot swap cards.')
       return
