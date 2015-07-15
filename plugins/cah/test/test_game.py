@@ -456,3 +456,20 @@ def test_timeouts(com: Communicator, g: Game):
   g.loop.run_until_complete(asyncio.async(checker(g, 7.5, ChoosingWinner)))
 
   g.loop.run_until_complete(asyncio.async(checker(g, 5, PlayingCards)))
+
+def test_custom_commands(com: Communicator, g: Game):
+  g.deck.black_pool = []
+  for i in range(20):
+    g.deck.black_pool.append(BlackCard(text='dummy card {} %s.'.format(i), gaps=1))
+  g.deck.white_pool = []
+
+  g.d('a', 'c')
+  g.d('b', 'j')
+  g.d('c', 'j')
+  g.d('a', 'st')
+
+  g.d('a', 'l')
+  assert 'point limit' in com.log[-1]
+
+  g.d('a', 'l', 'dsa')
+  assert 'point limit' in com.log[-1]

@@ -139,9 +139,13 @@ class Command(object):
 
 
 class GamePhase(object):
-  def copy_command(self, method):
+  def copy_command(self, method, **kwargs):
     name = method.__name__
-    copy = lambda *args, **kwargs: method(self, *args, **kwargs)
+
+    def copy(*args, **kwargs2):
+      kwargs2.update(**kwargs)
+      return method(self, *args, **kwargs2)
+
     copy = Command()(copy)
     Command.copy_fields(method, copy)
     setattr(self, name, copy)
@@ -294,12 +298,12 @@ class WaitingForPlayers(GamePhase):
       new_phase.deal(g)
 
   @Command(names=['limit', 'l'])
-  def limit(self, g: Game, nick, args):
+  def limit(self, g: Game, nick, args, just_display=False):
     """
     limit [<number>] -- shows current point limit or sets it
     """
     parts = args.split()
-    if len(parts) == 0:
+    if just_display or len(parts) == 0:
       g.com.reply(nick, 'Current point limit is ∆{}∆ points.'.format(g.limit))
       return
 
@@ -447,6 +451,7 @@ class WaitingForPlayers(GamePhase):
 
 class PlayingCards(GamePhase):
   def __init__(self):
+    self.copy_command(WaitingForPlayers.limit, just_display=True)
     self.copy_command(WaitingForPlayers.list_sets)
     self.copy_command(WaitingForPlayers.list_used_sets)
 
@@ -667,9 +672,9 @@ class PlayingCards(GamePhase):
     g.com.announce('∆{}∆ players. ∆{}∆ is the card czar. Black card: "{}". '
                    'Waiting for ∆{}∆ to play.'
                    ''.format(g.count_players(),
-      g.czar,
-      g.black_card,
-      ', '.join(self._waiting_for(g))))
+                             g.czar,
+                             g.black_card,
+                             ', '.join(self._waiting_for(g))))
 
   @Command(names=['cards', 'c', 'hand', 'h'], player_only=True)
   def cards(self, g: Game, nick, args):
@@ -750,6 +755,7 @@ class ChoosingWinner(GamePhase):
     self.copy_command(PlayingCards.scores)
     self.copy_command(PlayingCards.swap)
 
+    self.copy_command(WaitingForPlayers.limit, just_display=True)
     self.copy_command(WaitingForPlayers.list_sets)
     self.copy_command(WaitingForPlayers.list_used_sets)
 
