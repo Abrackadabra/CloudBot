@@ -3,7 +3,7 @@ from datetime import timedelta
 import pytest
 
 from plugins.cah import Communicator, Game
-from plugins.cah.cards import BlackCard
+from plugins.cah.cards import BlackCard, Set, WhiteCard
 from plugins.cah.game import PlayingCards, NoGame, WaitingForPlayers, ChoosingWinner
 
 
@@ -41,6 +41,17 @@ def g(com):
   loop = asyncio.get_event_loop()
 
   game = Game(com, 'data/cah_sets', '', loop)
+
+  game.deck.sets = {
+    'dummy (100/100)': Set('dummy',
+                 [BlackCard('dummy black card #{} %s'.format(i), 1) for i in range(100)],
+                 [WhiteCard('dummy white card #{}'.format(i)) for i in range(100)],
+                 default=True),
+    'dummy2 (100/100)': Set('dummy2',
+                 [BlackCard('dummy2 black card #{} %s'.format(i), 1) for i in range(100)],
+                 [WhiteCard('dummy2 white card #{}'.format(i)) for i in range(100)],
+                 default=False)
+  }
 
   def d(nick, command, args='', is_pm=False):
     print('<{}: {} {}'.format(nick, command, args))
@@ -266,30 +277,29 @@ def test_sets(com, g):
   :type g: Game
   """
   g.d('a', 'la')
-  assert 'Main Deck' in com.log[-1]
+  assert 'dummy' in com.log[-1]
 
   g.d('a', 'create')
 
   g.d('a', 'lu')
-  assert 'Main Deck' in com.log[-1]
+  assert 'dummy' in com.log[-1]
 
   g.d('a', 'list_sets')
-  assert 'Main Deck' in com.log[-1]
+  assert 'dummy' in com.log[-1]
 
   g.d('a', 'list_used_sets')
-  assert 'Main Deck' in com.log[-1]
+  assert 'dummy' in com.log[-1]
 
   def_count = len(g.deck.used_sets)
 
-  g.d('a', 'remove_set', '0')
-  assert len(g.deck.used_sets) == def_count - 1
-
-  g.d('a', 'leave')
-  g.d('a', 'create')
-  assert len(g.deck.used_sets) == def_count
-
   g.d('a', 'add_set', 'all')
   assert len(g.deck.used_sets) > def_count
+
+  count = len(g.deck.used_sets)
+
+  g.d('a', 'remove_set', '0')
+  assert len(g.deck.used_sets) == count - 1
+
 
 
 def test_scores(com, g):
@@ -410,6 +420,7 @@ def test_swap(com: Communicator, g: Game):
 
   assert prev_hand != new_hand
 
+
 @pytest.mark.slow
 def test_timeouts(com: Communicator, g: Game):
   g.WAITING_FOR_PLAYERS_TIMEOUT = timedelta(seconds=5)
@@ -457,6 +468,7 @@ def test_timeouts(com: Communicator, g: Game):
 
   g.loop.run_until_complete(asyncio.async(checker(g, 5, PlayingCards)))
 
+
 def test_custom_commands(com: Communicator, g: Game):
   g.deck.black_pool = []
   for i in range(20):
@@ -473,3 +485,22 @@ def test_custom_commands(com: Communicator, g: Game):
 
   g.d('a', 'l', 'dsa')
   assert 'point limit' in com.log[-1]
+
+
+def test_many_args(com: Communicator, g: Game):
+  g.d('a', 'c')
+
+  g.d('b', 'j')
+  g.d('c', 'j')
+  g.d('a', 'st')
+
+  g.czar_index = g.players.index('a')
+  g.czar = 'a'
+
+  g.d('b', 'p', '0 1 2')
+  g.d('b', 'p', '2')
+  g.d('c', 'p', '0 wololo')
+
+  g.d('a', 'p', '01')
+
+  assert 'Round 1' in ''.join(com.log)

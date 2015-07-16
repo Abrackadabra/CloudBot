@@ -562,7 +562,7 @@ class PlayingCards(GamePhase):
     g.phase = ChoosingWinner()
     g.phase.prepare(g)
 
-  def sanitize(self, s):
+  def _sanitize(self, s):
     return ''.join([i for i in s.strip() if i.isprintable()])
 
   @Command(names=['scores', 'sc', 'stats', 'points', 'pts'])
@@ -635,8 +635,8 @@ class PlayingCards(GamePhase):
 
     parts = args.split()
     choice = []
-    if len(parts) != g.black_card.gaps:
-      g.com.notice(nick, 'Wrong number of cards. ∆{}∆ needed.'.format(g.black_card.gaps))
+    if len(parts) < g.black_card.gaps:
+      g.com.notice(nick, 'Too few cards. ∆{}∆ needed.'.format(g.black_card.gaps))
       return
     for i in parts[:g.black_card.gaps]:
       if not i.isnumeric():
@@ -697,7 +697,7 @@ class PlayingCards(GamePhase):
     """
     write <num> <text> -- writes <text> on blank card <num> from you hand
     """
-    args = self.sanitize(args)
+    args = self._sanitize(args)
 
     parts = args.split(maxsplit=1)
 
