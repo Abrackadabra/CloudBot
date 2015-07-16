@@ -28,7 +28,6 @@ notifications:
       - "chat.freenode.net#yacah"
     template:
       - "%{repository_name}#%{build_number} (%{branch} - %{commit}) %{author}: \"%{commit_message}\" (%{message}) [%{result}]"
+    skip_join: true
   email: false
-  on_failure: always
-  on_success: always
-  skip_join: true
+
