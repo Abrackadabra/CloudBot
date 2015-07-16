@@ -640,11 +640,9 @@ class PlayingCards(GamePhase):
       return
     for i in parts[:g.black_card.gaps]:
       if not i.isnumeric():
-        g.com.notice(nick, 'Pick a digit.'.format(g.black_card.gaps))
         return
       c = int(i)
       if c < 0 or c >= len(g.hands[nick]):
-        g.com.notice(nick, 'You don\'t have that card.'.format(g.black_card.gaps))
         return
       card = g.hands[nick][c]
       if card in choice:
