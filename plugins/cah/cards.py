@@ -19,7 +19,7 @@ class WhiteCard(object):
     if self.text:
       return self.text
     return 'BLANK CARD: to play it you first have to write something on it by PMing the bot, ' \
-           'like "/msg yacahb write <cards id> <text>"'
+           'like "/msg yacahb write <text>"'
 
 
 class BlackCard(object):
