@@ -365,10 +365,11 @@ def test_blanks(com, g):
   g.czar_index = g.players.index('a')
   g.czar = 'a'
 
-  g.d('b', 'write', '8 TEST', True)
-  g.d('b', 'pick', '8')
+  g.d('b', 'write', 'TEST 1', True)
+  g.d('b', 'write', 'TEST 2', True)
+  g.d('b', 'pick', '1')
 
-  assert 'TEST' in com.log[-1]
+  assert 'TEST 2' in com.log[-1]
 
 
 def test_help(com: Communicator, g: Game):

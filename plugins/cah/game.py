@@ -695,29 +695,29 @@ class PlayingCards(GamePhase):
   @Command(player_only=True, iff_pm=True)
   def write(self, g: Game, nick, args: str):
     """
-    write <num> <text> -- writes <text> on blank card <num> from you hand
+    write <text> -- writes <text> on a blank card from you hand
     """
     args = self._sanitize(args)
 
-    parts = args.split(maxsplit=1)
-
-    if not args or len(parts) < 2 or not parts[0].isnumeric():
-      g.com.notice(nick, 'Usage: write <card\'s id> <text>')
+    if not args:
+      g.com.notice(nick, 'Usage: write <text>')
       return
 
-    id = int(parts[0])
+    card = None
+    for i in g.hands[nick]:
+      if i.is_blank:
+        card = i
+        break
 
-    if id < 0 or id >= len(g.hands[nick]):
-      g.com.notice(nick, 'Wrong card id.')
+    if not card:
+      g.com.notice(nick, 'You don\'t have a blank card.')
       return
-
-    card = g.hands[nick][id]
 
     if not card.is_blank:
       g.com.notice(nick, 'Card is not blank.')
       return
 
-    card.text = parts[1]
+    card.text = args
     card.is_blank = False
 
     self.cards(g, nick, '')
