@@ -32,3 +32,6 @@ class Scores(object):
     for i, j in sorted(self.scores.items(), key=lambda x: -x[1]):
       s.append('{}-{}p'.format(plugins.cah.game.Game.inject_zwsp(i), j))
     return 'Scores: {}.'.format(', '.join(s))
+
+  def total_points(self):
+    return sum(self.scores.values())

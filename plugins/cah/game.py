@@ -23,8 +23,13 @@ class Game(object):
   PLAYING_CARDS_TIMEOUT_SOON = timedelta(minutes=1)
   PLAYING_CARDS_TIMEOUT = timedelta(minutes=2)
 
-  CHOOSING_WINNER_TIMEOUT_SOON = timedelta(minutes=1)
-  CHOOSING_WINNER_TIMEOUT = timedelta(minutes=2)
+  CHOOSING_WINNER_MONARCHY_TIMEOUT_SOON = timedelta(minutes=1)
+  CHOOSING_WINNER_MONARCHY_TIMEOUT = timedelta(minutes=2)
+
+  CHOOSING_WINNER_DEMOCRACY_TIMEOUT_SOON = timedelta(minutes=1)
+  CHOOSING_WINNER_DEMOCRACY_TIMEOUT = timedelta(minutes=2)
+
+  DEMOCRACY = False
 
   @staticmethod
   def inject_zwsp(nick):
@@ -64,6 +69,7 @@ class Game(object):
     self.czar_index = -1
     self.czar = ''
     self.played = {}
+    self.voted = {}
     self.player_perm = []
 
     self.joiners = []
@@ -82,6 +88,8 @@ class Game(object):
     self.timeout_handles = []
 
     self.timeout_time = datetime.now()
+
+    self.democracy = self.DEMOCRACY
 
   def list_players(self):
     r = list(self.players)
@@ -322,6 +330,24 @@ class WaitingForPlayers(GamePhase):
     else:
       g.com.notice(nick, 'Invalid number.')
 
+  @Command(names=['democracy', 'demo', 'gottisttot', 'nietzsche'])
+  def democracy(self, g: Game, nick, args, just_display=False):
+    """
+    democracy [on|off] -- shows current democracy setting or changes it
+    """
+    if not args or just_display:
+      g.com.announce('Current mode: ∆{}∆.'.format('Democracy' if g.democracy else 'Monarchy'))
+    elif nick != g.creator:
+      g.com.notice(nick, 'Only ∆{}∆ can control the democracy setting.'.format(g.creator))
+    elif args == 'on':
+      g.democracy = True
+      g.com.announce('Democracy!'.format(g.RANDO_NICK))
+    elif args == 'off':
+      g.democracy = False
+      g.com.announce('Monarchy!'.format(g.RANDO_NICK))
+    else:
+      g.com.reply(nick, 'Possible arguments: ∆on∆, ∆off∆.')
+
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
     """
@@ -452,6 +478,7 @@ class WaitingForPlayers(GamePhase):
 class PlayingCards(GamePhase):
   def __init__(self):
     self.copy_command(WaitingForPlayers.limit, just_display=True)
+    self.copy_command(WaitingForPlayers.democracy, just_display=True)
     self.copy_command(WaitingForPlayers.list_sets)
     self.copy_command(WaitingForPlayers.list_used_sets)
 
@@ -471,9 +498,10 @@ class PlayingCards(GamePhase):
       g.hands[player] = g.deck.draw_white(g.HAND_SIZE)
       g.scores.register(player)
 
-    g.czar_index = 0
+    if not g.democracy:
+      g.czar_index = 0
 
-    self.next_czar(g)
+      self.next_czar(g)
 
   def deal(self, g: Game):
     if g.scores.highest() >= g.limit or len(g.deck.black_pool) == 0 or not self._are_hands_full(g):
@@ -492,14 +520,22 @@ class PlayingCards(GamePhase):
     g.joiners.clear()
 
     g.black_card = g.deck.draw_black()
-    g.com.announce('Round ∆{}∆. The card czar is ∆{}∆. This round\'s card is...'
-                   ''.format(g.round, g.czar))
+    if not g.democracy:
+      g.com.announce('Round ∆{}∆. The card czar is ∆{}∆. This round\'s card is...'
+                     ''.format(g.round, g.czar))
+    else:
+      g.com.announce('Round ∆{}∆. This round\'s card is...'
+                     ''.format(g.round))
+
     g.com.announce('    {}'.format(g.black_card))
 
     example_args = ' '.join(map(str, range(g.black_card.gaps)))
     example = 'pick {}'.format(example_args)
     waiting = list(g.players)
-    waiting.remove(g.czar)
+    if not g.democracy:
+      waiting.remove(g.czar)
+    waiting = sorted(waiting)
+
     msg = '{}: Play ∆{}∆ card{}, like "∆{}∆" or just "∆{}∆".' \
           ''.format(', '.join(waiting),
                     g.black_card.gaps,
@@ -559,7 +595,7 @@ class PlayingCards(GamePhase):
 
   def _transition_choosing_winner(self, g):
     g.cancel_timeouts()
-    g.phase = ChoosingWinner()
+    g.phase = ChoosingWinnerMonarchy() if not g.democracy else ChoosingWinnerDemocracy()
     g.phase.prepare(g)
 
   def _sanitize(self, s):
@@ -612,16 +648,17 @@ class PlayingCards(GamePhase):
       g.reset()
       return
 
-    if nick == g.czar:
-      g.com.announce('The card czar left. Restarting the round...')
-      g.deck.return_black(g.black_card)
+    if not g.democracy:
+      if nick == g.czar:
+        g.com.announce('The card czar left. Restarting the round...')
+        g.deck.return_black(g.black_card)
 
-      self.next_czar(g)
+        self.next_czar(g)
 
-      g.phase = new_phase = PlayingCards()
-      new_phase.deal(g)
+        g.phase = new_phase = PlayingCards()
+        new_phase.deal(g)
 
-    g.czar_index = g.players.index(g.czar)
+      g.czar_index = g.players.index(g.czar)
 
   @Command(names=['pick', 'p'], player_only=True)
   def pick(self, g: Game, nick, args):
@@ -659,7 +696,8 @@ class PlayingCards(GamePhase):
 
     g.played[nick] = choice
 
-    if len(g.played) == g.count_players() - 1:
+    if ((not g.democracy and len(g.played) == g.count_players() - 1)
+        or (g.democracy and len(g.played) == g.count_players())):
       self._transition_choosing_winner(g)
 
   @Command(names=['status', 's'])
@@ -667,12 +705,13 @@ class PlayingCards(GamePhase):
     """
     status -- shows information about the current game
     """
-    g.com.announce('∆{}∆ players. ∆{}∆ is the card czar. Black card: "{}". '
+    g.com.announce('∆{}∆ players. {}. Black card: "{}". '
                    'Waiting for ∆{}∆ to play.'
                    ''.format(g.count_players(),
-                             g.czar,
-                             g.black_card,
-                             ', '.join(self._waiting_for(g))))
+      'There\'s no card czar' if g.democracy else
+      '∆{}∆ is the card czar'.format(g.czar),
+      g.black_card,
+      ', '.join(self._waiting_for(g))))
 
   @Command(names=['cards', 'c', 'hand', 'h'], player_only=True)
   def cards(self, g: Game, nick, args):
@@ -682,13 +721,6 @@ class PlayingCards(GamePhase):
     hand = g.hands[nick]
     hand_s = ' '.join(['[∆{}∆] {}'.format(i, j) for i, j in enumerate(hand)])
     g.com.notice(nick, 'Your hand: {}.'.format(hand_s))
-
-  @Command(names=['limit', 'l'])
-  def limit(self, g: Game, nick, args):
-    """
-    limit -- shows the point limit
-    """
-    g.com.reply(nick, 'The point limit is ∆{}∆ points.'.format(g.limit))
 
   @Command(player_only=True, iff_pm=True)
   def write(self, g: Game, nick, args: str):
@@ -745,7 +777,7 @@ class PlayingCards(GamePhase):
     self.cards(g, nick, '')
 
 
-class ChoosingWinner(GamePhase):
+class ChoosingWinnerMonarchy(GamePhase):
   def __init__(self):
     self.copy_command(PlayingCards.join)
     self.copy_command(PlayingCards.leave)
@@ -754,6 +786,7 @@ class ChoosingWinner(GamePhase):
     self.copy_command(PlayingCards.swap)
 
     self.copy_command(WaitingForPlayers.limit, just_display=True)
+    self.copy_command(WaitingForPlayers.democracy, just_display=True)
     self.copy_command(WaitingForPlayers.list_sets)
     self.copy_command(WaitingForPlayers.list_used_sets)
 
@@ -768,8 +801,7 @@ class ChoosingWinner(GamePhase):
     g.com.announce('Everyone has played. Now ∆{}∆ has to choose a winner. '
                    'Candidates are:'.format(g.czar))
 
-    g.player_perm = g.list_players()
-    g.player_perm.remove(g.czar)
+    g.player_perm = list(g.played.keys())
     random.shuffle(g.player_perm)
 
     for i, player in enumerate(g.player_perm):
@@ -781,7 +813,7 @@ class ChoosingWinner(GamePhase):
       g.com.announce('Waiting for ∆{}∆ to choose the winner...'.format(g.czar))
 
     g.timeout_handles.append(
-      g.loop.call_later(g.CHOOSING_WINNER_TIMEOUT_SOON.total_seconds(), timeout_soon, g))
+      g.loop.call_later(g.CHOOSING_WINNER_MONARCHY_TIMEOUT_SOON.total_seconds(), timeout_soon, g))
 
     def timeout(g: Game):
       g.com.announce('The czar ∆{}∆ timed out! Restarting the round...'.format(g.czar))
@@ -790,8 +822,8 @@ class ChoosingWinner(GamePhase):
       self._transition_playing_cards(g)
 
     g.timeout_handles.append(
-      g.loop.call_later(g.CHOOSING_WINNER_TIMEOUT.total_seconds(), timeout, g))
-    g.timeout_time = datetime.now() + g.CHOOSING_WINNER_TIMEOUT
+      g.loop.call_later(g.CHOOSING_WINNER_MONARCHY_TIMEOUT.total_seconds(), timeout, g))
+    g.timeout_time = datetime.now() + g.CHOOSING_WINNER_MONARCHY_TIMEOUT
 
   def _transition_playing_cards(self, g: Game):
     for player, cards in g.played.items():
@@ -851,3 +883,140 @@ class ChoosingWinner(GamePhase):
     g.com.announce(
       '∆{}∆ players. Black card: "{}". Waiting for card czar ∆{}∆ to choose the winner.'
       ''.format(g.count_players(), g.black_card, g.czar))
+
+
+class ChoosingWinnerDemocracy(GamePhase):
+  def __init__(self):
+    self.copy_command(PlayingCards.join)
+    self.copy_command(PlayingCards.leave)
+    self.copy_command(PlayingCards.cards)
+    self.copy_command(PlayingCards.scores)
+    self.copy_command(PlayingCards.swap)
+
+    self.copy_command(WaitingForPlayers.limit, just_display=True)
+    self.copy_command(WaitingForPlayers.democracy, just_display=True)
+    self.copy_command(WaitingForPlayers.list_sets)
+    self.copy_command(WaitingForPlayers.list_used_sets)
+
+  def prepare(self, g: Game):
+    if len(g.played) < 2:
+      g.com.announce('Not enough people have played anything :(. Restarting the round...')
+      self._transition_playing_cards(g)
+      return
+
+    self._set_timeouts(g)
+
+    g.com.announce('Everyone has played. Now it is time to vote. '
+                   'Candidates are:')
+
+    g.player_perm = list(g.played.keys())
+    random.shuffle(g.player_perm)
+
+    for i, player in enumerate(g.player_perm):
+      s = g.black_card.insert(g.played[player])
+      g.com.announce('[∆{}∆] {}'.format(i, s))
+
+  def _get_waiting(self, g: Game):
+    return [i for i in g.players if i not in g.voted]
+
+  def _set_timeouts(self, g: Game):
+    def timeout_soon(g: Game):
+      g.com.announce('Waiting for ∆{}∆ to vote...'.format(', '.join(self._get_waiting(g))))
+
+    g.timeout_handles.append(
+      g.loop.call_later(g.CHOOSING_WINNER_DEMOCRACY_TIMEOUT_SOON.total_seconds(), timeout_soon, g))
+
+    def timeout(g: Game):
+      g.com.announce('∆{}∆ timed out!'.format(', '.join(self._get_waiting(g))))
+
+      self._count_votes(g)
+
+    g.timeout_handles.append(
+      g.loop.call_later(g.CHOOSING_WINNER_DEMOCRACY_TIMEOUT.total_seconds(), timeout, g))
+    g.timeout_time = datetime.now() + g.CHOOSING_WINNER_DEMOCRACY_TIMEOUT
+
+  def _count_votes(self, g: Game):
+    if not g.voted:
+      g.com.announce('There were no votes!')
+      self._transition_playing_cards(g)
+      return
+
+    votes = {}
+    for i in g.player_perm:
+      votes[i] = 0
+    for i in g.voted.values():
+      votes[i] += 1
+
+    vote_count = len(g.voted)
+
+    votes_sorted = sorted(votes.items(), key=lambda x: x[1], reverse=True)
+
+    s = 'Votes: {}'.format(
+      ', '.join([
+        '∆{}∆ - {} v. ({:.0%})'.format(player, votes, votes / vote_count)
+        for player, votes in votes_sorted
+      ])
+    )
+    g.com.announce(s)
+
+    winner_votes = votes_sorted[0][1]
+
+    winners = [i[0] for i in votes_sorted if i[1] == winner_votes]
+
+    if len(winners) == 1:
+      g.com.announce('∆{}∆ won and gets a point!'.format(winners[0]))
+    else:
+      g.com.announce('A tie! ∆{}∆ all get a point each!'.format(', '.join(winners)))
+
+    for i in winners:
+      g.scores.point(i)
+
+    s = 'Last round: {}'.format(
+      ', '.join('[∆{}∆] {}'.format(i, Game.inject_zwsp(j)) for i, j in enumerate(g.player_perm)))
+    g.com.announce(s)
+
+    self._transition_playing_cards(g)
+
+  def _transition_playing_cards(self, g: Game):
+    for player, cards in g.played.items():
+      for card in cards:
+        g.hands[player].remove(card)
+      g.hands[player].extend(g.deck.draw_white(len(cards)))
+
+    g.played.clear()
+    g.voted.clear()
+
+    g.cancel_timeouts()
+
+    g.phase = new_phase = PlayingCards()
+    new_phase.deal(g)
+
+  @Command(names=['pick', 'p', 'winner', 'w', 'vote', 'v'], player_only=True)
+  def pick(self, g: Game, nick, args):
+    """
+    pick <num> -- pick the winner
+    """
+    parts = args.split()
+    if len(parts) < 1 or not parts[0].isnumeric():
+      g.com.notice(nick, 'Choose a card.')
+      return
+
+    c = int(parts[0])
+    if c < 0 or c >= len(g.played):
+      g.com.notice(nick, 'Invalid number.')
+      return
+
+    votee = g.player_perm[c]
+    g.voted[nick] = votee
+
+    if len(g.voted) == len(g.players):
+      self._count_votes(g)
+
+  @Command(names=['status', 's'])
+  def status(self, g: Game, nick, args):
+    """
+    status -- shows information about the current game
+    """
+    g.com.announce(
+      '∆{}∆ players. Black card: "{}". Waiting for ∆{}∆ to vote...'
+      ''.format(g.count_players(), g.black_card, ', '.join(self._get_waiting(g))))

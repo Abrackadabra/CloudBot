@@ -4,7 +4,7 @@ import pytest
 
 from plugins.cah import Communicator, Game
 from plugins.cah.cards import BlackCard, Set, WhiteCard
-from plugins.cah.game import PlayingCards, NoGame, WaitingForPlayers, ChoosingWinner
+from plugins.cah.game import PlayingCards, NoGame, WaitingForPlayers, ChoosingWinnerMonarchy, ChoosingWinnerDemocracy
 
 
 class FakeCommunicator(Communicator):
@@ -465,7 +465,7 @@ def test_timeouts(com: Communicator, g: Game):
   g.d('c', 'pick', '0')
 
   assert type(g.phase) == PlayingCards
-  g.loop.run_until_complete(asyncio.async(checker(g, 7.5, ChoosingWinner)))
+  g.loop.run_until_complete(asyncio.async(checker(g, 7.5, ChoosingWinnerMonarchy)))
 
   g.loop.run_until_complete(asyncio.async(checker(g, 5, PlayingCards)))
 
@@ -505,3 +505,32 @@ def test_many_args(com: Communicator, g: Game):
   g.d('a', 'p', '01')
 
   assert 'Round 1' in ''.join(com.log)
+
+
+def test_democracy(com: Communicator, g: Game):
+  g.d('a', 'c')
+
+  g.d('b', 'j')
+  g.d('c', 'j')
+  g.d('a', 'demo', 'on')
+  g.d('a', 'st')
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '0')
+  g.d('c', 'p', '0')
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '0')
+  g.d('c', 'p', '1')
+
+  assert len(g.scores.winners()) == 1
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '0')
+  g.d('c', 'p', '0')
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '1')
+  g.d('c', 'p', '2')
+
+  assert g.scores.total_points() == 4
