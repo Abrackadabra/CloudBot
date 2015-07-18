@@ -1,1 +1,1 @@
-ssh -i travis/yacah_deploy_key -q yacahb@abra.me 'sudo restart yacah'
+ssh -o StrictHostKeyChecking=no -i travis/yacah_deploy_key yacahb@abra.me 'sudo restart yacah'
