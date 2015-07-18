@@ -8,8 +8,7 @@ addons:
 sudo: false
 before_install:
 - openssl aes-256-cbc -K $encrypted_872cfdcad6a5_key -iv $encrypted_872cfdcad6a5_iv
-  -in travis/secrets.tar.gz.enc -out travis/secrets.tar.gz -d
-- tar xvf travis/secrets.tar.gz -C travis
+  -in travis/yacah_deploy_key.enc -out travis/yacah_deploy_key -d
 install:
 - pip install -r ./travis/requirements.txt
 script:
