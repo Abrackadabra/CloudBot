@@ -17,11 +17,7 @@ script:
 - py.test . -v --cov . --cov-report term-missing
 after_success:
 - coveralls
-deploy:
-  provider: script
-  script: travis/deploy.sh
-  on:
-    branch: cah
+- travis/deploy.sh
 env:
 - PYTHONPATH=.
 notifications:
