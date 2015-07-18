@@ -426,7 +426,7 @@ def test_swap(com: Communicator, g: Game):
 def test_timeouts(com: Communicator, g: Game):
   g.WAITING_FOR_PLAYERS_TIMEOUT = timedelta(seconds=5)
   g.PLAYING_CARDS_TIMEOUT = timedelta(seconds=5)
-  g.CHOOSING_WINNER_TIMEOUT = timedelta(seconds=5)
+  g.CHOOSING_WINNER_MONARCHY_TIMEOUT = timedelta(seconds=5)
 
   @asyncio.coroutine
   def checker(g: Game, time, expected_phase):

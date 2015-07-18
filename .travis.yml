@@ -27,7 +27,7 @@ notifications:
     channels:
       - "chat.freenode.net#yacah"
     template:
-      - "%{repository_name}#%{build_number} (%{branch} - %{commit}) %{author}: \"%{commit_message}\" (%{message}) [%{result}]"
+      - "%{repository_name}#%{build_number} (%{branch} - %{commit}) %{author}: \"%{commit_message}\" %{message}"
     skip_join: true
   email: false
 
