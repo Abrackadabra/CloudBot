@@ -534,3 +534,32 @@ def test_democracy(com: Communicator, g: Game):
   g.d('c', 'p', '2')
 
   assert g.scores.total_points() == 4
+
+  g.reset()
+  g.d('a', 'c')
+
+  g.d('b', 'j')
+  g.d('c', 'j')
+  g.d('a', 'demo', 'on')
+  g.d('a', 'rando', 'on')
+  g.d('a', 'st')
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '0')
+  g.d('c', 'p', '0')
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '0')
+  g.d('c', 'p', '1')
+
+  assert len(g.scores.winners()) == 1
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '0')
+  g.d('c', 'p', '0')
+
+  g.d('a', 'p', '0')
+  g.d('b', 'p', '1')
+  g.d('c', 'p', '2')
+
+  assert g.scores.total_points() == 4
