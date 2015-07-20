@@ -512,54 +512,42 @@ def test_democracy(com: Communicator, g: Game):
 
   g.d('b', 'j')
   g.d('c', 'j')
+  g.d('d', 'j')
+  g.d('e', 'j')
   g.d('a', 'demo', 'on')
   g.d('a', 'st')
 
+  def play():
+    g.d('a', 'p', '0')
+    g.d('b', 'p', '0')
+    g.d('c', 'p', '0')
+    g.d('d', 'p', '0')
+    g.d('e', 'p', '0')
+
+  assert type(g.phase) == PlayingCards
+
+  play()
+
+  assert type(g.phase) == ChoosingWinnerDemocracy
+
   g.d('a', 'p', '0')
   g.d('b', 'p', '0')
   g.d('c', 'p', '0')
-
-  g.d('a', 'p', '0')
-  g.d('b', 'p', '0')
-  g.d('c', 'p', '1')
-
+  g.d('d', 'p', '0')
   assert len(g.scores.winners()) == 1
 
-  g.d('a', 'p', '0')
-  g.d('b', 'p', '0')
-  g.d('c', 'p', '0')
+  assert type(g.phase) == PlayingCards
+
+  play()
+
+  assert type(g.phase) == ChoosingWinnerDemocracy
+
+  g.player_perm = ['b', 'c', 'd', 'e', 'a']
 
   g.d('a', 'p', '0')
   g.d('b', 'p', '1')
   g.d('c', 'p', '2')
+  g.d('d', 'p', '3')
+  g.d('e', 'p', '4')
 
-  assert g.scores.total_points() == 4
-
-  g.reset()
-  g.d('a', 'c')
-
-  g.d('b', 'j')
-  g.d('c', 'j')
-  g.d('a', 'demo', 'on')
-  g.d('a', 'rando', 'on')
-  g.d('a', 'st')
-
-  g.d('a', 'p', '0')
-  g.d('b', 'p', '0')
-  g.d('c', 'p', '0')
-
-  g.d('a', 'p', '0')
-  g.d('b', 'p', '0')
-  g.d('c', 'p', '1')
-
-  assert len(g.scores.winners()) == 1
-
-  g.d('a', 'p', '0')
-  g.d('b', 'p', '0')
-  g.d('c', 'p', '0')
-
-  g.d('a', 'p', '0')
-  g.d('b', 'p', '1')
-  g.d('c', 'p', '2')
-
-  assert g.scores.total_points() == 4
+  assert g.scores.total_points() == 6
