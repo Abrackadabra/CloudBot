@@ -929,18 +929,13 @@ class ChoosingWinnerDemocracy(GamePhase):
     def timeout(g: Game):
       g.com.announce('∆{}∆ timed out!'.format(', '.join(self._get_waiting(g))))
 
-      self._count_votes(g)
+      self._decide(g)
 
     g.timeout_handles.append(
       g.loop.call_later(g.CHOOSING_WINNER_DEMOCRACY_TIMEOUT.total_seconds(), timeout, g))
     g.timeout_time = datetime.now() + g.CHOOSING_WINNER_DEMOCRACY_TIMEOUT
 
   def _count_votes(self, g: Game):
-    if not g.voted:
-      g.com.announce('There were no votes!')
-      self._transition_playing_cards(g)
-      return
-
     votes = {}
     for i in g.player_perm:
       votes[i] = 0
@@ -950,6 +945,16 @@ class ChoosingWinnerDemocracy(GamePhase):
     vote_count = len(g.voted)
 
     votes_sorted = sorted(votes.items(), key=lambda x: x[1], reverse=True)
+
+    return votes_sorted, vote_count
+
+  def _decide(self, g: Game):
+    if not g.voted:
+      g.com.announce('There were no votes!')
+      self._transition_playing_cards(g)
+      return
+
+    votes_sorted, vote_count = self._count_votes(g)
 
     s = 'Votes: {}'.format(
       ', '.join([
@@ -991,6 +996,11 @@ class ChoosingWinnerDemocracy(GamePhase):
     g.phase = new_phase = PlayingCards()
     new_phase.deal(g)
 
+  def _has_clear_winner(self, g: Game):
+    votes_sorted, vote_count = self._count_votes(g)
+
+    return votes_sorted and votes_sorted[0][1] > len(g.player_perm) / 2
+
   @Command(names=['pick', 'p', 'winner', 'w', 'vote', 'v'], player_only=True)
   def pick(self, g: Game, nick, args):
     """
@@ -1007,10 +1017,14 @@ class ChoosingWinnerDemocracy(GamePhase):
       return
 
     votee = g.player_perm[c]
+    if votee == nick:
+      g.com.notice(nick, 'You can\'t vote for yourself, duh.')
+      return
+
     g.voted[nick] = votee
 
-    if len(g.voted) == len(g.players):
-      self._count_votes(g)
+    if len(g.voted) == len(g.players) or self._has_clear_winner(g):
+      self._decide(g)
 
   @Command(names=['status', 's'])
   def status(self, g: Game, nick, args):
