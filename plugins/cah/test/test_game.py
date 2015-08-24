@@ -4,7 +4,9 @@ import pytest
 
 from plugins.cah import Communicator, Game
 from plugins.cah.cards import BlackCard, Set, WhiteCard
-from plugins.cah.game import PlayingCards, NoGame, WaitingForPlayers, ChoosingWinnerMonarchy, ChoosingWinnerDemocracy
+from plugins.cah.game import PlayingCards, NoGame, WaitingForPlayers, ChoosingWinnerMonarchy, \
+  ChoosingWinnerDemocracy
+from plugins.cah.db import DbAdapter
 
 
 class FakeCommunicator(Communicator):
@@ -31,6 +33,15 @@ class FakeCommunicator(Communicator):
     print('>' + s)
 
 
+class FakeDbAdapter(DbAdapter):
+  # noinspection PyMissingConstructor
+  def __init__(self):
+    self.cache = {}
+
+  def write(self, nick, pingif):
+    self.cache[nick] = pingif
+
+
 @pytest.fixture(scope='function')
 def com():
   return FakeCommunicator()
@@ -40,17 +51,18 @@ def com():
 def g(com):
   loop = asyncio.get_event_loop()
 
-  game = Game(com, 'data/cah_sets', '', loop)
+  game = Game(com, 'data/cah_sets', '', loop, FakeDbAdapter())
 
   game.deck.sets = {
     'dummy (100/100)': Set('dummy',
-                 [BlackCard('dummy black card #{} %s'.format(i), 1) for i in range(100)],
-                 [WhiteCard('dummy white card #{}'.format(i)) for i in range(100)],
-                 default=True),
+                           [BlackCard('dummy black card #{} %s'.format(i), 1) for i in range(100)],
+                           [WhiteCard('dummy white card #{}'.format(i)) for i in range(100)],
+                           default=True),
     'dummy2 (100/100)': Set('dummy2',
-                 [BlackCard('dummy2 black card #{} %s'.format(i), 1) for i in range(100)],
-                 [WhiteCard('dummy2 white card #{}'.format(i)) for i in range(100)],
-                 default=False)
+                            [BlackCard('dummy2 black card #{} %s'.format(i), 1) for i in
+                             range(100)],
+                            [WhiteCard('dummy2 white card #{}'.format(i)) for i in range(100)],
+                            default=False)
   }
 
   def d(nick, command, args='', is_pm=False):
@@ -299,7 +311,6 @@ def test_sets(com, g):
 
   g.d('a', 'remove_set', '0')
   assert len(g.deck.used_sets) == count - 1
-
 
 
 def test_scores(com, g):
@@ -551,3 +562,18 @@ def test_democracy(com: Communicator, g: Game):
   g.d('e', 'p', '4')
 
   assert g.scores.total_points() == 6
+
+
+def test_pingif(com: Communicator, g: Game):
+  g.d('a', 'pi', '1')
+  g.d('b', 'pi', '2')
+  g.d('c', 'pi', '3')
+
+  g.d('b', 'c')
+  assert 'Pinging a.' in com.log[-1]
+
+  g.d('a', 'j')
+  assert 'Pinging' not in com.log[-1]
+
+  g.d('d', 'j')
+  assert 'Pinging c.' in com.log[-1]

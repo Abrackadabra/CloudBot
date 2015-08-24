@@ -5,6 +5,7 @@ import asyncio
 
 from .cards import Deck
 from .score import Scores
+from .db import DbAdapter
 
 
 class Game(object):
@@ -35,13 +36,15 @@ class Game(object):
   def inject_zwsp(nick):
     return nick[:1] + '\u200b' + nick[1:]
 
-  def __init__(self, com, card_dir, chan, loop: asyncio.AbstractEventLoop):
+  def __init__(self, com, card_dir, chan, loop: asyncio.AbstractEventLoop,
+      db_adapter: DbAdapter):
     """
     :type com: Communicator
     """
     self.com = com
     self.chan = chan
     self.loop = loop
+    self.db_adapter = db_adapter
 
     self.card_dir = card_dir
     self.deck = Deck(card_dir)
@@ -58,6 +61,8 @@ class Game(object):
     self.players = []
     self.creator = ''
     self.hands = {}
+
+    self.pinged = set()
 
     self.scores = Scores()
 
@@ -216,6 +221,48 @@ class GamePhase(object):
       return
     g.com.announce('There is no timeout now.')
 
+  @Command(names=['pingif', 'pi'])
+  def pingif(self, g: Game, nick, args):
+    if not args:
+      if nick not in g.db_adapter.cache:
+        g.db_adapter.write(nick, 0)
+      pi = g.db_adapter.cache[nick]
+
+      if pi:
+        g.com.notice(nick, 'You will be pinged when there are at least ∆{}∆ players.'.format(pi))
+      else:
+        g.com.notice(nick, 'You don\'t have a pingif setting.')
+      return
+
+    if not args.isnumeric():
+      g.com.notice(nick, 'Pingif should be an integer.')
+      return
+
+    pi = int(args)
+    if pi > 100 or pi < 0:
+      g.com.notice(nick, 'Invalid pingif.')
+      return
+
+    g.db_adapter.write(nick, pi)
+    g.com.notice(nick, 'You will be pinged when there are at least ∆{}∆ players.'.format(pi))
+
+  def ping_on_join(self, g: Game):
+    n = g.count_players()
+
+    to_ping = []
+    for i, j in g.db_adapter.cache.items():
+      if j != 0 and j <= n and i not in g.pinged and i not in g.players:
+        to_ping.append(i)
+    if not to_ping:
+      return
+
+    to_ping = sorted(to_ping)
+
+    g.pinged |= set(to_ping)
+
+    g.com.announce('∆{}∆ players. Pinging {}.'
+                   .format(n, ', '.join('∆{}∆'.format(i) for i in to_ping)))
+
 
 class NoGame(GamePhase):
   def __init__(self):
@@ -232,6 +279,8 @@ class NoGame(GamePhase):
 
     g.creator = nick
     g.players = [nick]
+
+    self.ping_on_join(g)
 
     g.phase = new_phase = WaitingForPlayers()
     new_phase.prepare(g)
@@ -274,6 +323,7 @@ class WaitingForPlayers(GamePhase):
       g.players.append(nick)
       g.com.announce('∆{}∆ has joined the game. ∆{}∆ players total.'
                      ''.format(nick, g.count_players()))
+      self.ping_on_join(g)
 
   @Command(names=['leave'], player_only=True)
   def leave(self, g: Game, nick, args):
@@ -623,6 +673,7 @@ class PlayingCards(GamePhase):
 
     g.joiners.append(nick)
     g.com.notice(nick, 'You will be dealt into the game when the next round begins.')
+    self.ping_on_join(g)
 
   @Command(names=['leave'], player_only=True)
   def leave(self, g: Game, nick, args):

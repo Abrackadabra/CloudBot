@@ -1,14 +1,18 @@
 import re
 import asyncio
 import traceback
-
 from cloudbot import hook
+from cloudbot.util import botvars
 from .cah import Game, Communicator, Set
+
+from .cah.db import partial_table, DbAdapter
+
+table = partial_table(botvars.metadata)
 
 
 @asyncio.coroutine
 @hook.irc_raw("004")
-def on_ready(conn, chan, bot, loop):
+def on_ready(conn, chan, bot, loop, db):
   global game
   game_chan = conn.config \
     .get('plugins', {}) \
@@ -17,7 +21,9 @@ def on_ready(conn, chan, bot, loop):
 
   com = Communicator(conn, game_chan)
 
-  game = Game(com, 'data/cah_sets', game_chan, loop)
+  db_adapter = DbAdapter(db, table)
+
+  game = Game(com, 'data/cah_sets', game_chan, loop, db_adapter)
 
   com.announce('Reloaded.')
 
@@ -69,6 +75,7 @@ def catch_all(nick, chan, content):
       game.com.announce('An error occurred. Game stopped.')
 
       game.reset()
+
 
 @asyncio.coroutine
 @hook.command('load_set', permissions=['botcontrol'])
