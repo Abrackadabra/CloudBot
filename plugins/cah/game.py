@@ -223,6 +223,10 @@ class GamePhase(object):
 
   @Command(names=['pingif', 'pi'])
   def pingif(self, g: Game, nick, args):
+    """
+    pingif [<number>] -- shows or sets your pingif setting. The bot will ping you when [<number>]
+    players are playing.
+    """
     if not args:
       if nick not in g.db_adapter.cache:
         g.db_adapter.write(nick, 0)
