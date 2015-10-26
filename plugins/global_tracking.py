@@ -23,6 +23,18 @@ class Dude(object):
     def __repr__(self):
         return '{}!{}@{} as {}'.format(self.nick, self.username, self.host, self.account)
 
+    @staticmethod
+    def insert_zwsp(s):
+        s = str(s)
+        return '{}\u200b{}'.format(s[0], s[1:])
+
+    def __str__(self):
+        return '{}!{}@{} as {}'.format(
+            Dude.insert_zwsp(self.nick),
+            Dude.insert_zwsp(self.username),
+            Dude.insert_zwsp(self.host),
+            Dude.insert_zwsp(self.account))
+
     def __eq__(self, other):
         return self.nick == other.nick and self.username == other.username and \
                self.host == other.host and self.account == other.account
@@ -525,5 +537,7 @@ def show_registry(bot, conn, text, chan):
     :type conn: IrcClient
     """
     r = conn.memory.get('registry')
-    conn.message(chan, 'People: {}'.format(r.chan(text)))
+    s = ', '.join(str(i) for i in r.chan(text))
+    for i in range(len(s) // 300 + 1):
+        conn.message(chan, 'People: {}'.format(s[i * 300: i * 300 + 300]))
     conn.message(chan, 'Modes: {}'.format(r.mode(text)))
