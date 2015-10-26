@@ -447,7 +447,6 @@ def tracking_on_join(bot, event, chan, nick, conn, db):
     if not chan:
         chan = event.irc_paramlist[0][1:]
 
-    print(nick, event.irc_paramlist)
     if nick == conn.nick:
         who = yield from get_who(bot, conn, chan)
         registry.process_who(chan, who)
@@ -519,7 +518,7 @@ def tracking_on_account(bot, conn, event, nick):
 
 
 @asyncio.coroutine
-@hook.command(permissions=['botcontrol'], autohelp=False)
+@hook.command(autohelp=False)
 def show_registry(bot, conn, text, chan):
     """
     :type bot: CloudBot
