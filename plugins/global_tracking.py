@@ -185,6 +185,8 @@ def on_connect(bot, conn, event, loop):
     conn.memory['tracking_whois_lock'] = asyncio.Lock(loop=loop)
     conn.memory['tracking_mode_lock'] = asyncio.Lock(loop=loop)
 
+    conn.memory['tracking_lock'] = asyncio.Lock(loop=loop)
+
 
 @asyncio.coroutine
 def get_who(bot, conn, chan):
@@ -414,14 +416,15 @@ def tracking_on_part(bot, conn, event, chan, nick):
     :type conn: IrcClient
     :type event: Event
     """
-    registry = conn.memory.get('registry')
-    if registry and nick and chan:
-        if nick == conn.nick:
-            registry.process_self_part(chan)
-        else:
-            dude = registry.get_dude(nick)
+    with (yield from conn.memory['tracking_lock']):
+        registry = conn.memory.get('registry')
+        if registry and nick and chan:
+            if nick == conn.nick:
+                registry.process_self_part(chan)
+            else:
+                dude = registry.get_dude(nick)
 
-            registry.process_part(chan, dude)
+                registry.process_part(chan, dude)
 
 
 @asyncio.coroutine
@@ -432,15 +435,16 @@ def tracking_on_kick(bot, conn, event, chan):
     :type conn: IrcClient
     :type event: Event
     """
-    nick = event.irc_paramlist[1]
-    registry = conn.memory.get('registry')
-    if registry and nick and chan:
-        if nick == conn.nick:
-            registry.process_self_part(chan)
-        else:
-            dude = registry.get_dude(nick)
+    with (yield from conn.memory['tracking_lock']):
+        nick = event.irc_paramlist[1]
+        registry = conn.memory.get('registry')
+        if registry and nick and chan:
+            if nick == conn.nick:
+                registry.process_self_part(chan)
+            else:
+                dude = registry.get_dude(nick)
 
-            registry.process_part(chan, dude)
+                registry.process_part(chan, dude)
 
 
 @asyncio.coroutine
@@ -451,23 +455,24 @@ def tracking_on_join(bot, event, chan, nick, conn, db):
     :type conn: IrcClient
     :type event: Event
     """
-    registry = conn.memory.get('registry')
-    if not registry:
-        return
+    with (yield from conn.memory['tracking_lock']):
+        registry = conn.memory.get('registry')
+        if not registry:
+            return
 
-    # in case of 'JOIN :<chan>'
-    if not chan:
-        chan = event.irc_paramlist[0][1:]
+        # in case of 'JOIN :<chan>'
+        if not chan:
+            chan = event.irc_paramlist[0][1:]
 
-    if nick == conn.nick:
-        who = yield from get_who(bot, conn, chan)
-        registry.process_who(chan, who)
+        if nick == conn.nick:
+            who = yield from get_who(bot, conn, chan)
+            registry.process_who(chan, who)
 
-        mode = yield from get_mode(bot, conn, chan)
-        registry.process_mode_change(chan, [mode])
-    else:
-        dude = yield from get_whois(bot, conn, nick)
-        registry.process_join(chan, dude)
+            mode = yield from get_mode(bot, conn, chan)
+            registry.process_mode_change(chan, [mode])
+        else:
+            dude = yield from get_whois(bot, conn, nick)
+            registry.process_join(chan, dude)
 
 
 @asyncio.coroutine
@@ -478,9 +483,10 @@ def tracking_on_quit(bot, conn, event, nick):
     :type conn: IrcClient
     :type event: Event
     """
-    registry = conn.memory.get('registry')
-    if registry and nick and nick != conn.nick:
-        registry.process_quit(nick)
+    with (yield from conn.memory['tracking_lock']):
+        registry = conn.memory.get('registry')
+        if registry and nick and nick != conn.nick:
+            registry.process_quit(nick)
 
 
 @asyncio.coroutine
@@ -491,11 +497,12 @@ def tracking_on_nick(bot, conn, event, nick):
     :type conn: IrcClient
     :type event: Event
     """
-    old_nick = nick
-    new_nick = event.irc_paramlist[0][1:]
-    registry = conn.memory.get('registry')
-    if registry:
-        registry.process_nick(old_nick, new_nick)
+    with (yield from conn.memory['tracking_lock']):
+        old_nick = nick
+        new_nick = event.irc_paramlist[0][1:]
+        registry = conn.memory.get('registry')
+        if registry:
+            registry.process_nick(old_nick, new_nick)
 
 
 @asyncio.coroutine
@@ -508,9 +515,10 @@ def tracking_on_mode(bot, conn, event, chan):
     """
     if not chan.startswith('#'):
         return
-    registry = conn.memory.get('registry')
-    if registry:
-        registry.process_mode_change(chan, event.irc_paramlist[1:])
+    with (yield from conn.memory['tracking_lock']):
+        registry = conn.memory.get('registry')
+        if registry:
+            registry.process_mode_change(chan, event.irc_paramlist[1:])
 
 
 @asyncio.coroutine
@@ -521,12 +529,13 @@ def tracking_on_account(bot, conn, event, nick):
     :type conn: IrcClient
     :type event: Event
     """
-    new_account = event.irc_paramlist[0]
-    if new_account == '*':
-        new_account = None
-    registry = conn.memory.get('registry')
-    if registry:
-        registry.process_account_change(nick, new_account)
+    with (yield from conn.memory['tracking_lock']):
+        new_account = event.irc_paramlist[0]
+        if new_account == '*':
+            new_account = None
+        registry = conn.memory.get('registry')
+        if registry:
+            registry.process_account_change(nick, new_account)
 
 
 @asyncio.coroutine
