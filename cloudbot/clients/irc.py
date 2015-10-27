@@ -18,8 +18,10 @@ irc_param_re = re.compile(r"(?:^|(?<= ))(:.*|[^ ]+)")
 irc_bad_chars = ''.join([chr(x) for x in list(range(0, 32)) + list(range(127, 160))])
 irc_clean_re = re.compile('[{}]'.format(re.escape(irc_bad_chars)))
 
+
 def irc_clean(dirty):
     return irc_clean_re.sub('', dirty)
+
 
 irc_command_to_event_type = {
     "PRIVMSG": EventType.message,
@@ -50,11 +52,12 @@ class IrcClient(Client):
     :type port: int
     :type _connected: bool
     :type _ignore_cert_errors: bool
+    :type silent_channels: set[str]
     :type capabilities: set[str]
     """
 
     def __init__(self, bot, name, nick, *, channels=None, config=None,
-                 server, port=6667, use_ssl=False, ignore_cert_errors=True, timeout=300, local_bind=False):
+            server, port=6667, use_ssl=False, ignore_cert_errors=True, timeout=300, local_bind=False):
         """
         :type bot: cloudbot.bot.CloudBot
         :type name: str
@@ -94,6 +97,7 @@ class IrcClient(Client):
         self._transport = None
         self._protocol = None
 
+        self.silent_channels = set(self.config.get('silent_channels', []))
         self.capabilities = set(self.config.get('capabilities', []))
 
     def describe_server(self):
@@ -123,7 +127,8 @@ class IrcClient(Client):
         if self.local_bind:
             optional_params["local_addr"] = self.local_bind
         self._transport, self._protocol = yield from self.loop.create_connection(
-            lambda: _IrcProtocol(self), host=self.server, port=self.port, ssl=self.ssl_context, **optional_params)
+            lambda: _IrcProtocol(self), host=self.server, port=self.port, ssl=self.ssl_context,
+            **optional_params)
 
         # send the password, nick, and user
         self.set_pass(self.config["connection"].get("password"))
@@ -150,12 +155,18 @@ class IrcClient(Client):
         self._connected = False
 
     def message(self, target, *messages, sanatize=True):
+        if target in self.silent_channels:
+            return
+
         for text in messages:
             if sanatize == True:
                 text = "".join(text.splitlines())
             self.cmd("PRIVMSG", target, text)
 
     def action(self, target, text, sanatize=True):
+        if target in self.silent_channels:
+            return
+
         if sanatize == True:
             text = "".join(text.splitlines())
         self.ctcp(target, "ACTION", text)
@@ -224,7 +235,6 @@ class IrcClient(Client):
         """
         logger.info("[{}] >> {}".format(self.name, line))
         asyncio.async(self._protocol.send(line), loop=self.loop)
-
 
     @property
     def connected(self):
@@ -373,7 +383,8 @@ class _IrcProtocol(asyncio.Protocol):
                 target = None
 
             # Parse for CTCP
-            if event_type is EventType.message and content_raw.count("\x01") >= 2 and content_raw.startswith("\x01"):
+            if event_type is EventType.message and content_raw.count(
+                    "\x01") >= 2 and content_raw.startswith("\x01"):
                 # Remove the first \x01, then rsplit to remove the last one, and ignore text after the last \x01
                 ctcp_text = content_raw[1:].rsplit("\x01", 1)[0]
                 ctcp_text_split = ctcp_text.split(None, 1)
@@ -401,8 +412,10 @@ class _IrcProtocol(asyncio.Protocol):
 
             # Set up parsed message
             # TODO: Do we really want to send the raw `prefix` and `command_params` here?
-            event = Event(bot=self.bot, conn=self.conn, event_type=event_type, content=content, target=target,
-                          channel=channel, nick=nick, user=user, host=host, mask=mask, irc_raw=line, irc_prefix=prefix,
+            event = Event(bot=self.bot, conn=self.conn, event_type=event_type, content=content,
+                          target=target,
+                          channel=channel, nick=nick, user=user, host=host, mask=mask, irc_raw=line,
+                          irc_prefix=prefix,
                           irc_command=command, irc_paramlist=command_params, irc_ctcp_text=ctcp_text)
 
             # handle the message, async
