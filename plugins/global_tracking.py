@@ -128,7 +128,8 @@ class Registry(object):
                         if plus == '+':
                             self.chans[chan][dude].add(prefix)
                         else:
-                            self.chans[chan][dude].remove(prefix)
+                            if prefix in self.chans[chan][dude]:
+                                self.chans[chan][dude].remove(prefix)
 
             elif i in 'ciCgtnjm':
                 if plus == '+':
