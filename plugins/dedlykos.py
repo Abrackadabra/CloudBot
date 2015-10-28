@@ -68,7 +68,6 @@ def check(bot, conn, db):
     for i in w & m:
         wp = registry.get_dude_prefixes(WEREWOLF_CHAN, i)
         mp = registry.get_dude_prefixes(MIRROR_CHAN, i)
-
         if '+' in wp and '+' not in mp:
             conn.send('MODE {} +v {}'.format(MIRROR_CHAN, i.nick))
             return

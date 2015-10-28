@@ -20,9 +20,9 @@ env:
 notifications:
   irc:
     channels:
-      - "irc.freenode.net##abra"
+      - "chat.freenode.net##abra"
     template:
       - "%{repository}#%{build_number} (%{branch} - %{commit}) %{author}: %{message} - %{build_url}"
   on_failure: always
-  on_success: change
+  on_success: always
   skip_join: true
