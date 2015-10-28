@@ -185,6 +185,7 @@ def on_connect(bot, conn, event, loop):
     conn.memory['tracking_who_lock'] = asyncio.Lock(loop=loop)
     conn.memory['tracking_whois_lock'] = asyncio.Lock(loop=loop)
     conn.memory['tracking_mode_lock'] = asyncio.Lock(loop=loop)
+    conn.memory['tracking_lock'] = asyncio.Lock(loop=loop)
 
     conn.memory['tracking_lock'] = asyncio.Lock(loop=loop)
 
@@ -281,7 +282,6 @@ def get_whois(bot, conn, nick):
     :type conn: IrcClient
     :type nick: str
     """
-
     with (yield from conn.memory['tracking_whois_lock']):
         conn.memory['tracking_whois_queue'] = asyncio.Queue()
         conn.memory['tracking_whois_nick'] = nick
@@ -417,7 +417,9 @@ def tracking_on_part(bot, conn, event, chan, nick):
     :type conn: IrcClient
     :type event: Event
     """
+    yield from conn.memory['CAP_negotiated'].wait()
     with (yield from conn.memory['tracking_lock']):
+
         registry = conn.memory.get('registry')
         if registry and nick and chan:
             if nick == conn.nick:
@@ -436,6 +438,8 @@ def tracking_on_kick(bot, conn, event, chan):
     :type conn: IrcClient
     :type event: Event
     """
+    yield from conn.memory['CAP_negotiated'].wait()
+
     with (yield from conn.memory['tracking_lock']):
         nick = event.irc_paramlist[1]
         registry = conn.memory.get('registry')
@@ -456,6 +460,8 @@ def tracking_on_join(bot, event, chan, nick, conn, db):
     :type conn: IrcClient
     :type event: Event
     """
+    yield from conn.memory['CAP_negotiated'].wait()
+
     with (yield from conn.memory['tracking_lock']):
         registry = conn.memory.get('registry')
         if not registry:
@@ -484,6 +490,8 @@ def tracking_on_quit(bot, conn, event, nick):
     :type conn: IrcClient
     :type event: Event
     """
+    yield from conn.memory['CAP_negotiated'].wait()
+
     with (yield from conn.memory['tracking_lock']):
         registry = conn.memory.get('registry')
         if registry and nick and nick != conn.nick:
@@ -498,6 +506,8 @@ def tracking_on_nick(bot, conn, event, nick):
     :type conn: IrcClient
     :type event: Event
     """
+    yield from conn.memory['CAP_negotiated'].wait()
+
     with (yield from conn.memory['tracking_lock']):
         old_nick = nick
         new_nick = event.irc_paramlist[0][1:]
@@ -514,9 +524,11 @@ def tracking_on_mode(bot, conn, event, chan):
     :type conn: IrcClient
     :type event: Event
     """
-    if not chan.startswith('#'):
-        return
+    yield from conn.memory['CAP_negotiated'].wait()
+
     with (yield from conn.memory['tracking_lock']):
+        if not chan.startswith('#'):
+            return
         registry = conn.memory.get('registry')
         if registry:
             registry.process_mode_change(chan, event.irc_paramlist[1:])
@@ -530,6 +542,8 @@ def tracking_on_account(bot, conn, event, nick):
     :type conn: IrcClient
     :type event: Event
     """
+    yield from conn.memory['CAP_negotiated'].wait()
+
     with (yield from conn.memory['tracking_lock']):
         new_account = event.irc_paramlist[0]
         if new_account == '*':
