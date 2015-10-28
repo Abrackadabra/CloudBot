@@ -18,6 +18,7 @@ env:
   - PYTHONPATH=.
 
 notifications:
+  email: false
   irc:
     channels:
       - "chat.freenode.net##abra"
