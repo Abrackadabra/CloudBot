@@ -81,7 +81,7 @@ def bf(text):
             output += "(exceeded {} iterations)".format(MAX_STEPS)
             break
 
-    stripped_output = re.sub(r'[\x00-\x1F]', '', output)
+    stripped_output = re.sub(r'[\x00\x01\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x10\x11\x12\x13\x14\x15\x17\x18\x19\x1a\x1b\x1c\x1e]', '', output)
 
     if not stripped_output:
         if output:
