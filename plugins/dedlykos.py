@@ -57,11 +57,11 @@ def check(bot, conn, db):
 
     for j in set(m):
         if not j.account:
-            conn.send('KICK {} {} :{}'.format(MIRROR_CHAN, j.nick, 'Unidentified'))
+            conn.send('REMOVE {} {} :{}'.format(MIRROR_CHAN, j.nick, 'Unidentified'))
             return
 
         if j not in w and 'm' in wm:
-            conn.send('KICK {} {} :{}'
+            conn.send('REMOVE {} {} :{}'
                       .format(MIRROR_CHAN, j.nick, 'Not in {}'.format(WEREWOLF_CHAN)))
             return
 
@@ -83,14 +83,14 @@ def check(bot, conn, db):
             wp = registry.get_dude_prefixes(WEREWOLF_CHAN, i)
             for j in m:
                 if '+' in wp and i.account == j.account:
-                    conn.send('KICK {} {} :{}'.format(MIRROR_CHAN, j.nick, 'Playing ##werewolf'))
+                    conn.send('REMOVE {} {} :{}'.format(MIRROR_CHAN, j.nick, 'Playing ##werewolf'))
                     kicked.add(db, '{} {}'.format(j.nick, i.account))
                     playing.add(db, i.account)
                     return
 
                 if '+' not in wp and i.account == j.account and i.account not in privileged.set():
                     conn.send(
-                        'KICK {} {} :{}'.format(MIRROR_CHAN, j.nick, 'Not allowed to spectate'))
+                        'REMOVE {} {} :{}'.format(MIRROR_CHAN, j.nick, 'Not allowed to spectate'))
                     kicked.add(db, '{} {}'.format(j.nick, j.account))
                     return
 
