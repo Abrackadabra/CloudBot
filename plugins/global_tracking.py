@@ -61,7 +61,7 @@ class Registry(object):
             self.chans[chan][i] = j
 
     def process_join(self, chan, dude):
-        if chan not in self.chans:
+        if chan not in self.chans or not dude:
             return
 
         self.chans[chan][dude] = set()
@@ -69,7 +69,7 @@ class Registry(object):
             self.chanmodes[chan] = set()
 
     def process_part(self, chan, dude):
-        if chan not in self.chans:
+        if chan not in self.chans or not dude:
             return
 
         if dude in self.chans[chan]:
@@ -425,7 +425,8 @@ def tracking_on_part(bot, conn, event, chan, nick):
             else:
                 dude = registry.get_dude(nick)
 
-                registry.process_part(chan, dude)
+                if dude:
+                    registry.process_part(chan, dude)
 
 
 @asyncio.coroutine
@@ -447,7 +448,8 @@ def tracking_on_kick(bot, conn, event, chan):
             else:
                 dude = registry.get_dude(nick)
 
-                registry.process_part(chan, dude)
+                if dude:
+                    registry.process_part(chan, dude)
 
 
 @asyncio.coroutine
