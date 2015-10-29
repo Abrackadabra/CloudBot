@@ -1,10 +1,29 @@
+import multiprocessing
 import re
+import sre_constants
 
 from cloudbot import hook
 
 from cloudbot.util.formatting import ireplace
 
 correction_re = re.compile(r"^[sS]/(.*/.*(?:/[igx]{,4})?)\S*$")
+
+
+def check(q, nick, find, replace, msg):
+    try:
+        if re.findall(find, msg, re.IGNORECASE):
+            if "\x01ACTION" in msg:
+                msg = msg.replace("\x01ACTION", "").replace("\x01", "")
+                replace_bold = "\x02" + replace + "\x02"
+                mod_msg = re.sub(find, replace_bold, msg, flags=re.IGNORECASE)
+                q.put("Correction, * {} {}".format(nick, mod_msg))
+            else:
+                replace_bold = "\x02" + replace + "\x02"
+                mod_msg = re.sub(find, replace_bold, msg, flags=re.IGNORECASE)
+                q.put("Correction, <{}> {}".format(nick, mod_msg))
+    except sre_constants.error:
+        # bad regex
+        pass
 
 
 @hook.regex(correction_re)
@@ -16,26 +35,28 @@ def correction(match, conn, chan, message):
     """
     groups = [b.replace("\/", "/") for b in re.split(r"(?<!\\)/", match.groups()[0])]
     find = groups[0]
-    replace = groups[1].replace("\n","\\n").replace("\r","\\r")
+    replace = groups[1]
 
     for item in conn.history[chan].__reversed__():
         nick, timestamp, msg = item
         if correction_re.match(msg):
             # don't correct corrections, it gets really confusing
             continue
-        msg = msg.replace("\n","\\n").replace("\r","\\r")
 
-        if find.lower() in msg.lower():
-            if "\x01ACTION" in msg:
-                msg = msg.replace("\x01ACTION", "").replace("\x01", "")
-                mod_msg = ireplace(msg, find, "\x02" + replace + "\x02")
-                message("Correction, * {} {}".format(nick, mod_msg))
+        try:
+            q = multiprocessing.Queue()
+            p = multiprocessing.Process(target=check, args=[q, nick, find, replace, msg])
+            p.start()
+            p.join(timeout=1)
+            if p.is_alive():
+                message('ಠ_ಠ')
+                p.terminate()
+                return
             else:
-                mod_msg = ireplace(msg, find, "\x02" + replace + "\x02")
-                message("Correction, <{}> {}".format(nick, mod_msg))
-
-            msg = ireplace(msg, find, replace)
-            conn.history[chan].append((nick, timestamp, msg))
-            return
-        else:
-            continue
+                if not q.empty():
+                    msg = q.get()
+                    message(msg)
+                    return
+        except sre_constants.error:
+            # bad regex
+            pass
