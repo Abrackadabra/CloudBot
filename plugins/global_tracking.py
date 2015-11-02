@@ -29,7 +29,7 @@ class Dude(object):
         return '{}\u200b{}'.format(s[0], s[1:])
 
     def __str__(self):
-        return '{}!{}@{} as {}'.format(
+        return '{}!{}@{} -> {}'.format(
             Dude.insert_zwsp(self.nick),
             Dude.insert_zwsp(self.username),
             Dude.insert_zwsp(self.host),
