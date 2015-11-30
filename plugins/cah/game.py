@@ -214,9 +214,9 @@ class GamePhase(object):
       mins = secs // 60
       secs %= 60
       if mins:
-        msg = 'Timeout will happen in {} minutes and {} seconds.'.format(mins, secs)
+        msg = 'Timeout will happen in ∆{}∆ minutes and ∆{}∆ seconds.'.format(mins, secs)
       else:
-        msg = 'Timeout will happen in {} seconds.'.format(secs)
+        msg = 'Timeout will happen in ∆{}∆ seconds.'.format(secs)
       g.com.announce(msg)
       return
     g.com.announce('There is no timeout now.')
@@ -348,9 +348,9 @@ class WaitingForPlayers(GamePhase):
     start -- starts the game. Only the game creator can use it. Once started, game's parameters
     cannot be changed
     """
-    if nick != g.creator:
-      g.com.notice(nick, 'Only ∆{}∆ can start the game.'.format(g.creator))
-    elif g.count_players() < g.MIN_PLAYERS:
+    # if nick != g.creator:
+    #   g.com.notice(nick, 'Only ∆{}∆ can start the game.'.format(g.creator))
+    if g.count_players() < g.MIN_PLAYERS:
       g.com.reply(nick, 'Need at least ∆{}∆ players to start a game.'.format(g.MIN_PLAYERS))
     else:
       g.cancel_timeouts()
